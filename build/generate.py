@@ -354,11 +354,9 @@ def render_doelgroep(key):
     <h1>{d['name']} — <em style="color:var(--green);font-style:italic;font-weight:500">{d['q'].lower()}</em></h1>
     <p class="lead">{d['intro']}</p>
     <div class="ph-cta"><a href="#diensten" class="btn btn--primary">Bekijk diensten</a><a href="contact.html" class="btn btn--ghost">Plan een gesprek</a></div>
-    <form class="search search--light" onsubmit="return false">
-      <label class="seg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
-        <span class="field"><span class="lbl" data-i18n="search.lblloc">Locatie of trefwoord</span><input type="text" placeholder="Bijv. Amsterdam Zuidas, kantoor…" data-i18n-ph="search.phloc"></span></label>
-      <label class="seg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">{I_BLD}</svg>
-        <span class="field"><span class="lbl" data-i18n="search.lbltype">Type</span><select><option>Alle typen</option><option>Kantoorruimte</option><option>Bedrijfsruimte</option><option>Beleggingsobject</option></select></span></label>
+    <form class="search search--light search--single" onsubmit="return false">
+      <label class="seg"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+        <input type="text" placeholder="Zoek op plaats, adres, type of trefwoord…" data-i18n-ph="search.phloc" aria-label="Zoeken"></label>
       <button class="search-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg> <span data-i18n="search.btn">Zoeken</span></button>
     </form>
   </div>
@@ -482,6 +480,14 @@ def render_unit(idx, u):
     <a href="#cases">Cases</a><a href="#team">Team</a><a href="#reviews">Reviews</a><a href="#faq">FAQ</a><a href="#kennis">Kennis</a>
   </div>
 </nav>
+
+<section class="logos-band"><div class="section--tight" style="padding-top:34px;padding-bottom:34px"><div class="container">
+  <div class="logos-cap">Vertrouwd door opdrachtgevers &amp; partners</div>
+  <div class="logos-row">
+    <span class="clogo">MERIN</span><span class="clogo">a.s.r.&nbsp;<small>real estate</small></span><span class="clogo">BPD</span>
+    <span class="clogo">Vesteda</span><span class="clogo">Heimstaden</span><span class="clogo">Bouwinvest</span>
+  </div>
+</div></div></section>
 
 {approach_html}
 <section class="section" id="expertises">

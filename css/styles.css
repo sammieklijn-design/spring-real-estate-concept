@@ -896,6 +896,42 @@ p{ margin:0 0 1rem; }
   .statfeature, .rev-kat{ grid-template-columns:1fr; }
 }
 
+/* single search bar — one input + button (no sub-segments) */
+.search--single{ max-width:760px; }
+.search--single .seg{ flex:1; }
+.search--single .seg input{ font-size:1.05rem; }
+
+/* client / partner logo row ("Wij werken samen met") */
+.logos-band{ border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:#fff; }
+.logos-row{ display:flex; align-items:center; justify-content:center; gap:clamp(24px,5vw,64px); flex-wrap:wrap; padding:6px 0; }
+.logos-row .clogo{ font-weight:800; font-size:1.2rem; letter-spacing:-.02em; color:#9b9d94; opacity:.85; transition:.2s; white-space:nowrap; }
+.logos-row .clogo:hover{ color:var(--ink); opacity:1; }
+.logos-row .clogo small{ font-weight:500; font-size:.7rem; letter-spacing:.12em; }
+.logos-cap{ text-align:center; font-size:.78rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:18px; }
+
+/* aanbod split (For Lease / For Sale) */
+.aanbod-tabs{ display:flex; gap:10px; justify-content:center; margin-bottom:26px; flex-wrap:wrap; }
+.aanbod-tabs a.btn{ }
+
+/* person modal (clickable team members) */
+.pmodal{ position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center; padding:24px; }
+.pmodal.open{ display:flex; }
+.pmodal-ov{ position:absolute; inset:0; background:rgba(15,18,10,.6); backdrop-filter:blur(3px); }
+.pmodal-card{ position:relative; z-index:2; background:#fff; border-radius:var(--r-lg); max-width:600px; width:100%; overflow:hidden; box-shadow:var(--shadow); display:grid; grid-template-columns:200px 1fr; max-height:90vh; }
+.pmodal-card .pm-photo{ background:var(--bg-soft); }
+.pmodal-card .pm-photo img{ width:100%; height:100%; object-fit:cover; }
+.pmodal-card .pm-body{ padding:30px; overflow-y:auto; }
+.pmodal-card .pm-role{ color:var(--green); font-weight:600; font-size:.92rem; }
+.pmodal-card h3{ font-size:1.5rem; margin:4px 0 14px; }
+.pmodal-card .pm-bio{ color:var(--ink-soft); font-size:.96rem; }
+.pmodal-card .pm-contact{ display:grid; gap:10px; margin-top:18px; }
+.pmodal-card .pm-contact a{ display:flex; align-items:center; gap:10px; font-weight:600; font-size:.92rem; }
+.pmodal-card .pm-contact a:hover{ color:var(--green); }
+.pmodal-card .pm-contact svg{ color:var(--green); }
+.pmodal-close{ position:absolute; top:14px; right:16px; z-index:3; background:rgba(255,255,255,.9); border:0; width:34px; height:34px; border-radius:50%; font-size:1.3rem; cursor:pointer; }
+.person, .agent{ cursor:pointer; }
+@media (max-width:560px){ .pmodal-card{ grid-template-columns:1fr; } .pmodal-card .pm-photo{ height:200px; } }
+
 /* Talk to an agent band (bottom of every page, Katana-style) */
 .talk-band .talk-card{ display:grid; grid-template-columns:.85fr 1.15fr; background:var(--green-tint); border-radius:var(--r-lg); overflow:hidden; border:1px solid var(--line); }
 .talk-band .talk-photo{ min-height:280px; background:var(--bg-soft); }

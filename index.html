@@ -62,7 +62,7 @@
   <div class="container">
     <span class="eyebrow">Spring Real Estate</span>
     <h1>Powered by <span class="accent">People.</span><br>Backed by <span class="accent">Tech.</span></h1>
-    <p class="hero-sub">Dé partner in commercieel vastgoed — of u nu zoekt, bezit, investeert of ontwikkelt. We begeleiden u vanuit uw vraag, met data én mensenwerk.</p>
+    <p class="hero-sub">Spring Real Estate is een brede vastgoedgroep — commercieel én residentieel. Of u nu zoekt, bezit, investeert of ontwikkelt: wij begeleiden u vanuit uw vraag, met data én mensenwerk.</p>
 
     <div class="search-tabs" id="searchTabs">
       <button class="active" data-tab="huur">Huren</button>
@@ -70,22 +70,10 @@
       <button data-tab="invest">Beleggen</button>
     </div>
 
-    <form class="search" onsubmit="return false">
+    <form class="search search--single" onsubmit="return false">
       <label class="seg">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
-        <span class="field"><span class="lbl">Locatie of trefwoord</span><input type="text" placeholder="Bijv. Amsterdam Zuidas, kantoor…"></span>
-      </label>
-      <label class="seg">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V8l7-5 7 5v13"/></svg>
-        <span class="field"><span class="lbl">Type</span>
-          <select><option>Alle typen</option><option>Kantoorruimte</option><option>Bedrijfsruimte</option><option>Winkelruimte</option><option>Beleggingsobject</option></select>
-        </span>
-      </label>
-      <label class="seg">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
-        <span class="field"><span class="lbl">Oppervlakte</span>
-          <select><option>Alle m²</option><option>0 – 250 m²</option><option>250 – 1.000 m²</option><option>1.000 – 5.000 m²</option><option>5.000+ m²</option></select>
-        </span>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+        <input type="text" placeholder="Zoek op plaats, adres, type of trefwoord…" aria-label="Zoeken in het aanbod">
       </label>
       <button class="search-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg> Zoeken</button>
     </form>
@@ -99,56 +87,8 @@
   </div>
 </section>
 
-<!-- ============ FEATURED LISTINGS ============ -->
-<div class="container featured-row">
-  <div class="cards-grid">
-    <!-- card 1 -->
-    <a class="prop-card" href="listing-detail.html">
-      <div class="ph"><span class="tag">Te huur</span><span class="fav"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9C1 9 2.5 5.5 6 5.5c2 0 3.2 1.2 4 2.3.8-1.1 2-2.3 4-2.3 3.5 0 5 3.5 3.5 6.5C19 16.5 12 21 12 21z"/></svg></span>
-        <img src="images/photo-1.jpg" alt=""></div>
-      <div class="body">
-        <span class="ptype">Kantoorruimte</span>
-        <h3>Gustav Mahlerlaan 2999</h3>
-        <span class="addr">1082 MK Amsterdam · Zuidas</span>
-        <div class="meta">
-          <span class="price">€720 <small>/m²/jaar</small></span>
-          <span style="margin-left:auto">vanaf 1.250 m²</span>
-        </div>
-      </div>
-    </a>
-    <!-- card 2 -->
-    <a class="prop-card" href="listing-detail.html">
-      <div class="ph"><span class="tag">Te koop</span><span class="fav"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9C1 9 2.5 5.5 6 5.5c2 0 3.2 1.2 4 2.3.8-1.1 2-2.3 4-2.3 3.5 0 5 3.5 3.5 6.5C19 16.5 12 21 12 21z"/></svg></span>
-        <img src="images/photo-2.jpg" alt=""></div>
-      <div class="body">
-        <span class="ptype">Beleggingsobject</span>
-        <h3>Stadhouderskade 12</h3>
-        <span class="addr">3531 BJ Utrecht · Centrum</span>
-        <div class="meta">
-          <span class="price">€4,9 mln <small>k.k.</small></span>
-          <span style="margin-left:auto">2.100 m²</span>
-        </div>
-      </div>
-    </a>
-    <!-- card 3 -->
-    <a class="prop-card" href="listing-detail.html">
-      <div class="ph"><span class="tag">Te huur</span><span class="fav"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9C1 9 2.5 5.5 6 5.5c2 0 3.2 1.2 4 2.3.8-1.1 2-2.3 4-2.3 3.5 0 5 3.5 3.5 6.5C19 16.5 12 21 12 21z"/></svg></span>
-        <img src="images/hero.jpg" alt=""></div>
-      <div class="body">
-        <span class="ptype">Serviced office</span>
-        <h3>Paseo de la Alameda 7</h3>
-        <span class="addr">46023 Valencia · España</span>
-        <div class="meta">
-          <span class="price">€1.450 <small>/maand</small></span>
-          <span style="margin-left:auto">12 werkplekken</span>
-        </div>
-      </div>
-    </a>
-  </div>
-</div>
-
-<!-- ============ AUDIENCE (Katana image cards) ============ -->
-<section class="section">
+<!-- ============ AUDIENCE (4 doelgroepen direct na de hero) ============ -->
+<section class="section" style="padding-top:64px">
   <div class="container">
     <div class="panel">
       <div class="sec-head">
@@ -168,6 +108,19 @@
     </div>
   </div>
 </section>
+
+<!-- ============ CLIENT LOGOS ============ -->
+<section class="logos-band"><div class="section--tight" style="padding-top:40px;padding-bottom:40px"><div class="container">
+  <div class="logos-cap">Vertrouwd door toonaangevende partijen</div>
+  <div class="logos-row">
+    <span class="clogo">MERIN</span>
+    <span class="clogo">a.s.r.&nbsp;<small>real estate</small></span>
+    <span class="clogo">BPD</span>
+    <span class="clogo">Vesteda</span>
+    <span class="clogo">Heimstaden</span>
+    <span class="clogo">Bouwinvest</span>
+  </div>
+</div></div></section>
 
 <!-- ============ USPs (Katana dark cards) ============ -->
 <section class="section">
@@ -303,6 +256,30 @@
       <a class="unit" href="diensten.html"><span class="u-dot"></span>HR-advies</a>
       <a class="unit" href="diensten.html"><span class="u-dot"></span>Recruitment &amp; Talent</a>
       <a class="unit" href="diensten.html"><span class="u-dot"></span>Internationaal · España</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ UITGELICHT AANBOD ============ -->
+<section class="section--tight">
+  <div class="container">
+    <div class="sec-head">
+      <div class="t">
+        <span class="eyebrow">Uitgelicht aanbod</span>
+        <h2 class="disp">Beschikbaar <em>vastgoed</em></h2>
+        <p class="lead">Commercieel én residentieel — te huur en te koop in Utrecht, Amsterdam en Valencia.</p>
+      </div>
+      <a href="listings.html" class="btn btn--primary">Bekijk heel het aanbod</a>
+    </div>
+    <div class="aanbod-tabs">
+      <a href="listings.html" class="btn btn--secondary">Te huur</a>
+      <a href="listings.html" class="btn btn--ghost">Te koop</a>
+      <a href="listings.html" class="btn btn--ghost">Beleggingsaanbod</a>
+    </div>
+    <div class="cards-grid">
+      <a class="prop-card" href="listing-detail.html"><div class="ph"><span class="tag">Te huur</span><span class="fav"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9C1 9 2.5 5.5 6 5.5c2 0 3.2 1.2 4 2.3.8-1.1 2-2.3 4-2.3 3.5 0 5 3.5 3.5 6.5C19 16.5 12 21 12 21z"/></svg></span><img src="images/photo-1.jpg" alt=""></div><div class="body"><span class="ptype">Kantoorruimte</span><h3>Gustav Mahlerlaan 2999</h3><span class="addr">1082 MK Amsterdam · Zuidas</span><div class="meta"><span class="price">€720 <small>/m²/jaar</small></span><span style="margin-left:auto">vanaf 1.250 m²</span></div></div></a>
+      <a class="prop-card" href="listing-detail.html"><div class="ph"><span class="tag">Te koop</span><span class="fav"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9C1 9 2.5 5.5 6 5.5c2 0 3.2 1.2 4 2.3.8-1.1 2-2.3 4-2.3 3.5 0 5 3.5 3.5 6.5C19 16.5 12 21 12 21z"/></svg></span><img src="images/photo-2.jpg" alt=""></div><div class="body"><span class="ptype">Beleggingsobject</span><h3>Stadhouderskade 12</h3><span class="addr">3531 BJ Utrecht · Centrum</span><div class="meta"><span class="price">€4,9 mln <small>k.k.</small></span><span style="margin-left:auto">2.100 m²</span></div></div></a>
+      <a class="prop-card" href="listing-detail.html"><div class="ph"><span class="tag">Te huur</span><span class="fav"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9C1 9 2.5 5.5 6 5.5c2 0 3.2 1.2 4 2.3.8-1.1 2-2.3 4-2.3 3.5 0 5 3.5 3.5 6.5C19 16.5 12 21 12 21z"/></svg></span><img src="images/hero.jpg" alt=""></div><div class="body"><span class="ptype">Serviced office</span><h3>Paseo de la Alameda 7</h3><span class="addr">46023 Valencia · España</span><div class="meta"><span class="price">€1.450 <small>/maand</small></span><span style="margin-left:auto">12 werkplekken</span></div></div></a>
     </div>
   </div>
 </section>
