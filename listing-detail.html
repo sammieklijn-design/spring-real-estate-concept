@@ -32,34 +32,29 @@
 </div>
 
 <!-- ============ HEADER ============ -->
-<header class="header">
-  <div class="container">
-    <a href="index.html" class="logo" aria-label="Spring Real Estate">
-      <span class="logo-main">Spr<span class="dot"></span>ing</span>
-      <span class="logo-sub">real estate</span>
-    </a>
-    <nav class="nav">
-      <div class="has-drop">
-        <button>Diensten <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-        <div class="drop">
-          <a href="diensten.html#gebruiker"><span class="d-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></span><span><span class="d-t">Gebruiker</span><span class="d-d">Ik zoek een kantoor of werkplek</span></span></a>
-          <a href="diensten.html#eigenaar"><span class="d-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg></span><span><span class="d-t">Eigenaar</span><span class="d-d">Ik wil verkopen of verhuren</span></span></a>
-          <a href="diensten.html#investeerder"><span class="d-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8M21 7v6M21 7h-6"/></svg></span><span><span class="d-t">Investeerder</span><span class="d-d">Ik wil investeren in vastgoed</span></span></a>
-          <a href="diensten.html#ontwikkelaar"><span class="d-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V8l5-3v15M14 20V4l6 4v12"/></svg></span><span><span class="d-t">Ontwikkelaar</span><span class="d-d">Ik wil ontwikkelen of optimaliseren</span></span></a>
-        </div>
+<header class="header"><div class="container">
+  <a href="index.html" class="logo" aria-label="Spring Real Estate"><span class="logo-main">Spr<span class="dot"></span>ing</span><span class="logo-sub">real estate</span></a>
+  <nav class="nav">
+    <div class="has-drop"><button><span data-i18n="nav.diensten">Diensten</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="drop">
+        <a href="doelgroep-gebruiker.html"><span class="d-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></span><span><span class="d-t" data-i18n="dd.gebruiker">Gebruiker</span><span class="d-d" data-i18n="dd.gebruiker.d">Ik zoek een kantoor of werkplek</span></span></a>
+        <a href="doelgroep-eigenaar.html"><span class="d-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg></span><span><span class="d-t" data-i18n="dd.eigenaar">Eigenaar</span><span class="d-d" data-i18n="dd.eigenaar.d">Ik wil verkopen of verhuren</span></span></a>
+        <a href="doelgroep-investeerder.html"><span class="d-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8M21 7v6M21 7h-6"/></svg></span><span><span class="d-t" data-i18n="dd.investeerder">Investeerder</span><span class="d-d" data-i18n="dd.investeerder.d">Ik wil investeren in vastgoed</span></span></a>
+        <a href="doelgroep-ontwikkelaar.html"><span class="d-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V8l5-3v15M14 20V4l6 4v12"/></svg></span><span><span class="d-t" data-i18n="dd.ontwikkelaar">Ontwikkelaar</span><span class="d-d" data-i18n="dd.ontwikkelaar.d">Ik wil ontwikkelen of optimaliseren</span></span></a>
       </div>
-      <a href="listings.html">Listings</a>
-      <a href="about.html">About Us</a>
-      <a href="agents.html">Agents</a>
-      <a href="resources.html">Resources</a>
-    </nav>
-    <div class="header-cta">
-      <a href="#aanvraag" class="link-arrow" style="font-size:.95rem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9C1 9 2.5 5.5 6 5.5c2 0 3.2 1.2 4 2.3.8-1.1 2-2.3 4-2.3 3.5 0 5 3.5 3.5 6.5C19 16.5 12 21 12 21z"/></svg> Bewaren</a>
-      <a href="contact.html" class="btn btn--primary">Contact</a>
-      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
+    <a href="listings.html" data-i18n="nav.listings">Listings</a>
+    <a href="about.html" data-i18n="nav.about">About Us</a>
+    <a href="agents.html" data-i18n="nav.agents">Agents</a>
+    <a href="resources.html" data-i18n="nav.resources">Resources</a>
+    <a href="vacatures.html" data-i18n="nav.vacatures">Vacatures</a>
+  </nav>
+  <div class="header-cta">
+    <a href="listings.html" class="link-arrow" style="font-size:.95rem" data-i18n="cta.aanbod">Aanbod bekijken</a>
+    <a href="contact.html" class="btn btn--primary" data-i18n="nav.contact">Contact</a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
-</header>
+</div></header>
 
 <!-- ============ DETAIL TOP NAV ============ -->
 <div class="detail-top">
@@ -272,60 +267,39 @@
 </div>
 
 <!-- ============ FOOTER ============ -->
-<footer class="footer">
-  <div class="container">
-    <div class="top">
-      <div>
-        <div class="logo logo--light"><span class="logo-main">Spr<span class="dot"></span>ing</span><span class="logo-sub">real estate</span></div>
-        <p style="margin-top:16px; max-width:30ch">Powered by People. Backed by Tech. Dé partner in commercieel vastgoed in Nederland &amp; Spanje.</p>
-        <div class="badges">
-          <span class="badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 6.9H22l-6 4.3 2.3 7-6.3-4.4L5.7 20 8 13.2 2 8.9h7.6z"/></svg> 4,8/5 Google</span>
-          <span class="badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg> NVM / VBO</span>
-        </div>
-      </div>
-      <div>
-        <h4>Doelgroepen</h4>
-        <ul>
-          <li><a href="diensten.html#gebruiker">Gebruiker</a></li>
-          <li><a href="diensten.html#eigenaar">Eigenaar</a></li>
-          <li><a href="diensten.html#investeerder">Investeerder</a></li>
-          <li><a href="diensten.html#ontwikkelaar">Ontwikkelaar</a></li>
-          <li><a href="diensten.html">Alle diensten</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Navigatie</h4>
-        <ul>
-          <li><a href="listings.html">Listings / Aanbod</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="agents.html">Agents / Team</a></li>
-          <li><a href="resources.html">Resources &amp; Blog</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Locaties</h4>
-        <ul>
-          <li><a href="locaties.html#utrecht">Utrecht</a></li>
-          <li><a href="locaties.html#amsterdam">Amsterdam</a></li>
-          <li><a href="locaties.html#valencia">Valencia (ES)</a></li>
-        </ul>
-      </div>
-      <div class="news">
-        <h4>Nieuwsbrief</h4>
-        <p style="font-size:.9rem">Marktinzichten &amp; nieuw aanbod in uw inbox.</p>
-        <form onsubmit="return false"><input type="email" placeholder="Uw e-mailadres"><button class="btn btn--primary" style="width:100%">Inschrijven</button></form>
+<footer class="footer"><div class="container">
+  <div class="top">
+    <div>
+      <div class="logo logo--light"><span class="logo-main">Spr<span class="dot"></span>ing</span><span class="logo-sub">real estate</span></div>
+      <p style="margin-top:16px; max-width:30ch" data-i18n="foot.tagline">Powered by People. Backed by Tech. D&eacute; partner in commercieel vastgoed in Nederland &amp; Spanje.</p>
+      <div class="badges">
+        <span class="badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 6.9H22l-6 4.3 2.3 7-6.3-4.4L5.7 20 8 13.2 2 8.9h7.6z"/></svg> 4,8/5 Google</span>
+        <span class="badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg> NVM / VBO</span>
       </div>
     </div>
-    <div class="bottom">
-      <span>© 2026 Spring Real Estate. Alle rechten voorbehouden.</span>
-      <div class="links">
-        <a href="#">Privacyverklaring</a><a href="#">Cookies</a><a href="#">Algemene voorwaarden</a>
-        <span style="color:#6f7166">Concept o.b.v. Katana-template</span>
-      </div>
-    </div>
+    <div><h4 data-i18n="foot.doelgroepen">Doelgroepen</h4><ul>
+      <li><a href="doelgroep-gebruiker.html" data-i18n="dd.gebruiker">Gebruiker</a></li>
+      <li><a href="doelgroep-eigenaar.html" data-i18n="dd.eigenaar">Eigenaar</a></li>
+      <li><a href="doelgroep-investeerder.html" data-i18n="dd.investeerder">Investeerder</a></li>
+      <li><a href="doelgroep-ontwikkelaar.html" data-i18n="dd.ontwikkelaar">Ontwikkelaar</a></li>
+    </ul></div>
+    <div><h4 data-i18n="foot.navigatie">Navigatie</h4><ul>
+      <li><a href="listings.html" data-i18n="nav.listings">Listings / Aanbod</a></li>
+      <li><a href="about.html" data-i18n="nav.about">About Us</a></li>
+      <li><a href="agents.html" data-i18n="nav.agents">Agents / Team</a></li>
+      <li><a href="resources.html" data-i18n="nav.resources">Resources &amp; Blog</a></li>
+      <li><a href="vacatures.html" data-i18n="nav.vacatures">Vacatures</a></li>
+      <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+    </ul></div>
+    <div><h4 data-i18n="foot.locaties">Locaties</h4><ul>
+      <li><a href="locaties.html#utrecht">Utrecht</a></li>
+      <li><a href="locaties.html#amsterdam">Amsterdam</a></li>
+      <li><a href="locaties.html#valencia">Valencia (ES)</a></li>
+    </ul></div>
+    <div class="news"><h4 data-i18n="foot.nieuwsbrief">Nieuwsbrief</h4><p style="font-size:.9rem" data-i18n="foot.nieuwsbrief.p">Marktinzichten &amp; nieuw aanbod in uw inbox.</p><form onsubmit="return false"><input type="email" placeholder="Uw e-mailadres" data-i18n-ph="foot.email"><button class="btn btn--primary" style="width:100%" data-i18n="foot.inschrijven">Inschrijven</button></form></div>
   </div>
-</footer>
+  <div class="bottom"><span data-i18n="foot.rights">&copy; 2026 Spring Real Estate. Alle rechten voorbehouden.</span><div class="links"><a href="#">Privacyverklaring</a><a href="#">Cookies</a><a href="#">Algemene voorwaarden</a><span style="color:#6f7166">Concept o.b.v. Katana-template</span></div></div>
+</div></footer>
 
 <!-- ============ MOBILE MENU ============ -->
 <div class="mobile-menu" id="mobileMenu">
@@ -347,5 +321,6 @@
 </div>
 
 <script src="js/main.js"></script>
+<script src="js/i18n.js"></script>
 </body>
 </html>

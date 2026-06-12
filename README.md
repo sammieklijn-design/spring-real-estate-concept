@@ -32,11 +32,32 @@ Lettertype: **Raleway** (Google Fonts). Buttons altijd met afgeronde hoeken.
 ## Structuur
 ```
 spring-site-concept/
-├── index.html          # Homepage (af)
-├── css/styles.css      # Design system + alle secties
-├── js/main.js          # Nav, mobiel menu, zoek-tabs, taalschakelaar
-├── images/             # Logo + foto's
-└── _assets/            # Bronmateriaal (brandbook, PDF's) — niet in git
+├── index.html              # Homepage
+├── doelgroep-*.html        # 4 doelgroep-hubs (gebruiker/eigenaar/investeerder/ontwikkelaar)
+├── unit-*.html             # 23 business-unit-pagina's
+├── vacatures.html          # Vacatures
+├── listings.html / listing-detail.html
+├── about / agents / resources / contact / locaties .html
+├── diensten.html           # diensten-overzicht (legacy hub)
+├── css/styles.css          # Design system + alle secties
+├── js/main.js              # Nav, mobiel menu, zoek-tabs
+├── js/i18n.js              # 3 talen (NL/EN/ES) voor de navigatie/UI
+├── build/generate.py       # Genereert doelgroep- + unit- + vacaturepagina's
+├── build/update_existing.py# Zet bestaande pagina's op de nieuwe nav + i18n
+├── images/                 # Logo + foto's
+└── _assets/                # Bronmateriaal (brandbook, PDF's) — niet in git
+```
+
+### Informatiearchitectuur (doelgroepgestuurd)
+`Doelgroep-hub → diensten → business-unit-pagina`. Elke business-unit-pagina
+bevat de vaste blokken uit het aanleverdocument: expertises, sectoren, cijfers,
+"zo werken wij", cases, team, reviews, FAQ, download (lead magnet),
+kennisartikelen en certificeringen.
+
+### Pagina's (her)genereren
+```bash
+python build/generate.py        # 4 doelgroepen + 23 units + vacatures
+python build/update_existing.py # nav/i18n op de hand-gebouwde pagina's
 ```
 
 ## Lokaal bekijken
