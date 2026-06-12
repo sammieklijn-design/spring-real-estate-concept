@@ -510,6 +510,13 @@ def render_unit(idx, u):
   <div class="sector-grid">{sectors}</div>
 </div></section>
 
+<section class="section--tight"><div class="container">
+  <div class="panel" style="text-align:center">
+    <p class="disp" style="font-size:clamp(1.4rem,3vw,2.2rem);max-width:62ch;margin:0 auto;line-height:1.3"><em>"Binnen {title_low} draait alles om de juiste match tussen vraag en aanbod — onderbouwd met data en geleverd door mensen die uw markt kennen."</em></p>
+    <p class="muted" style="margin-top:18px;font-weight:600">{ROSTER[idx % len(ROSTER)][1]} · {ROSTER[idx % len(ROSTER)][2]}</p>
+  </div>
+</div></section>
+
 <section class="section dark-sec" id="cijfers"><div class="container">
   <div class="sec-head"><div class="t"><span class="eyebrow" style="color:var(--green-soft)">Cijfers</span><h2 style="color:#fff">Bewezen <em>resultaat</em></h2></div></div>
   <div class="stats-band" style="background:transparent;border:1px solid rgba(255,255,255,.12)"><div class="grid">
@@ -763,6 +770,15 @@ def render_locatie(key):
     <span class="pin2" style="position:absolute;left:50%;top:46%;transform:translate(-50%,-100%)"><span class="dot" style="display:block;width:30px;height:30px;border-radius:50% 50% 50% 0;background:var(--green);transform:rotate(-45deg);border:3px solid #fff;box-shadow:0 6px 14px -4px rgba(0,0,0,.4)"></span></span>
   </div>
 </div></div></section>
+
+<section class="section--tight"><div class="container">
+  <div class="sec-head"><div class="t"><span class="eyebrow">Kantoorimpressie</span><h2 class="disp">Zo ziet ons kantoor in <em>{L['name']}</em> eruit</h2></div></div>
+  <div class="cards-grid">
+    <div style="border-radius:var(--r);overflow:hidden;aspect-ratio:4/3"><img src="images/photo-1.jpg" alt="Kantoor {L['name']}" style="width:100%;height:100%;object-fit:cover"></div>
+    <div style="border-radius:var(--r);overflow:hidden;aspect-ratio:4/3"><img src="images/photo-2.jpg" alt="Kantoor {L['name']}" style="width:100%;height:100%;object-fit:cover"></div>
+    <div style="border-radius:var(--r);overflow:hidden;aspect-ratio:4/3"><img src="images/hero.jpg" alt="Kantoor {L['name']}" style="width:100%;height:100%;object-fit:cover"></div>
+  </div>
+</div></section>
 
 <section class="section dark-sec"><div class="container">
   <div class="sec-head"><div class="t"><span class="eyebrow" style="color:var(--green-soft)">Het team in {L['name']}</span><h2 class="disp" style="color:#fff">Uw <em>aanspreekpunt</em></h2></div><a href="agents.html" class="btn btn--secondary">Heel het team</a></div>
