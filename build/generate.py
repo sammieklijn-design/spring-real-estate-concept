@@ -525,8 +525,8 @@ def render_unit(idx, u):
   </div></div>
 </div></section>
 
-<section class="section" id="werkwijze"><div class="container">
-  <div class="sec-head"><div class="t"><span class="eyebrow">Zo werken wij</span><h2>Onze <em>aanpak</em> in 4 stappen</h2></div></div>
+<section class="section--soft" id="werkwijze"><div class="container">
+  <div class="sec-head"><div class="t"><span class="eyebrow">Zo werken wij</span><h2 class="disp">Onze <em>aanpak</em> in 4 stappen</h2></div></div>
   <div class="bu-steps">
     <div class="bu-step"><div class="n"></div><h3>Kennismaken</h3><p>We brengen uw vraag en situatie scherp in kaart.</p></div>
     <div class="bu-step"><div class="n"></div><h3>Analyse &amp; advies</h3><p>Datagedreven advies en een concreet plan van aanpak.</p></div>
@@ -565,9 +565,17 @@ def render_unit(idx, u):
   </div>
 </div></section>
 
-<section class="section" id="faq"><div class="container">
-  <div class="sec-head"><div class="t"><span class="eyebrow">Veelgestelde vragen</span><h2>FAQ over <em>{name.lower()}</em></h2></div></div>
-  <div class="faq-list">{faq_html}</div>
+<section class="section--soft" id="faq"><div class="container">
+  <div class="sec-head"><div class="t"><span class="eyebrow">Veelgestelde vragen</span><h2 class="disp">FAQ over <em>{title_low}</em></h2></div></div>
+  <div class="split">
+    <div class="faq-list">{faq_html}</div>
+    <div class="aside-card aside-dark">
+      <h3>Nog een vraag?</h3>
+      <p style="color:#bcbeb2;font-size:.94rem">Onze specialisten beantwoorden 'm graag persoonlijk — vrijblijvend.</p>
+      <a href="contact.html" class="btn btn--primary" style="width:100%;margin-top:8px">Stel uw vraag</a>
+      <a href="tel:+31302001020" class="btn btn--ghost" style="width:100%;margin-top:10px;color:#fff;border-color:rgba(255,255,255,.3)">+31 30 200 10 20</a>
+    </div>
+  </div>
 </div></section>
 
 <section class="section--tight" id="kennis"><div class="container">
@@ -631,17 +639,45 @@ def render_vacatures():
   </div>
 </section>
 
-<section class="section"><div class="container">
-  <div class="sec-head"><div class="t"><span class="eyebrow">Open posities</span><h2>Onze <em>vacatures</em></h2></div></div>
-  <div class="vac-list">{rows}</div>
+<section class="section--tight"><div class="container">
+  <div class="hero-stats" style="display:flex;gap:clamp(28px,5vw,56px);flex-wrap:wrap;justify-content:center;text-align:center">
+    <div class="stat-pop"><b style="font-size:2rem;font-weight:800;display:block;color:var(--green)">40+</b><span class="muted">collega&#39;s</span></div>
+    <div class="stat-pop"><b style="font-size:2rem;font-weight:800;display:block;color:var(--green)">3</b><span class="muted">vestigingen · NL &amp; ES</span></div>
+    <div class="stat-pop"><b style="font-size:2rem;font-weight:800;display:block;color:var(--green)">23</b><span class="muted">business units</span></div>
+    <div class="stat-pop"><b style="font-size:2rem;font-weight:800;display:block;color:var(--green)">15+</b><span class="muted">jaar groei</span></div>
+  </div>
 </div></section>
 
-<section class="section--tight"><div class="container">
-  <div class="sec-head"><div class="t"><span class="eyebrow">Werken bij Spring</span><h2 class="disp">Waarom je <em>bij ons</em> wilt werken</h2></div></div>
+<section class="section--soft"><div class="container"><div class="two-col">
+  <div class="media-tall"><img src="images/photo-1.jpg" alt="Werken bij Spring"></div>
+  <div class="prose">
+    <span class="eyebrow">Werken bij Spring</span>
+    <h2 class="disp">Groei mee met een <em>ambitieuze</em> vastgoedgroep</h2>
+    <p>Bij Spring werk je in kleine, slagvaardige teams met korte lijnen en veel eigen verantwoordelijkheid. Je krijgt de ruimte om te ondernemen, ondersteund door de beste data en tools in de markt.</p>
+    <p>Of je nu start of al jaren ervaring hebt: je groeit mee met een groep die commercieel &eacute;n residentieel vastgoed onder &eacute;&eacute;n dak brengt, in Nederland en Spanje.</p>
+    <a href="#vacatures" class="btn btn--primary">Bekijk vacatures</a>
+  </div>
+</div></div></section>
+
+<section class="section"><div class="container">
+  <div class="sec-head"><div class="t"><span class="eyebrow">Arbeidsvoorwaarden</span><h2 class="disp">Wat je bij ons <em>krijgt</em></h2></div></div>
   <div class="values-grid">
-    <div class="value"><div class="ic">{ic(I_CHECK,"2.4")}</div><h3>Powered by People</h3><p>Korte lijnen, echte verantwoordelijkheid en ruimte om te groeien.</p></div>
-    <div class="value"><div class="ic">{ic(I_CHECK,"2.4")}</div><h3>Backed by Tech</h3><p>Werk met de beste data en tools in de markt.</p></div>
-    <div class="value"><div class="ic">{ic(I_CHECK,"2.4")}</div><h3>Internationaal</h3><p>Kansen in Nederland &eacute;n Spanje.</p></div>
+    <div class="value"><div class="ic">{ic(I_CHECK,"2.4")}</div><h3>Marktconform salaris &amp; bonus</h3><p>Een eerlijk salaris met een prestatieafhankelijke bonusregeling.</p></div>
+    <div class="value"><div class="ic">{ic(I_CHECK,"2.4")}</div><h3>Opleiding &amp; groei</h3><p>Ruim opleidingsbudget en een persoonlijk ontwikkelplan.</p></div>
+    <div class="value"><div class="ic">{ic(I_CHECK,"2.4")}</div><h3>Hybride werken</h3><p>Flexibel werken vanuit kantoor, thuis of een van onze vestigingen.</p></div>
+    <div class="value"><div class="ic">{ic(I_CHECK,"2.4")}</div><h3>Auto / mobiliteit</h3><p>Mobiliteitsregeling die past bij jouw rol en situatie.</p></div>
+    <div class="value"><div class="ic">{ic(I_CHECK,"2.4")}</div><h3>Internationale kansen</h3><p>Werk en groei mee over de grens — van Utrecht tot Valencia.</p></div>
+    <div class="value"><div class="ic">{ic(I_CHECK,"2.4")}</div><h3>Teamspirit &amp; events</h3><p>Borrels, uitjes en een hecht team dat successen samen viert.</p></div>
+  </div>
+</div></section>
+
+<section class="section--tight section--tint"><div class="container">
+  <div class="sec-head"><div class="t"><span class="eyebrow">Sollicitatieproces</span><h2 class="disp">Zo verloopt je <em>sollicitatie</em></h2></div></div>
+  <div class="bu-steps">
+    <div class="bu-step"><div class="n"></div><h3>Solliciteer</h3><p>Stuur je cv en motivatie — binnen 5 werkdagen hoor je van ons.</p></div>
+    <div class="bu-step"><div class="n"></div><h3>Kennismaking</h3><p>Een open gesprek over jou, je ambities en het team.</p></div>
+    <div class="bu-step"><div class="n"></div><h3>Verdiepend gesprek</h3><p>We gaan dieper in op de rol en je vakkennis.</p></div>
+    <div class="bu-step"><div class="n"></div><h3>Aanbod &amp; start</h3><p>Een passend aanbod en een warm welkom in het team.</p></div>
   </div>
 </div></section>
 
@@ -654,10 +690,24 @@ def render_vacatures():
   </div>
 </div></section>
 
+<section class="section" id="vacatures"><div class="container">
+  <div class="sec-head"><div class="t"><span class="eyebrow">Open posities</span><h2 class="disp">Onze <em>vacatures</em></h2></div><a href="contact.html" class="btn btn--ghost">Open sollicitatie</a></div>
+  <div class="vac-list">{rows}</div>
+</div></section>
+
+<section class="section--soft"><div class="container">
+  <div class="sec-head"><div class="t"><span class="eyebrow">Veelgestelde vragen</span><h2 class="disp">Vragen over <em>solliciteren</em></h2></div></div>
+  <div class="faq-list">
+    <details class="faq-item" open><summary>Kan ik een open sollicitatie sturen?<span class="pl">+</span></summary><div class="ans">Zeker. Staat er geen passende vacature tussen? Stuur je cv en motivatie en we kijken graag of er een match is.</div></details>
+    <details class="faq-item"><summary>Bieden jullie stages en werkstudentplekken?<span class="pl">+</span></summary><div class="ans">Ja, we hebben regelmatig plek voor stagiairs en werkstudenten — onder meer bij vastgoeddata en marketing.</div></details>
+    <details class="faq-item"><summary>Hoe snel hoor ik na mijn sollicitatie iets?<span class="pl">+</span></summary><div class="ans">Doorgaans binnen vijf werkdagen. We houden je gedurende het hele proces persoonlijk op de hoogte.</div></details>
+  </div>
+</div></section>
+
 <section class="section--tight"><div class="container"><div class="cta">
   <h2>Geen passende vacature?</h2>
   <p>We maken graag kennis. Stuur een open sollicitatie — wie weet groeien we samen.</p>
-  <div class="btns"><a href="contact.html" class="btn btn--light btn--lg">Open sollicitatie</a></div>
+  <div class="btns"><a href="contact.html" class="btn btn--light btn--lg">Open sollicitatie</a><a href="#vacatures" class="btn btn--lg" style="background:rgba(255,255,255,.16);color:#fff;border-color:rgba(255,255,255,.4)">Bekijk vacatures</a></div>
 </div></div></section>
 '''
     html += FOOTER

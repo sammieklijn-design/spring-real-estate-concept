@@ -64,6 +64,14 @@ p{ margin:0 0 1rem; }
 .container{ width:100%; max-width:var(--maxw); margin:0 auto; padding:0 24px; }
 .section{ padding:84px 0; }
 .section--tight{ padding:56px 0; }
+.section--soft{ background:var(--bg-soft); }
+.section--tint{ background:var(--green-tint); }
+/* generic split layout: content + aside (breaks vertical monotony) */
+.split{ display:grid; grid-template-columns:1.4fr .9fr; gap:40px; align-items:start; }
+.split .aside-card{ position:sticky; top:96px; border:1px solid var(--line); border-radius:var(--r-lg); padding:28px; background:#fff; box-shadow:var(--shadow-soft); }
+.split .aside-card.aside-dark{ background:var(--dark); color:#fff; border-color:rgba(255,255,255,.1); }
+.split .aside-card.aside-dark h3{ color:#fff; }
+@media (max-width:900px){ .split{ grid-template-columns:1fr; } .split .aside-card{ position:static; } }
 
 .eyebrow{
   display:inline-flex; align-items:center; gap:8px;
