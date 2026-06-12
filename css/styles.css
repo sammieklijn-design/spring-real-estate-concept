@@ -377,8 +377,20 @@ p{ margin:0 0 1rem; }
 .units-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
 .unit{
   display:flex; align-items:center; gap:12px; padding:14px 16px; border:1px solid var(--line);
-  border-radius:var(--r-sm); font-size:.92rem; font-weight:600; transition:.15s; background:#fff;
+  border-radius:var(--r-sm); font-size:.92rem; font-weight:600; transition:.15s; background:#fff; color:var(--ink);
 }
+.dark-sec .unit{ background:#fff; color:var(--ink); }
+/* labelled unit cluster groups (less monotonous than one big block grid) */
+.unit-cluster{ margin-bottom:26px; }
+.unit-cluster .uc-label{ font-size:.8rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--green-soft); margin-bottom:12px; display:flex; align-items:center; gap:10px; }
+.unit-cluster .uc-label::after{ content:""; flex:1; height:1px; background:rgba(255,255,255,.12); }
+/* header search icon + inline language switch (top-right) */
+.header .h-search{ width:42px; height:42px; border-radius:50%; border:1px solid var(--line); display:grid; place-items:center; color:var(--ink); background:#fff; }
+.header .h-search:hover{ border-color:var(--green); color:var(--green); }
+.header .h-lang{ display:inline-flex; gap:2px; }
+.header .h-lang button{ background:none; border:0; color:var(--ink-soft); padding:4px 7px; border-radius:6px; font-weight:700; font-size:.8rem; cursor:pointer; }
+.header .h-lang button.active{ background:var(--green-tint); color:var(--green); }
+@media (max-width:980px){ .header .h-search, .header .h-lang{ display:none; } }
 .unit:hover{ border-color:var(--green); color:var(--green); background:var(--green-tint); }
 .unit .u-dot{ width:8px; height:8px; border-radius:50%; background:var(--green); flex:0 0 auto; }
 

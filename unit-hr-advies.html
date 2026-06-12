@@ -40,7 +40,8 @@
     <a href="vacatures.html" data-i18n="nav.vacatures">Vacatures</a>
   </nav>
   <div class="header-cta">
-    <a href="listings.html" class="link-arrow" style="font-size:.95rem" data-i18n="cta.aanbod">Aanbod bekijken</a>
+    <a href="listings.html" class="h-search" aria-label="Zoeken in het aanbod"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></a>
+    <div class="h-lang"><button class="active" data-lang="nl">NL</button><button data-lang="en">EN</button><button data-lang="es">ES</button></div>
     <a href="contact.html" class="btn btn--primary" data-i18n="nav.contact">Contact</a>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
@@ -53,6 +54,11 @@
     <h1 data-tr="1" data-en="HR consulting services and outsourcing" data-es="Asesoría laboral y consultoría de RRHH">HR-advies en HR-uitbesteding</h1>
     <p class="lead" data-tr="1" data-en="Calm, structure and grip on HR." data-es="Calma, estructura y control en RRHH.">Rust, structuur en grip op HR.</p>
     <div class="ph-cta"><a href="#contact" class="btn btn--primary">Neem contact op</a><a href="#cases" class="btn btn--ghost">Bekijk cases</a></div>
+    <form class="search search--light search--single" onsubmit="return false">
+      <label class="seg"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+        <input type="text" placeholder="Zoek op plaats, adres, type of trefwoord…" data-i18n-ph="search.phloc" aria-label="Zoeken"></label>
+      <button class="search-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg> <span data-i18n="search.btn">Zoeken</span></button>
+    </form>
   </div>
 </section>
 
@@ -171,6 +177,8 @@
     <a class="post" href="resources.html"><div class="ph"><img src="images/photo-1.jpg" alt=""></div><div class="body"><span class="cat">Begrippen</span><h3>Belangrijke termen uitgelegd</h3><span class="date">28 mei 2026 · 4 min</span></div></a>
   </div>
 </div></section>
+
+
 
 <section class="section--tight"><div class="container">
   <div class="sec-head"><div class="t"><span class="eyebrow">Gerelateerde diensten</span><h2 class="disp">Ook <em>interessant</em></h2></div><a href="doelgroep-investeerder.html" class="btn btn--ghost">Alle diensten</a></div>

@@ -54,14 +54,14 @@ window.SPRING_I18N = {
                    : (lang==='es' && el.dataset.es) ? el.dataset.es
                    : el.dataset.nlHtml;
     });
-    document.querySelectorAll('.lang button, .mm-lang button').forEach(b=>{
+    document.querySelectorAll('.lang button, .mm-lang button, .h-lang button').forEach(b=>{
       b.classList.toggle('active', b.dataset.lang===lang);
     });
     try{ localStorage.setItem('spring-lang', lang); }catch(_){}
   }
   window.SPRING_setLang = apply;
   document.addEventListener('click', e=>{
-    const b = e.target.closest('.lang button, .mm-lang button');
+    const b = e.target.closest('.lang button, .mm-lang button, .h-lang button');
     if(b && b.dataset.lang) apply(b.dataset.lang);
   });
   let saved='nl';

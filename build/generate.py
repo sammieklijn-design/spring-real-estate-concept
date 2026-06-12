@@ -240,7 +240,8 @@ HEADER = """<header class="header"><div class="container">
     <a href="vacatures.html" data-i18n="nav.vacatures">Vacatures</a>
   </nav>
   <div class="header-cta">
-    <a href="listings.html" class="link-arrow" style="font-size:.95rem" data-i18n="cta.aanbod">Aanbod bekijken</a>
+    <a href="listings.html" class="h-search" aria-label="Zoeken in het aanbod"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></a>
+    <div class="h-lang"><button class="active" data-lang="nl">NL</button><button data-lang="en">EN</button><button data-lang="es">ES</button></div>
     <a href="contact.html" class="btn btn--primary" data-i18n="nav.contact">Contact</a>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
@@ -524,6 +525,48 @@ def render_unit(idx, u):
         sibs = [x for x in UNITS if x[0] != slug]
     related_html = "".join(f'<a class="unit" href="unit-{s[0]}.html"><span class="u-dot"></span>{s[1]}</a>' for s in sibs[:6])
 
+    def _propcard(ptype, title, addr, price, meta, img):
+        return (f'<a class="prop-card" href="listing-detail.html"><div class="ph"><span class="tag">Beschikbaar</span>'
+                f'<img src="images/{img}" alt=""></div><div class="body"><span class="ptype">{ptype}</span>'
+                f'<h3>{title}</h3><span class="addr">{addr}</span><div class="meta"><span class="price">{price}</span>'
+                f'<span style="margin-left:auto">{meta}</span></div></div></a>')
+    def _agent(nm, role, img):
+        return (f'<div class="agent"><div class="ph"><img src="images/{img}" alt=""></div><div class="body">'
+                f'<div class="name">{nm}</div><div class="role">{role}</div>'
+                f'<div class="socials"><a href="#">in</a><a href="#">@</a></div></div></div>')
+    # beschikbare ruimtes/opties bij kantoor- en serviced-office-units
+    office_html = ""
+    if slug == "serviced-offices":
+        office_html = ('<section class="section--soft" id="beschikbaar"><div class="container">'
+          '<div class="sec-head"><div class="t"><span class="eyebrow">Beschikbare werkplekken</span><h2 class="disp">Direct <em>beschikbaar</em></h2><p class="lead">Een greep uit onze serviced offices en flexibele werkplekken.</p></div><a href="listings.html" class="btn btn--ghost">Heel het aanbod</a></div>'
+          '<div class="cards-grid">'
+          + _propcard("Serviced office", "WTC · Zuidas", "Amsterdam", "€1.250 <small>/maand</small>", "8 werkplekken", "photo-1.jpg")
+          + _propcard("Flexwerkplekken", "Stadhouderskade", "Utrecht", "€350 <small>/werkplek</small>", "open &amp; vast", "photo-2.jpg")
+          + _propcard("Private office", "Paseo de la Alameda", "Valencia", "€1.100 <small>/maand</small>", "12 werkplekken", "hero.jpg")
+          + '</div></div></section>')
+    elif slug == "aanhuur-kantoorruimte":
+        office_html = ('<section class="section--soft" id="beschikbaar"><div class="container">'
+          '<div class="sec-head"><div class="t"><span class="eyebrow">Beschikbare kantoorruimte</span><h2 class="disp">Direct <em>beschikbaar</em></h2><p class="lead">Een greep uit de actuele kantoorruimte in ons aanbod.</p></div><a href="listings.html" class="btn btn--ghost">Heel het aanbod</a></div>'
+          '<div class="cards-grid">'
+          + _propcard("Kantoorruimte", "Gustav Mahlerlaan 2999", "Amsterdam · Zuidas", "€720 <small>/m²/jaar</small>", "vanaf 1.250 m²", "photo-1.jpg")
+          + _propcard("Kantoorruimte", "Stadhouderskade 12", "Utrecht · Centrum", "€295 <small>/m²/jaar</small>", "vanaf 480 m²", "photo-2.jpg")
+          + _propcard("Kantoorruimte", "Strawinskylaan 3051", "Amsterdam · Zuidas", "€540 <small>/m²/jaar</small>", "vanaf 900 m²", "hero.jpg")
+          + '</div></div></section>')
+    # Spaans team + aparte tekst bij de Spanje-units
+    spain_html = ""
+    if slug.endswith("-spain"):
+        spain_html = ('<section class="section dark-sec"><div class="container">'
+          '<div class="sec-head"><div class="t"><span class="eyebrow" style="color:var(--green-soft)">Ons team in Spanje</span>'
+          '<h2 class="disp disp--light">Lokaal aan de <em>Costa</em>, met een Nederlands aanspreekpunt</h2>'
+          '<p class="lead">Vanuit Valencia en Estepona begeleidt ons Spaanse team Nederlandse investeerders en gebruikers bij acquisitie, beheer en verkoop — met lokale marktkennis, in uw taal. <span data-tr="1" data-en="Our Spanish team guides Dutch investors and users from Valencia and Estepona, with local market knowledge in your language." data-es="Nuestro equipo español acompaña a inversores y usuarios neerlandeses desde Valencia y Estepona, con conocimiento local del mercado y en tu idioma."></span></p></div>'
+          '<a href="locatie-estepona.html" class="btn btn--secondary">Kantoor Estepona</a></div>'
+          '<div class="team-grid">'
+          + _agent("Sofia Mart&iacute;n", "Investment Advisor · Valencia", "photo-1.jpg")
+          + _agent("Carlos Ferrer", "Asset Manager · Estepona", "photo-2.jpg")
+          + _agent("Luc&iacute;a Romero", "Asset Services · Estepona", "hero.jpg")
+          + _agent("Daan van der Meer", "NL-aanspreekpunt · Amsterdam", "photo-1.jpg")
+          + '</div></div></section>')
+
     html = HEAD.format(title=f"{name} — Spring Real Estate",
                        desc=f"{name}: {tag} Spring Real Estate begeleidt {dgname.lower()}s in commercieel vastgoed.")
     html += TOPBAR + HEADER
@@ -535,6 +578,11 @@ def render_unit(idx, u):
     {hero_h1}
     {hero_tag}
     <div class="ph-cta"><a href="#contact" class="btn btn--primary">Neem contact op</a><a href="#cases" class="btn btn--ghost">Bekijk cases</a></div>
+    <form class="search search--light search--single" onsubmit="return false">
+      <label class="seg"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+        <input type="text" placeholder="Zoek op plaats, adres, type of trefwoord…" data-i18n-ph="search.phloc" aria-label="Zoeken"></label>
+      <button class="search-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg> <span data-i18n="search.btn">Zoeken</span></button>
+    </form>
   </div>
 </section>
 
@@ -647,6 +695,8 @@ def render_unit(idx, u):
   </div>
 </div></section>
 
+{office_html}
+{spain_html}
 <section class="section--tight"><div class="container">
   <div class="sec-head"><div class="t"><span class="eyebrow">Gerelateerde diensten</span><h2 class="disp">Ook <em>interessant</em></h2></div><a href="{dglink}" class="btn btn--ghost">Alle diensten</a></div>
   <div class="units-grid">{related_html}</div>
@@ -691,7 +741,13 @@ def render_vacatures():
     <div class="crumbs"><a href="index.html">Home</a> / Vacatures</div>
     <span class="eyebrow" data-i18n="nav.vacatures">Vacatures</span>
     <h1>Werken bij <em style="color:var(--green);font-style:italic;font-weight:500">Spring</em></h1>
-    <p class="lead">Vastgoed met hoofd &eacute;n hart. We groeien en zoeken mensen die het verschil maken — in Utrecht, Amsterdam en Valencia.</p>
+    <p class="lead">Vastgoed met hoofd &eacute;n hart. We groeien en zoeken mensen die het verschil maken — in Utrecht, Amsterdam, Valencia en Estepona.</p>
+    <div class="ph-cta"><a href="#vacatures" class="btn btn--primary">Bekijk vacatures</a><a href="contact.html" class="btn btn--ghost">Open sollicitatie</a></div>
+    <form class="search search--light search--single" onsubmit="return false">
+      <label class="seg"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+        <input type="text" placeholder="Zoek een functie of team…" aria-label="Zoek een vacature"></label>
+      <button class="search-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg> <span data-i18n="search.btn">Zoeken</span></button>
+    </form>
   </div>
 </section>
 
