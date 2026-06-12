@@ -830,3 +830,71 @@ p{ margin:0 0 1rem; }
 .vac .vmeta span{ display:inline-flex; align-items:center; gap:6px; }
 .vac .vmeta svg{ color:var(--green); }
 @media (max-width:560px){ .vac{ grid-template-columns:1fr; } }
+
+/* =====================================================================
+   KATANA-STYLE COMPONENTS (homepage)
+   ===================================================================== */
+/* editorial display heading with serif-italic accent */
+.disp{ font-weight:700; font-size:clamp(2rem,4.2vw,3.4rem); line-height:1.06; letter-spacing:-.02em; }
+.disp em{ font-family:"Fraunces",Georgia,serif; font-style:italic; font-weight:500; color:var(--green); }
+.disp--light{ color:#fff; } .disp--light em{ color:var(--green-soft); }
+.center{ text-align:center; } .center .lead{ margin-left:auto; margin-right:auto; }
+
+/* light rounded panel that holds a section (Katana look) */
+.panel{ background:var(--bg-soft); border-radius:30px; padding:clamp(28px,4vw,54px); }
+.panel--green{ background:var(--green-tint); }
+
+.circ-btn{ width:48px; height:48px; border-radius:50%; border:1px solid var(--line); background:#fff; display:grid; place-items:center; color:var(--ink); }
+.circ-btn:hover{ background:var(--green); color:#fff; border-color:var(--green); }
+
+/* Katana image cards (doelgroepen) */
+.kat-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+.kat-card{ position:relative; display:block; border-radius:22px; overflow:hidden; aspect-ratio:3/4; color:#fff; }
+.kat-card img{ width:100%; height:100%; object-fit:cover; transition:.4s; }
+.kat-card:hover img{ transform:scale(1.06); }
+.kat-card::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.05) 30%,rgba(0,0,0,.78)); }
+.kat-card .ktag{ position:absolute; top:14px; left:14px; z-index:2; background:var(--green); color:#fff; font-size:.72rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:6px 12px; border-radius:var(--r-pill); }
+.kat-card .kbody{ position:absolute; left:0; right:0; bottom:0; z-index:2; padding:20px; }
+.kat-card .kbody h3{ font-size:1.2rem; }
+.kat-card .kbody p{ font-size:.86rem; color:#e7e9e0; margin:4px 0 0; }
+.kat-card .karr{ position:absolute; bottom:18px; right:18px; z-index:2; width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,.92); color:var(--ink); display:grid; place-items:center; transition:.2s; }
+.kat-card:hover .karr{ background:var(--green); color:#fff; }
+
+/* dark overlay service cards ("high quality services") */
+.dark-cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.darkcard{ position:relative; border-radius:22px; overflow:hidden; min-height:340px; display:flex; color:#fff; }
+.darkcard img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.darkcard::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(20,24,14,.25),rgba(20,24,14,.85)); }
+.darkcard .dc-in{ position:relative; z-index:2; margin-top:auto; padding:24px; }
+.darkcard .dtag{ display:inline-flex; align-items:center; gap:7px; background:var(--green-soft); color:#33401a; font-weight:700; font-size:.76rem; padding:6px 12px; border-radius:var(--r-pill); margin-bottom:12px; }
+.darkcard h3{ font-size:1.2rem; } .darkcard p{ font-size:.9rem; color:#dfe1d6; margin:6px 0 0; }
+
+/* Katana stat-feature (lime block + image) */
+.statfeature{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.statfeature .sf-stat{ background:var(--green); color:#fff; border-radius:24px; padding:40px; display:flex; flex-direction:column; justify-content:flex-end; min-height:300px; }
+.statfeature .sf-stat b{ font-size:clamp(3rem,7vw,5rem); font-weight:800; line-height:.9; }
+.statfeature .sf-stat span{ font-size:1.05rem; margin-top:10px; opacity:.92; }
+.statfeature .sf-img{ border-radius:24px; overflow:hidden; min-height:300px; }
+.statfeature .sf-img img{ width:100%; height:100%; object-fit:cover; }
+
+/* Katana reviews ("families") */
+.rev-kat{ display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
+.rev-tabs{ display:flex; gap:10px; flex-wrap:wrap; margin:18px 0 24px; }
+.rev-tab{ display:inline-flex; align-items:center; gap:9px; padding:7px 14px 7px 7px; border-radius:var(--r-pill); border:1px solid var(--line); background:#fff; font-weight:600; font-size:.86rem; cursor:pointer; }
+.rev-tab .av{ width:30px; height:30px; border-radius:50%; background:var(--green-tint); color:var(--green); display:grid; place-items:center; font-size:.78rem; font-weight:700; }
+.rev-tab.active{ background:var(--green); color:#fff; border-color:var(--green); }
+.rev-tab.active .av{ background:rgba(255,255,255,.25); color:#fff; }
+.rev-quote{ background:#fff; border:1px solid var(--line); border-radius:24px; padding:30px; }
+.rev-quote .stars{ color:var(--green); letter-spacing:2px; margin-bottom:12px; }
+.rev-quote p{ font-size:1.15rem; line-height:1.5; }
+.rev-photo{ border-radius:24px; overflow:hidden; aspect-ratio:1/1; }
+.rev-photo img{ width:100%; height:100%; object-fit:cover; }
+
+@media (max-width:900px){
+  .kat-grid{ grid-template-columns:1fr 1fr; }
+  .dark-cards{ grid-template-columns:1fr 1fr; }
+  .statfeature, .rev-kat{ grid-template-columns:1fr; }
+}
+@media (max-width:560px){
+  .kat-grid, .dark-cards{ grid-template-columns:1fr; }
+}
