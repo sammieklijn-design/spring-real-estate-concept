@@ -380,6 +380,17 @@ p{ margin:0 0 1rem; }
   border-radius:var(--r-sm); font-size:.92rem; font-weight:600; transition:.15s; background:#fff; color:var(--ink);
 }
 .dark-sec .unit{ background:#fff; color:var(--ink); }
+/* clickable doelgroep accordions for the business units (homepage) */
+.units-acc{ max-width:1000px; }
+.unit-acc{ border-bottom:1px solid rgba(255,255,255,.14); }
+.unit-acc summary{ list-style:none; cursor:pointer; display:flex; align-items:center; gap:14px; padding:20px 2px; font-size:1.15rem; font-weight:700; color:#fff; }
+.unit-acc summary::-webkit-details-marker{ display:none; }
+.unit-acc summary .cnt{ margin-left:auto; font-weight:500; font-size:.85rem; color:var(--green-soft); }
+.unit-acc summary .pl{ color:var(--green-soft); font-size:1.5rem; line-height:1; transition:.2s; width:18px; text-align:center; }
+.unit-acc[open] summary .pl{ transform:rotate(45deg); }
+.unit-acc .units-grid{ padding:4px 0 24px; }
+.unit-acc summary:hover{ color:var(--green-soft); }
+
 /* labelled unit cluster groups (less monotonous than one big block grid) */
 .unit-cluster{ margin-bottom:26px; }
 .unit-cluster .uc-label{ font-size:.8rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--green-soft); margin-bottom:12px; display:flex; align-items:center; gap:10px; }
@@ -969,4 +980,37 @@ p{ margin:0 0 1rem; }
 @media (max-width:760px){ .talk-band .talk-card{ grid-template-columns:1fr; } .talk-band .talk-photo{ min-height:200px; } }
 @media (max-width:560px){
   .kat-grid, .dark-cards{ grid-template-columns:1fr; }
+}
+
+/* =====================================================================
+   MOBILE POLISH — strakker & professioneler op kleine schermen
+   ===================================================================== */
+@media (max-width:640px){
+  .hero .container{ padding-top:52px; padding-bottom:60px; }
+  .hero h1{ font-size:2.15rem; line-height:1.12; }
+  .hero .hero-sub{ font-size:1.02rem; }
+  .hero-stats{ gap:16px 26px; margin-top:30px; }
+  .hero-stats .s b{ font-size:1.5rem; }
+  .hero-toggle{ right:14px; bottom:14px; }
+  .page-hero{ padding:40px 0 30px; }
+  .page-hero .ph-cta{ gap:10px; }
+  .page-hero .ph-cta .btn{ flex:1; justify-content:center; }
+  .disp{ font-size:1.7rem; }
+  .sec-head{ margin-bottom:24px; gap:14px; }
+  .panel{ border-radius:20px; }
+  .cta{ padding:30px 20px; }
+  .cta .btns .btn{ width:100%; }
+  .talk-band .talk-photo{ min-height:170px; }
+  .topbar .container{ height:auto; padding:7px 24px; }
+  .topbar .top-right{ gap:10px; font-size:.78rem; }
+  .unit-acc summary{ font-size:1.05rem; padding:16px 2px; }
+  .unit-acc summary .cnt{ display:none; }
+  .stat-feature .sf-stat, .statfeature .sf-stat{ padding:30px; min-height:220px; }
+  .d-actions .btn--lg{ flex:1; justify-content:center; }
+  .results-head{ gap:12px; }
+  .search-tabs{ flex-wrap:wrap; }
+}
+@media (max-width:380px){
+  .hero h1{ font-size:1.9rem; }
+  .logo .logo-main{ font-size:1.45rem; }
 }
