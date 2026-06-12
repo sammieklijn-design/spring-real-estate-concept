@@ -13,6 +13,14 @@ def he(s):  # escape text for HTML
     return (s or "").replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
 def esc(s):  # escape for attribute value
     return he(s).replace('"',"&quot;")
+def _initials(name):
+    parts = [w for w in re.sub(r'&[a-z]+;', '', name).split() if w[:1].isupper()]
+    return ((parts[0][0] + (parts[1][0] if len(parts) > 1 else "")).upper()) if parts else "S"
+def phinner(name, photo):
+    """portretfoto indien beschikbaar, anders een nette initialen-avatar (geen foto)."""
+    if photo:
+        return f'<img src="{photo}" alt="{esc(name)}">'
+    return f'<span class="ph-initials">{_initials(name)}</span>'
 def trh(en, es):  # data-tr attributes for the i18n layer (body translations)
     a = ""
     if en or es:
@@ -463,7 +471,6 @@ def render_doelgroep(key):
 # BUSINESS UNIT PAGE
 # ----------------------------------------------------------------------
 PHOTOS = ["images/photo-1.jpg","images/photo-2.jpg","images/hero.jpg"]
-PORTRAITS = ["images/person-1.jpg","images/person-2.jpg","images/photo-2.jpg","images/person-1.jpg"]
 
 def render_unit(idx, u):
     slug,name,dg,tag,exp,sec = u
@@ -534,9 +541,8 @@ def render_unit(idx, u):
         tc = []
         for i,pp in enumerate(ppl[:4]):
             nm, role, mail, photo = parse_person(pp)
-            por = photo or PORTRAITS[i % len(PORTRAITS)]
             mlink = f"mailto:{mail}" if mail else "#"
-            tc.append(f'<div class="agent"><div class="ph"><img src="{por}" alt="{he(nm)}"></div><div class="body"><div class="name">{he(nm)}</div><div class="role">{he(role)}</div><div class="socials"><a href="#" aria-label="LinkedIn">in</a><a href="{mlink}" aria-label="E-mail">@</a></div></div></div>')
+            tc.append(f'<div class="agent"><div class="ph">{phinner(nm,photo)}</div><div class="body"><div class="name">{he(nm)}</div><div class="role">{he(role)}</div><div class="socials"><a href="#" aria-label="LinkedIn">in</a><a href="{mlink}" aria-label="E-mail">@</a></div></div></div>')
         team_html = "".join(tc)
     else:
         team_html = (f'<div class="agent"><div class="ph"><img src="{ph}" alt=""></div><div class="body"><div class="name">Daan van der Meer</div><div class="role">Senior Adviseur</div><div class="socials"><a href="#">in</a><a href="#">@</a></div></div></div>'
@@ -553,8 +559,8 @@ def render_unit(idx, u):
                 f'<img src="images/{img}" alt=""></div><div class="body"><span class="ptype">{ptype}</span>'
                 f'<h3>{title}</h3><span class="addr">{addr}</span><div class="meta"><span class="price">{price}</span>'
                 f'<span style="margin-left:auto">{meta}</span></div></div></a>')
-    def _agent(nm, role, img):
-        return (f'<div class="agent"><div class="ph"><img src="images/{img}" alt=""></div><div class="body">'
+    def _agent(nm, role, photo=None):
+        return (f'<div class="agent"><div class="ph">{phinner(nm, photo)}</div><div class="body">'
                 f'<div class="name">{nm}</div><div class="role">{role}</div>'
                 f'<div class="socials"><a href="#">in</a><a href="#">@</a></div></div></div>')
     # beschikbare ruimtes/opties bij kantoor- en serviced-office-units
@@ -588,8 +594,8 @@ def render_unit(idx, u):
           '<a href="locatie-estepona.html" class="btn btn--secondary" style="margin-top:6px">Bekijk kantoor Estepona</a>'
           '</div>'
           '<div class="team-grid" style="grid-template-columns:1fr 1fr">'
-          + _agent("Sofia Mart&iacute;n", "Investment Advisor · Valencia", "person-1.jpg")
-          + _agent("Carlos Ferrer", "Asset Manager · Estepona", "person-2.jpg")
+          + _agent("Sofia Mart&iacute;n", "Investment Advisor · Valencia")
+          + _agent("Carlos Ferrer", "Asset Manager · Estepona")
           + '</div>'
           '</div></div></section>')
 
@@ -1054,15 +1060,23 @@ def render_cases():
 # ----------------------------------------------------------------------
 # AGENTS / TEAM PAGE (echte mensen + foto's uit de pitch)
 # ----------------------------------------------------------------------
+def agent_cat(role):
+    r = role.lower()
+    if "valuation" in r or "taxat" in r: return "valuations"
+    if "asset management" in r or "investor" in r or "investment" in r: return "investments"
+    if "property management" in r or "property manager" in r or "beheer" in r: return "management"
+    if "research" in r: return "research"
+    if any(k in r for k in ("accounting","financial","operations","people advisor","controller")): return "support"
+    return "agency"
+
 def render_agents():
     cards = ""
     for i, p in enumerate(PEOPLE):
-        photo = p["photo"] or PORTRAITS[i % len(PORTRAITS)]
         first = p["name"].split(" ")[0]
         mlink = f'mailto:{p["email"]}' if p["email"] else "#"
-        cards += (f'<div class="person"><div class="ph"><img src="{photo}" alt="{he(p["name"])}"></div>'
+        cards += (f'<div class="person" data-cat="{agent_cat(p["role"])}"><div class="ph">{phinner(p["name"], p["photo"])}</div>'
                   f'<div class="body"><div class="name">{he(p["name"])}</div><div class="role">{he(p["role"])}</div>'
-                  f'<p class="bio">{he(first)} is specialist bij Spring Real Estate. Neem gerust contact op voor een kennismaking en persoonlijk advies.</p>'
+                  f'<p class="bio" data-tr="1" data-en="{he(first)} is a specialist at Spring Real Estate. Feel free to get in touch for an introduction and personal advice." data-es="{he(first)} es especialista en Spring Real Estate. No dudes en ponerte en contacto para una presentaci&oacute;n y asesoramiento personal.">{he(first)} is specialist bij Spring Real Estate. Neem gerust contact op voor een kennismaking en persoonlijk advies.</p>'
                   f'<div class="socials"><a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.8-2 3.7-2 4 0 4.75 2.6 4.75 6V21H21v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H13z"/></svg></a>'
                   f'<a href="{mlink}" aria-label="E-mail"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a></div></div></div>')
     html = HEAD.format(title="Ons team — Spring Real Estate", desc="Maak kennis met het team van Spring Real Estate in Amsterdam, Utrecht, Valencia en Estepona.")
@@ -1070,22 +1084,24 @@ def render_agents():
     html += f'''
 <section class="page-hero"><div class="container">
   <div class="crumbs"><a href="index.html">Home</a> / Agents</div>
-  <span class="eyebrow">Ons team</span>
-  <h1>De mensen achter <em style="color:var(--green);font-style:italic;font-weight:500">Spring</em></h1>
-  <p class="lead">{len(PEOPLE)} specialisten die uw markt kennen — klik op een collega voor meer over diens expertise en contact.</p>
+  <span class="eyebrow" data-tr="1" data-en="Our team" data-es="Nuestro equipo">Ons team</span>
+  <h1 data-tr="1" data-en="The people behind <em style=&quot;color:var(--green);font-style:italic;font-weight:500&quot;>Spring</em>" data-es="Las personas detr&aacute;s de <em style=&quot;color:var(--green);font-style:italic;font-weight:500&quot;>Spring</em>">De mensen achter <em style="color:var(--green);font-style:italic;font-weight:500">Spring</em></h1>
+  <p class="lead" data-tr="1" data-en="{len(PEOPLE)} specialists who know your market &mdash; click a colleague for more on their expertise and contact details." data-es="{len(PEOPLE)} especialistas que conocen tu mercado &mdash; haz clic en un compa&ntilde;ero para ver su experiencia y contacto.">{len(PEOPLE)} specialisten die uw markt kennen &mdash; klik op een collega voor meer over diens expertise en contact.</p>
 </div></section>
 
-<section class="section"><div class="container">
+<section class="section filterable"><div class="container">
+  <div class="list-search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input type="text" placeholder="Zoek een medewerker op naam of functie…" data-i18n-ph="search.people" aria-label="Zoek een medewerker"></div>
   <div class="team-filter">
-    <a href="#" class="active">Alle</a><a href="#">Agency</a><a href="#">Valuations</a><a href="#">Management</a><a href="#">Research</a><a href="#">Business Services</a>
+    <a href="#" class="active" data-key="alle" data-tr="1" data-en="All" data-es="Todos">Alle</a><a href="#" data-key="agency">Agency</a><a href="#" data-key="valuations">Valuations</a><a href="#" data-key="investments">Investments</a><a href="#" data-key="management">Management</a><a href="#" data-key="research">Research</a><a href="#" data-key="support">Support</a>
   </div>
   <div class="people-grid">{cards}</div>
+  <p class="filter-empty" style="display:none;color:var(--ink-soft);padding:20px 0" data-tr="1" data-en="No colleagues found. <a href=&quot;#&quot; class=&quot;link-arrow&quot; data-key=&quot;alle&quot; style=&quot;display:inline&quot;>Show all</a>" data-es="No se encontraron compa&ntilde;eros. <a href=&quot;#&quot; class=&quot;link-arrow&quot; data-key=&quot;alle&quot; style=&quot;display:inline&quot;>Mostrar todos</a>">Geen medewerkers gevonden. <a href="#" class="link-arrow" data-key="alle" style="display:inline">Toon alle</a></p>
 </div></section>
 
 <section class="section--tight"><div class="container"><div class="cta">
-  <h2>Werken bij Spring?</h2>
-  <p>We groeien — en zoeken mensen die vastgoed met hoofd &eacute;n hart benaderen.</p>
-  <div class="btns"><a href="vacatures.html" class="btn btn--light btn--lg">Bekijk vacatures</a></div>
+  <h2 data-tr="1" data-en="Work at Spring?" data-es="&iquest;Trabajar en Spring?">Werken bij Spring?</h2>
+  <p data-tr="1" data-en="We're growing &mdash; and looking for people who approach real estate with both head and heart." data-es="Estamos creciendo &mdash; y buscamos personas que aborden el sector inmobiliario con cabeza y coraz&oacute;n.">We groeien &mdash; en zoeken mensen die vastgoed met hoofd &eacute;n hart benaderen.</p>
+  <div class="btns"><a href="vacatures.html" class="btn btn--light btn--lg" data-tr="1" data-en="View vacancies" data-es="Ver vacantes">Bekijk vacatures</a></div>
 </div></div></section>
 '''
     html += FOOTER

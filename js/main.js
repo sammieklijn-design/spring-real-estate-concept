@@ -60,6 +60,48 @@ if (tabs) {
   setPlaying(playing);
 })();
 
+// Working filters + search (team page, resources) on .filterable sections
+(function () {
+  document.querySelectorAll('.filterable').forEach(scope => {
+    const grid = scope.querySelector('.people-grid, .blog-grid');
+    if (!grid) return;
+    const items = [...grid.children];
+    const chips = [...scope.querySelectorAll('.team-filter a')];
+    const search = scope.querySelector('.list-search input');
+    const empty = scope.querySelector('.filter-empty');
+    let key = 'alle';
+    function apply() {
+      const q = (search ? search.value : '').toLowerCase().trim();
+      let shown = 0;
+      items.forEach(it => {
+        const txt = it.textContent.toLowerCase();
+        const cat = (it.getAttribute('data-cat') || '').toLowerCase();
+        const okKey = key === 'alle' || (cat ? cat === key : txt.indexOf(key) >= 0);
+        const okQ = !q || txt.indexOf(q) >= 0;
+        const show = okKey && okQ;
+        it.style.display = show ? '' : 'none';
+        if (show) shown++;
+      });
+      if (empty) empty.style.display = shown ? 'none' : '';
+    }
+    chips.forEach(c => c.addEventListener('click', e => {
+      e.preventDefault();
+      key = (c.getAttribute('data-key') || c.textContent.trim().toLowerCase());
+      if (key === 'alle' || c.textContent.trim().toLowerCase() === 'alle') key = 'alle';
+      chips.forEach(x => x.classList.remove('active'));
+      const tab = chips.find(x => (x.getAttribute('data-key') || x.textContent.trim().toLowerCase()) === key);
+      (tab || chips[0]).classList.add('active');
+      apply();
+    }));
+    // "toon alle" reset link inside empty-state
+    scope.querySelectorAll('.filter-empty [data-key]').forEach(a => a.addEventListener('click', e => {
+      e.preventDefault(); key = 'alle'; if (search) search.value = '';
+      chips.forEach(x => x.classList.remove('active')); if (chips[0]) chips[0].classList.add('active'); apply();
+    }));
+    if (search) search.addEventListener('input', apply);
+  });
+})();
+
 // Count-up animation for stat numbers ("resultaten laten oplopen")
 (function () {
   const sel = '.hero-stats b, .stats-band b, .sf-stat b, .stat-pop b';
