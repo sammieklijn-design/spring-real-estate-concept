@@ -180,6 +180,57 @@ if (tabs) {
   });
 })();
 
+// Listings page — working filters (checkboxes + area + search), dynamic count & chips
+(function () {
+  const grid = document.querySelector('.results-grid');
+  const filters = document.getElementById('filters');
+  if (!grid || !filters) return;
+  const cards = [...grid.querySelectorAll('.prop-card')];
+  const checks = [...filters.querySelectorAll('input[type=checkbox][data-fgroup]')];
+  const amin = document.getElementById('fAreaMin');
+  const amax = document.getElementById('fAreaMax');
+  const search = document.querySelector('.page-hero .search input');
+  const rcCount = document.getElementById('rcCount');
+  const chipbar = document.getElementById('chipbar');
+  const empty = document.getElementById('listEmpty');
+  const LABELS = { huur: 'Te huur', koop: 'Te koop', kantoor: 'Kantoorruimte', bedrijf: 'Bedrijfsruimte', winkel: 'Winkelruimte', belegging: 'Beleggingsobject', amsterdam: 'Amsterdam', utrecht: 'Utrecht', valencia: 'Valencia', estepona: 'Estepona' };
+  function apply() {
+    const groups = {};
+    checks.filter(c => c.checked).forEach(c => { (groups[c.dataset.fgroup] = groups[c.dataset.fgroup] || new Set()).add(c.dataset.val); });
+    const mn = parseFloat(amin && amin.value) || 0;
+    const mx = parseFloat(amax && amax.value) || Infinity;
+    const q = (search ? search.value : '').toLowerCase().trim();
+    let shown = 0;
+    cards.forEach(card => {
+      let ok = true;
+      for (const g in groups) { if (!groups[g].has(card.dataset[g])) { ok = false; break; } }
+      if (ok) { const a = parseFloat(card.dataset.area) || 0; if (a < mn || a > mx) ok = false; }
+      if (ok && q) ok = card.textContent.toLowerCase().indexOf(q) >= 0;
+      card.style.display = ok ? '' : 'none';
+      if (ok) shown++;
+    });
+    if (rcCount) rcCount.textContent = shown;
+    if (empty) empty.style.display = shown ? 'none' : '';
+    if (chipbar) {
+      chipbar.innerHTML = '';
+      checks.filter(c => c.checked).forEach(c => {
+        const chip = document.createElement('span'); chip.className = 'fchip';
+        chip.innerHTML = (LABELS[c.dataset.val] || c.dataset.val) + ' <button aria-label="Verwijder">&times;</button>';
+        chip.querySelector('button').addEventListener('click', e => { e.preventDefault(); c.checked = false; apply(); });
+        chipbar.appendChild(chip);
+      });
+    }
+  }
+  checks.forEach(c => c.addEventListener('change', apply));
+  [amin, amax].forEach(el => el && el.addEventListener('input', apply));
+  if (search) search.addEventListener('input', apply);
+  function clearAll(e) { if (e) e.preventDefault(); checks.forEach(c => c.checked = false); if (amin) amin.value = ''; if (amax) amax.value = ''; if (search) search.value = ''; apply(); }
+  const fc = document.getElementById('fClear'); if (fc) fc.addEventListener('click', clearAll);
+  const fc2 = document.getElementById('listClear2'); if (fc2) fc2.addEventListener('click', clearAll);
+  const ft = document.getElementById('filterToggle'); if (ft) ft.addEventListener('click', () => filters.classList.toggle('open'));
+  apply();
+})();
+
 // Language switcher (concept — stores choice; real site swaps content / routes /nl /en /es)
 const lang = document.getElementById('lang');
 if (lang) {

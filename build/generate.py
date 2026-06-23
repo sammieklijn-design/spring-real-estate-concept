@@ -495,7 +495,7 @@ TOPBAR = """<div class="topbar"><div class="container">
 """
 
 HEADER = """<header class="header"><div class="container">
-  <a href="index.html" class="logo" aria-label="Spring Real Estate"><span class="logo-main">Spr<span class="dot"></span>ing</span><span class="logo-sub">real estate</span></a>
+  <a href="index.html" class="logo" aria-label="Spring Real Estate"><img src="images/logo-ink.png" alt="Spring Real Estate" class="logo-img"></a>
   <nav class="nav">
     <div class="has-drop"><button><span data-i18n="nav.diensten">Diensten</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
       <div class="drop">
@@ -540,7 +540,7 @@ TALK_BLOCK = """
 FOOTER = TALK_BLOCK + """<footer class="footer"><div class="container">
   <div class="top">
     <div>
-      <div class="logo logo--light"><span class="logo-main">Spr<span class="dot"></span>ing</span><span class="logo-sub">real estate</span></div>
+      <div class="logo logo--light"><img src="images/logo-white.png" alt="Spring Real Estate" class="logo-img"></div>
       <p style="margin-top:16px; max-width:30ch" data-i18n="foot.tagline">Powered by People. Backed by Tech. D&eacute; partner in commercieel vastgoed in Nederland &amp; Spanje.</p>
       <div class="badges">
         <span class="badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 6.9H22l-6 4.3 2.3 7-6.3-4.4L5.7 20 8 13.2 2 8.9h7.6z"/></svg> 4,8/5 Google</span>
@@ -575,7 +575,7 @@ FOOTER = TALK_BLOCK + """<footer class="footer"><div class="container">
 </div></footer>
 
 <div class="mobile-menu" id="mobileMenu">
-  <div class="mm-head"><div class="logo logo--light"><span class="logo-main">Spr<span class="dot"></span>ing</span><span class="logo-sub">real estate</span></div><button class="mm-close" id="mmClose">&times;</button></div>
+  <div class="mm-head"><div class="logo logo--light"><img src="images/logo-white.png" alt="Spring Real Estate" class="logo-img"></div><button class="mm-close" id="mmClose">&times;</button></div>
   <nav>
     <a href="doelgroep-gebruiker.html" data-i18n="dd.gebruiker">Gebruiker</a>
     <a href="doelgroep-eigenaar.html" data-i18n="dd.eigenaar">Eigenaar</a>
@@ -1023,24 +1023,68 @@ def render_unit(idx, u):
 # VACATURES PAGE
 # ----------------------------------------------------------------------
 VACS = [
- ("Senior Real Estate Advisor","Amsterdam · Zuidas","Fulltime","Acquisitie & advies"),
- ("Investment Analyst","Utrecht","Fulltime","Investments"),
- ("Vastgoedmarketeer","Utrecht","32–40 uur","Marketing"),
- ("Taxateur RT","Amsterdam","Fulltime","Taxaties"),
- ("Asociado Comercial","Valencia (ES)","Fulltime","España"),
- ("Stage: Vastgoeddata & onderzoek","Utrecht","Stage","Data"),
+ ("Senior Real Estate Advisor","Amsterdam · Zuidas","Fulltime","Acquisitie & advies",
+  "Als Senior Real Estate Advisor begeleid je gebruikers en eigenaren bij huur-, koop- en verkooptransacties van commercieel vastgoed in de regio Amsterdam. Je bouwt langdurige relaties op en bent het gezicht van Spring richting opdrachtgevers.",
+  ["Begeleiden van huur- en verkooptransacties van A tot Z","Onderhandelen over voorwaarden namens opdrachtgevers","Opbouwen en onderhouden van een eigen netwerk","Adviseren over huisvestings- en vastgoedstrategie"],
+  ["Minimaal 5 jaar ervaring in commercieel vastgoed","Sterk netwerk in de regio Amsterdam","Commercieel, ondernemend en resultaatgericht","Uitstekende beheersing van Nederlands en Engels"],
+  ["Marktconform salaris met een aantrekkelijke bonusregeling","Auto van de zaak en mobiliteitsregeling","Veel autonomie en korte lijnen","Doorgroei binnen een snelgroeiende vastgoedgroep"]),
+ ("Investment Analyst","Utrecht","Fulltime","Investments",
+  "Als Investment Analyst onderbouw je beleggingsbeslissingen met data en analyses. Je werkt aan acquisities, taxatie-onderbouwing en portefeuilleoptimalisatie voor onze investeerders.",
+  ["Uitvoeren van markt-, locatie- en rendementsanalyses","Opstellen van investeringsmemoranda en cashflowmodellen","Ondersteunen bij acquisitie- en verkooptrajecten","Bijhouden van markt- en transactiedata"],
+  ["Afgeronde opleiding in finance, economie of vastgoedkunde","Sterk met Excel en data; affiniteit met vastgoed","Analytisch, nauwkeurig en cijfermatig","0–4 jaar ervaring; ook starters welkom"],
+  ["Een steile leercurve binnen een ervaren team","Ruim opleidingsbudget en begeleiding","Hybride werken vanuit Utrecht","Marktconform salaris en bonus"]),
+ ("Vastgoedmarketeer","Utrecht","32–40 uur","Marketing",
+  "Als Vastgoedmarketeer zet je objecten en business units sterk in de markt. Je maakt campagnes, content en presentaties die opvallen en converteren — met data als kompas.",
+  ["Ontwikkelen van object- en merkcampagnes","Beheren van website, social en nieuwsbrieven","Coördineren van fotografie, video en copy","Meten en optimaliseren op basis van data"],
+  ["Ervaring met (vastgoed)marketing of een mediabureau","Sterk in content, beeld en tone-of-voice","Zelfstandig, creatief en datagedreven","Goede beheersing van Nederlands en Engels"],
+  ["Veel vrijheid om je eigen plan te maken","Werken aan een sterk groeiend merk","Hybride werken, 32–40 uur","Marktconform salaris en goede secundaire voorwaarden"]),
+ ("Taxateur RT","Amsterdam","Fulltime","Taxaties",
+  "Als Taxateur RT stel je onafhankelijke, gevalideerde taxaties op van beleggings- en bedrijfsvastgoed. Je werkt voor eigenaren, investeerders en financiers en bewaakt de kwaliteit volgens de hoogste normen.",
+  ["Taxeren van beleggings- en bedrijfsvastgoed","Opstellen van gevalideerde taxatierapporten","Onderbouwen van waardes met markt- en transactiedata","Contact met opdrachtgevers en validerende instanties"],
+  ["RT-registratie (of vergevorderd in het traject)","Ervaring met commercieel vastgoed taxeren","Zorgvuldig, onafhankelijk en onderbouwd","Kennis van NRVT-richtlijnen"],
+  ["Werken met een modern, datagedreven taxatieplatform","Ruimte voor permanente educatie","Marktconform salaris en bonus","Een hecht en ervaren taxatieteam"]),
+ ("Asociado Comercial","Valencia (ES)","Fulltime","España",
+  "Vanuit ons kantoor in Valencia begeleid je Nederlandse investeerders en gebruikers op de Spaanse vastgoedmarkt. Je bent de lokale schakel met een Nederlands aanspreekpunt.",
+  ["Begeleiden van acquisities en huisvesting in Spanje","Onderhouden van lokale contacten en aanbod","Schakelen tussen NL-opdrachtgevers en de Spaanse markt","Ondersteunen bij due diligence en onderhandeling"],
+  ["Vloeiend Spaans én Engels; Nederlands is een pré","Kennis van de Spaanse vastgoedmarkt","Commercieel en cultureel sensitief","Woonachtig in (de regio) Valencia"],
+  ["Werken in een internationaal team","Een unieke NL–ES brugfunctie","Marktconform Spaans salaris met bonus","Doorgroei in een groeiende internationale tak"]),
+ ("Property Manager","Utrecht","Fulltime","Vastgoedbeheer",
+  "Als Property Manager beheer je een portefeuille commercieel vastgoed: technisch, commercieel en administratief. Je zorgt voor tevreden huurders en optimaal renderende objecten.",
+  ["Beheren van een eigen vastgoedportefeuille","Aansturen van onderhoud en leveranciers","Contact met huurders en eigenaren","Bewaken van budgetten en rapportages"],
+  ["Ervaring in commercieel vastgoedbeheer","Servicegericht, georganiseerd en proactief","Kennis van huurrecht en servicekosten","Goede beheersing van Nederlands en Engels"],
+  ["Een afwisselende beheerportefeuille","Marktconform salaris en mobiliteitsregeling","Hybride werken vanuit Utrecht","Een professioneel beheerteam"]),
+ ("Stage: Vastgoeddata & onderzoek","Utrecht","Stage","Data",
+  "Tijdens je stage bij Spring werk je mee aan markt- en transactiedata die onze adviezen onderbouwen. Je leert het vak van datagedreven vastgoedadvies van binnenuit.",
+  ["Verzamelen en verrijken van markt- en transactiedata","Maken van analyses, dashboards en marktrapporten","Meedraaien met het research- en investmentteam","Bijdragen aan kennisartikelen en marktinzichten"],
+  ["HBO/WO-student vastgoed, economie of data","Handig met Excel; affiniteit met data","Leergierig, nauwkeurig en zelfstandig","Beschikbaar voor een meewerkstage"],
+  ["Een leerzame stage met echte verantwoordelijkheid","Stagevergoeding en begeleiding","Kans op een vaste baan na je studie","Een jong en gedreven team"]),
 ]
 def render_vacatures():
     rows = ""
-    for t,loc,typ,team in VACS:
-        rows += f'''<a class="vac" href="contact.html">
-          <div><h3>{t}</h3><div class="vmeta">
-            <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/></svg> {loc}</span>
-            <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> {typ}</span>
-            <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">{I_BLD}</svg> {team}</span>
-          </div></div>
-          <span class="btn btn--primary">Bekijk vacature</span>
-        </a>'''
+    for v in VACS:
+        t,loc,typ,team,intro,taken,eisen,bieden = v
+        taken_li = "".join(f"<li>{ic(I_CHECK,'2.4')} {x}</li>" for x in taken)
+        eisen_li = "".join(f"<li>{ic(I_CHECK,'2.4')} {x}</li>" for x in eisen)
+        bieden_li = "".join(f"<li>{ic(I_CHECK,'2.4')} {x}</li>" for x in bieden)
+        rows += f'''<details class="vac-item">
+          <summary class="vac">
+            <div><h3>{t}</h3><div class="vmeta">
+              <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/></svg> {loc}</span>
+              <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> {typ}</span>
+              <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">{I_BLD}</svg> {team}</span>
+            </div></div>
+            <span class="vac-cta"><span data-tr="1" data-en="View vacancy" data-es="Ver vacante">Bekijk vacature</span> <svg class="vac-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg></span>
+          </summary>
+          <div class="vac-body">
+            <p class="lead">{intro}</p>
+            <div class="vac-cols">
+              <div><h4>Wat ga je doen?</h4><ul class="checks">{taken_li}</ul></div>
+              <div><h4>Wat vragen we?</h4><ul class="checks">{eisen_li}</ul></div>
+              <div><h4>Wat bieden we?</h4><ul class="checks">{bieden_li}</ul></div>
+            </div>
+            <div class="vac-actions"><a href="contact.html" class="btn btn--primary">Solliciteer op deze functie</a><a href="mailto:jobs@springrealestate.com?subject=Sollicitatie%20{t.replace(' ','%20')}" class="btn btn--ghost">Mail je cv</a></div>
+          </div>
+        </details>'''
     html = HEAD.format(title="Vacatures — Spring Real Estate", desc="Werken bij Spring Real Estate. Bekijk onze vacatures in Utrecht, Amsterdam en Valencia.")
     html += TOPBAR + HEADER
     html += f'''
