@@ -1527,3 +1527,130 @@ a.agent:hover{ border-color:var(--green); }
 /* --- Person card als link --- */
 a.person{ display:block; color:inherit; text-decoration:none; }
 a.person:hover{ border-color:var(--green); box-shadow:var(--shadow-soft); }
+
+/* =====================================================================
+   LOC MOCKUP CARD — gestyled kaartvervanging
+   ===================================================================== */
+.loc-mockup-card{
+  position:relative; border-radius:var(--r-lg); overflow:hidden;
+  background:linear-gradient(160deg,#1a2e14 0%,#0d1f0a 100%);
+  border:1px solid rgba(124,167,63,.2);
+  min-height:320px;
+}
+.lmc-svg{ width:100%; height:auto; display:block; min-height:220px; }
+.lmc-pin{
+  position:absolute; display:flex; align-items:center; gap:8px;
+  transform:translate(-50%,-50%); pointer-events:none;
+}
+.lmp-dot{
+  width:12px; height:12px; border-radius:50%; background:var(--green);
+  box-shadow:0 0 0 4px rgba(124,167,63,.25); flex:0 0 auto;
+  animation:lmp-pulse 2.4s ease-in-out infinite;
+}
+.lmc-pin:nth-child(4) .lmp-dot,.lmc-pin:nth-child(5) .lmp-dot{ animation-delay:.6s; }
+@keyframes lmp-pulse{
+  0%,100%{ box-shadow:0 0 0 4px rgba(124,167,63,.25); }
+  50%{ box-shadow:0 0 0 9px rgba(124,167,63,.08); }
+}
+.lmp-label{
+  background:rgba(255,255,255,.12); backdrop-filter:blur(6px);
+  color:#fff; font-size:.78rem; font-weight:700; padding:4px 10px;
+  border-radius:var(--r-pill); border:1px solid rgba(255,255,255,.15);
+  white-space:nowrap;
+}
+.lmc-locs{
+  display:grid; grid-template-columns:repeat(4,1fr);
+  border-top:1px solid rgba(124,167,63,.2);
+  background:rgba(0,0,0,.35); backdrop-filter:blur(4px);
+}
+.lmc-loc{
+  display:flex; flex-direction:column; align-items:flex-start; gap:4px;
+  padding:16px 20px; border-right:1px solid rgba(124,167,63,.12);
+  text-decoration:none; transition:.18s;
+}
+.lmc-loc:last-child{ border-right:none; }
+.lmc-loc:hover{ background:rgba(124,167,63,.1); }
+.lmc-dot{ width:10px; height:10px; border-radius:50%; flex:0 0 auto; margin-bottom:2px; }
+.lmc-dot.nl{ background:#7CA73F; }
+.lmc-dot.es{ background:#F4A928; }
+.lmc-city{ font-weight:700; font-size:.9rem; color:#fff; }
+.lmc-count{ font-size:.78rem; color:rgba(255,255,255,.55); }
+@media(max-width:640px){
+  .lmc-locs{ grid-template-columns:1fr 1fr; }
+  .lmc-pin{ display:none; }
+}
+
+/* =====================================================================
+   CRO — urgency badges, sticky mobile bar, trust strip
+   ===================================================================== */
+
+/* Urgency badge op property cards */
+.prop-badge{
+  position:absolute; top:12px; left:12px;
+  background:var(--green); color:#fff; font-size:.72rem; font-weight:800;
+  padding:4px 10px; border-radius:var(--r-pill); letter-spacing:.04em; text-transform:uppercase;
+  z-index:2;
+}
+.prop-badge--new{ background:#7CA73F; }
+.prop-badge--hot{ background:#E05C22; }
+.prop-badge--fast{ background:#C49A1A; }
+
+/* Sticky mobile CTA bar */
+.sticky-mob-bar{
+  display:none; position:fixed; bottom:0; left:0; right:0; z-index:900;
+  background:#fff; border-top:1px solid var(--line); padding:10px 16px;
+  box-shadow:0 -4px 16px rgba(0,0,0,.1);
+  gap:10px;
+}
+@media(max-width:760px){
+  .sticky-mob-bar{ display:flex; }
+  .sticky-mob-bar .smb-btn{ flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:12px; border-radius:var(--r-sm); font-weight:700; font-size:.9rem; text-decoration:none; font-family:inherit; }
+  .smb-btn--call{ background:var(--green); color:#fff; }
+  .smb-btn--wa{ background:#25D366; color:#fff; }
+  body{ padding-bottom:70px; }
+}
+
+/* Trust strip */
+.trust-strip{
+  background:var(--bg-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  padding:14px 0;
+}
+.trust-strip-inner{
+  display:flex; align-items:center; justify-content:center; gap:32px; flex-wrap:wrap;
+}
+.trust-item{
+  display:flex; align-items:center; gap:8px; font-size:.84rem; font-weight:600; color:var(--ink-soft);
+}
+.trust-item svg{ color:var(--green); flex:0 0 auto; }
+
+/* Scarcity notice op listings */
+.scarcity-notice{
+  background:linear-gradient(135deg,#fef9ea,#fdf3d0);
+  border:1px solid #e8c84a; border-radius:var(--r-sm);
+  padding:12px 18px; font-size:.88rem; font-weight:600; color:#7a5c00;
+  display:flex; align-items:center; gap:10px; margin-bottom:20px;
+}
+.scarcity-notice svg{ flex:0 0 auto; color:#c49a1a; }
+
+/* FAQ accordion op listings */
+.faq-band{ background:var(--bg-soft); }
+.faq-item{ border-bottom:1px solid var(--line); }
+.faq-item summary{
+  padding:18px 0; font-weight:700; font-size:1rem; cursor:pointer;
+  display:flex; justify-content:space-between; align-items:center; list-style:none;
+}
+.faq-item summary::-webkit-details-marker{ display:none; }
+.faq-item summary::after{ content:"+"; font-size:1.3rem; color:var(--green); line-height:1; }
+.faq-item[open] summary::after{ content:"−"; }
+.faq-item p{ padding:0 0 18px; color:var(--ink-soft); line-height:1.7; margin:0; }
+
+/* Recently viewed bar */
+.rv-bar{
+  background:#fff; border:1px solid var(--line); border-radius:var(--r);
+  padding:18px 20px; margin-top:24px;
+}
+.rv-bar h4{ font-size:.9rem; font-weight:700; margin:0 0 12px; color:var(--ink-soft); }
+.rv-links{ display:flex; flex-direction:column; gap:8px; }
+.rv-link{ font-size:.84rem; color:var(--ink); text-decoration:none; display:flex; gap:8px; align-items:center; }
+.rv-link:hover{ color:var(--green); }
+.rv-link::before{ content:"→"; color:var(--green); }
