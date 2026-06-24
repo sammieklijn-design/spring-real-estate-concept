@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,500&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=13">
-<link rel="icon" type="image/png" href="images/favicon.png?v=13">
-<link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=13">
+<link rel="stylesheet" href="css/styles.css?v=14">
+<link rel="icon" type="image/png" href="images/favicon.png?v=14">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=14">
 <meta name="theme-color" content="#7CA73F">
 </head>
 <body>
@@ -100,6 +100,43 @@
     </div>
   </div>
 </section>
+
+<!-- ============ FINDER WIZARD (In een paar clicks) ============ -->
+<section class="section finder-sec"><div class="container">
+  <div class="finder">
+    <div class="finder-intro">
+      <span class="eyebrow" style="color:var(--green-soft)" data-tr="1" data-en="Office finder" data-es="Buscador de oficinas">Kantoorzoeker</span>
+      <h2 class="disp disp--light" data-tr="1" data-en="In a few clicks to your <em>dream office</em>" data-es="En unos clics a tu <em>oficina ideal</em>">In een paar clicks naar jouw <em>droomkantoor</em></h2>
+      <p class="lead" data-tr="1" data-en="Your new office space found in a few clicks. Tell us what you're looking for and we'll find something you'll be happy with." data-es="Tu nueva oficina en unos clics. Dinos qué buscas y encontraremos algo que te encante.">Je nieuwe kantoorruimte in een paar klikken gevonden. Geef je even door wat je zoekt, dan hebben wij iets waar we je blij mee kunnen maken.</p>
+    </div>
+    <div class="finder-card" id="finder">
+      <div class="finder-tabs">
+        <span class="ft active" data-step="0">1 <span data-tr="1" data-en="Location" data-es="Ubicación">Locatie</span></span>
+        <span class="ft" data-step="1">2 <span data-tr="1" data-en="Type" data-es="Tipo">Kantoortype</span></span>
+        <span class="ft" data-step="2">3 <span data-tr="1" data-en="Size" data-es="Tamaño">Oppervlakte</span></span>
+      </div>
+      <div class="finder-panel" data-panel="0">
+        <p class="fp-q" data-tr="1" data-en="Where are you looking?" data-es="¿Dónde buscas?">Waar zoek je straks?</p>
+        <div class="fp-opts">
+          <button class="fp-opt" data-val="amsterdam">Amsterdam</button><button class="fp-opt" data-val="utrecht">Utrecht</button><button class="fp-opt" data-val="valencia">Valencia</button><button class="fp-opt" data-val="estepona">Estepona</button><button class="fp-opt" data-val="">Heel NL &amp; ES</button>
+        </div>
+      </div>
+      <div class="finder-panel" data-panel="1" hidden>
+        <p class="fp-q" data-tr="1" data-en="What type of space?" data-es="¿Qué tipo de espacio?">Welk type ruimte?</p>
+        <div class="fp-opts">
+          <button class="fp-opt" data-val="kantoor" data-tr="1" data-en="Office space" data-es="Oficina">Kantoorruimte</button><button class="fp-opt" data-val="kantoor">Serviced office</button><button class="fp-opt" data-val="bedrijf" data-tr="1" data-en="Industrial" data-es="Industrial">Bedrijfsruimte</button><button class="fp-opt" data-val="winkel" data-tr="1" data-en="Retail" data-es="Retail">Winkelruimte</button>
+        </div>
+      </div>
+      <div class="finder-panel" data-panel="2" hidden>
+        <p class="fp-q" data-tr="1" data-en="How much space?" data-es="¿Cuánto espacio?">Hoeveel ruimte?</p>
+        <div class="fp-opts">
+          <button class="fp-opt" data-val="0">&lt; 500 m&sup2;</button><button class="fp-opt" data-val="500">500–1.500 m&sup2;</button><button class="fp-opt" data-val="1500">1.500–3.000 m&sup2;</button><button class="fp-opt" data-val="3000">3.000+ m&sup2;</button>
+        </div>
+        <a href="listings.html" class="btn btn--primary btn--lg" id="finderGo" style="margin-top:18px" data-tr="1" data-en="Show offices" data-es="Ver oficinas">Toon kantoren</a>
+      </div>
+    </div>
+  </div>
+</div></section>
 
 <!-- ============ AUDIENCE (4 doelgroepen direct na de hero) ============ -->
 <section class="section" style="padding-top:64px">
@@ -454,9 +491,9 @@
   </div>
 </div>
 
-<script src="js/search-index.js?v=13"></script>
-<script src="js/main.js?v=13"></script>
-<script src="js/ai-search.js?v=13"></script>
-<script src="js/i18n.js?v=13"></script>
+<script src="js/search-index.js?v=14"></script>
+<script src="js/main.js?v=14"></script>
+<script src="js/ai-search.js?v=14"></script>
+<script src="js/i18n.js?v=14"></script>
 </body>
 </html>

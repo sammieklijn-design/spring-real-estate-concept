@@ -232,6 +232,17 @@ if (tabs) {
   const fc = document.getElementById('fClear'); if (fc) fc.addEventListener('click', clearAll);
   const fc2 = document.getElementById('listClear2'); if (fc2) fc2.addEventListener('click', clearAll);
   const ft = document.getElementById('filterToggle'); if (ft) ft.addEventListener('click', () => filters.classList.toggle('open'));
+  // Prefill from URL (finder wizard / deep links): ?offer=&type=&loc=&area=&q=
+  (function () {
+    const p = new URLSearchParams(location.search);
+    ['offer', 'type', 'loc'].forEach(g => {
+      const v = p.get(g); if (!v) return;
+      const c = checks.find(x => x.dataset.fgroup === g && x.dataset.val === v);
+      if (c) c.checked = true;
+    });
+    const area = p.get('area'); if (area && amin) amin.value = area;
+    const q = p.get('q'); if (q && search) search.value = q;
+  })();
   apply();
 })();
 
@@ -615,4 +626,77 @@ if (lang) {
   }
   go.addEventListener('click', calc);
   ['hbw-waarde', 'hbw-cat', 'hbw-m2', 'hbw-lagen', 'hbw-regio', 'hbw-btw'].forEach(id => { const el = $(id); if (el) { el.addEventListener('input', calc); el.addEventListener('change', calc); } });
+})();
+
+// 20. Homepage finder wizard ("In een paar clicks") -> routes to listings with params
+(function () {
+  const f = document.getElementById('finder'); if (!f) return;
+  const sel = { loc: null, type: null, area: null };
+  const tabs = [...f.querySelectorAll('.finder-tabs .ft')];
+  const panels = [...f.querySelectorAll('.finder-panel')];
+  function go(step) { tabs.forEach((t, i) => t.classList.toggle('active', i === step)); panels.forEach((p, i) => p.hidden = i !== step); }
+  tabs.forEach((t, i) => t.addEventListener('click', () => go(i)));
+  panels.forEach((p, pi) => {
+    p.querySelectorAll('.fp-opt').forEach(b => b.addEventListener('click', () => {
+      p.querySelectorAll('.fp-opt').forEach(x => x.classList.remove('sel'));
+      b.classList.add('sel');
+      const v = b.dataset.val;
+      if (pi === 0) { sel.loc = v; go(1); }
+      else if (pi === 1) { sel.type = v; go(2); }
+      else { sel.area = v; }
+      const p2 = new URLSearchParams();
+      if (sel.loc) p2.set('loc', sel.loc);
+      if (sel.type) p2.set('type', sel.type);
+      if (sel.area) p2.set('area', sel.area);
+      p2.set('offer', 'huur');
+      const btn = document.getElementById('finderGo');
+      if (btn) btn.href = 'listings.html?' + p2.toString();
+    }));
+  });
+})();
+
+// 21. Recently viewed listings (localStorage) — capture on detail, render strip on listings
+(function () {
+  const KEY = 'spring-recent';
+  function load() { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (_) { return []; } }
+  function save(a) { try { localStorage.setItem(KEY, JSON.stringify(a.slice(0, 6))); } catch (_) {} }
+  // Capture on listing detail page
+  const det = document.getElementById('detail-map');
+  if (det) {
+    const slug = location.pathname.split('/').pop().replace(/^aanbod-/, '').replace(/\.html$/, '');
+    const item = {
+      slug: slug,
+      title: det.dataset.title || '',
+      addr: (document.querySelector('.d-addr') || {}).textContent || '',
+      price: det.dataset.price || '',
+      offer: det.dataset.offer || 'huur',
+      img: (document.querySelector('.g-main img') || {}).getAttribute('src') || ''
+    };
+    if (slug && item.title) {
+      const list = load().filter(x => x.slug !== slug);
+      list.unshift(item);
+      save(list);
+    }
+    return;
+  }
+  // Render strip on listings page
+  const anchor = document.querySelector('.results-grid');
+  if (!anchor) return;
+  const cur = location.pathname.split('/').pop();
+  const items = load().filter(x => 'aanbod-' + x.slug + '.html' !== cur);
+  if (items.length < 2) return;
+  const sec = document.createElement('section');
+  sec.className = 'section--tight recent-sec';
+  sec.innerHTML = '<div class="container"><div class="sec-head"><div class="t"><span class="eyebrow" data-tr="1" data-en="Recently viewed" data-es="Visto recientemente">Recent bekeken</span><h2 class="disp">Verder waar je <em>was</em></h2></div></div><div class="recent-strip"></div></div>';
+  const strip = sec.querySelector('.recent-strip');
+  items.forEach(x => {
+    const a = document.createElement('a');
+    a.className = 'prop-card'; a.href = 'aanbod-' + x.slug + '.html';
+    const tag = x.offer === 'koop' ? 'Te koop' : 'Te huur';
+    a.innerHTML = '<div class="ph"><span class="tag tag--' + x.offer + '">' + tag + '</span>' + (x.img ? '<img src="' + x.img + '" alt="">' : '') + '</div>'
+      + '<div class="body"><h3>' + x.title + '</h3><span class="addr">' + x.addr + '</span><div class="meta"><span class="price">' + x.price + '</span></div></div>';
+    strip.appendChild(a);
+  });
+  const host = anchor.closest('section') || anchor.parentElement;
+  if (host && host.parentElement) host.parentElement.insertBefore(sec, host);
 })();

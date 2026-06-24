@@ -500,9 +500,9 @@ HEAD = """<!DOCTYPE html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,500&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=13">
-<link rel="icon" type="image/png" href="images/favicon.png?v=13">
-<link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=13">
+<link rel="stylesheet" href="css/styles.css?v=14">
+<link rel="icon" type="image/png" href="images/favicon.png?v=14">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=14">
 <meta name="theme-color" content="#7CA73F">
 </head>
 <body>
@@ -618,10 +618,10 @@ FOOTER = TALK_BLOCK + """<footer class="footer"><div class="container">
   <div class="mm-cta"><a href="contact.html" class="btn btn--primary" data-i18n="nav.contact">Contact</a><div class="lang mm-lang" style="justify-content:center"><button class="active" data-lang="nl">NL</button><button data-lang="en">EN</button><button data-lang="es">ES</button></div></div>
 </div>
 
-<script src="js/search-index.js?v=13"></script>
-<script src="js/main.js?v=13"></script>
-<script src="js/ai-search.js?v=13"></script>
-<script src="js/i18n.js?v=13"></script>
+<script src="js/search-index.js?v=14"></script>
+<script src="js/main.js?v=14"></script>
+<script src="js/ai-search.js?v=14"></script>
+<script src="js/i18n.js?v=14"></script>
 </body>
 </html>
 """
@@ -858,13 +858,14 @@ def render_unit(idx, u):
             rows.append((p, ena[i] if i<len(ena) else "", esa[i] if i<len(esa) else ""))
         body = "".join(f'<p{trh(e2,s2)}>{he(p)}</p>' for p,e2,s2 in rows)
         approach_html = f'''
-<section class="section--tight" id="aanpak"><div class="container">
-  <div class="prose" style="max-width:780px">
+<section class="section--tight" id="aanpak"><div class="container"><div class="two-col">
+  <div class="prose">
     <span class="eyebrow">Onze aanpak</span>
     <h2 class="disp">Zo pakken we het <em>aan</em></h2>
     {body}
   </div>
-</div></section>'''
+  <div class="media-tall media-sticky"><img src="{ph2}" alt="{he(name)}"></div>
+</div></div></section>'''
 
     # FAQ (real, else generic)
     if nl and nl.get("faq"):
@@ -1166,6 +1167,32 @@ def render_vacature_detail(v):
     eisen_li = "".join(f"<li>{ic(I_CHECK,'2.4')} {x}</li>" for x in eisen)
     bieden_li = "".join(f"<li>{ic(I_CHECK,'2.4')} {x}</li>" for x in bieden)
     subj = t.replace(' ', '%20')
+    # sollicitatieproces (4 stappen)
+    STEPS = [
+        ("01", "Reactie", "Je solliciteert online of stuurt je cv. We bevestigen direct en reageren doorgaans binnen 5 werkdagen.", "Application", "Solicitud", "You apply online or send your CV. We confirm right away and usually respond within 5 working days.", "Solicitas online o envías tu CV. Confirmamos al instante y solemos responder en 5 días laborables."),
+        ("02", "Kennismaking", "Een open gesprek met je toekomstige team — over jou, over Spring en over wat je zoekt.", "Intro meeting", "Primera toma de contacto", "An open conversation with your future team — about you, about Spring and what you're looking for.", "Una conversación abierta con tu futuro equipo: sobre ti, sobre Spring y lo que buscas."),
+        ("03", "Verdieping", "Een tweede gesprek of een korte case, zodat we beiden zeker weten dat het klikt.", "Deep dive", "Profundización", "A second conversation or a short case, so we're both sure it's a match.", "Una segunda conversación o un caso breve para asegurarnos de que encaja."),
+        ("04", "Aanbod", "Een helder voorstel en een warme start. Welkom bij Spring.", "Offer", "Oferta", "A clear offer and a warm welcome. Welcome to Spring.", "Una oferta clara y una buena bienvenida. Bienvenido a Spring."),
+    ]
+    steps_html = "".join(
+        f'<div class="vstep"><span class="vstep-n">{n}</span><h4{trh(en,es)}>{nl}</h4><p{trh(den,des)}>{d}</p></div>'
+        for n, nl, d, en, es, den, des in STEPS)
+    # gerelateerde vacatures (max 3 andere)
+    rel = [x for x in VACS if x[0] != t][:3]
+    rel_html = "".join(
+        f'<a class="vac" href="vacature-{vac_slug(rt)}.html"><div><h3>{he(rt)}</h3>{_vmeta(rloc, rtyp, rteam)}</div>'
+        f'<span class="vac-cta"><span data-tr="1" data-en="View vacancy" data-es="Ver vacante">Bekijk vacature</span> <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>'
+        for rt, rloc, rtyp, rteam, *_ in rel)
+    # waarom Spring (4 voordelen)
+    PERKS = [
+        ("Korte lijnen", "Geen log bedrijf: je werkt direct met de mensen die beslissen.", "Short lines", "Líneas cortas", "No corporate maze: you work directly with the people who decide.", "Sin laberinto corporativo: trabajas directamente con quien decide."),
+        ("Ruimte om te groeien", "Opleidingsbudget, begeleiding en echte doorgroeikansen.", "Room to grow", "Espacio para crecer", "Training budget, mentoring and real growth opportunities.", "Presupuesto de formación, mentoría y oportunidades reales de crecimiento."),
+        ("Tech + mensen", "Datagedreven werken met behoud van het persoonlijke.", "Tech + people", "Tecnología + personas", "Data-driven work without losing the personal touch.", "Trabajo basado en datos sin perder el lado personal."),
+        ("NL & ES", "Werken met collega's in Nederland én Spanje.", "NL & ES", "NL y ES", "Work alongside colleagues in the Netherlands and Spain.", "Trabaja con colegas en los Países Bajos y España."),
+    ]
+    perks_html = "".join(
+        f'<div class="perk"><h4{trh(en,es)}>{nl}</h4><p{trh(den,des)}>{d}</p></div>'
+        for nl, d, en, es, den, des in PERKS)
     html = HEAD.format(title=f"{he(t)} — Vacature — Spring Real Estate", desc=f"Vacature {he(t)} bij Spring Real Estate — {loc}, {typ}. Solliciteer direct.")
     html += TOPBAR + HEADER
     html += f'''
@@ -1196,6 +1223,21 @@ def render_vacature_detail(v):
     </div>
   </div>
 </div></div></section>
+
+<section class="section--soft"><div class="container">
+  <div class="sec-head"><div class="t"><span class="eyebrow" data-tr="1" data-en="Why Spring" data-es="Por qué Spring">Waarom Spring</span><h2 class="disp"{trh("What you can <em>expect</em>", "Lo que puedes <em>esperar</em>")}>Wat je kunt <em>verwachten</em></h2></div></div>
+  <div class="perk-grid">{perks_html}</div>
+</div></section>
+
+<section class="section"><div class="container">
+  <div class="sec-head"><div class="t"><span class="eyebrow" data-tr="1" data-en="Application process" data-es="Proceso de selección">Sollicitatieproces</span><h2 class="disp"{trh("In four <em>steps</em> to your new job", "En cuatro <em>pasos</em> a tu nuevo trabajo")}>In vier <em>stappen</em> naar je nieuwe baan</h2></div></div>
+  <div class="vsteps">{steps_html}</div>
+</div></section>
+
+<section class="section--tight"><div class="container">
+  <div class="sec-head"><div class="t"><span class="eyebrow" data-tr="1" data-en="Other vacancies" data-es="Otras vacantes">Andere vacatures</span><h2 class="disp"{trh("Maybe also <em>a fit</em>", "Quizá también <em>encaja</em>")}>Misschien ook <em>iets</em></h2></div><a href="vacatures.html" class="btn btn--ghost" data-tr="1" data-en="All vacancies" data-es="Todas las vacantes">Alle vacatures</a></div>
+  <div class="vac-list">{rel_html}</div>
+</div></section>
 
 <section class="section--tight"><div class="container"><div class="cta">
   <h2>Niet helemaal jouw functie?</h2>
@@ -1494,6 +1536,26 @@ DESC = {
  "winkel":"Winkelruimte op een sterke, goed bezochte locatie met hoge passantenstromen. Representatieve pui en een indeling die zich leent voor diverse retail- en horecaformules.",
  "belegging":"Beleggingsobject met een stabiele kasstroom en een aantrekkelijk bruto aanvangsrendement. Een solide toevoeging aan een vastgoedportefeuille, op een courante locatie met goede verhuurbaarheid.",
 }
+def _nlnum(n):
+    return f"{int(n):,}".replace(",", ".")
+def _floors(slug):
+    h = sum((i + 1) * ord(c) for i, c in enumerate(slug))
+    names = ["Begane grond", "Verdieping 1", "Verdieping 2", "Verdieping 3", "Verdieping 4", "Kelder"]
+    rows = []
+    for i, nm in enumerate(names):
+        m2 = 280 + ((h // (i + 3)) % 20) * 130
+        avail = ((h >> i) & 1) == 0
+        rows.append((nm, m2, avail))
+    if not any(a for _, _, a in rows): rows[0] = (rows[0][0], rows[0][1], True)
+    return rows
+AMENITIES = [
+ ("Parkeergelegenheid", '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/>'),
+ ("Glasvezel / data", '<path d="M5 12.55a11 11 0 0 1 14 0M8.5 16a6 6 0 0 1 7 0M2 8.8a16 16 0 0 1 20 0"/><circle cx="12" cy="19" r="1"/>'),
+ ("Vergaderruimtes", '<rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/>'),
+ ("Fietsenstalling", '<circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M6 17l4-6h5l3 6M10 11l2-4h3"/>'),
+ ("Lift & klimaat", '<rect x="6" y="3" width="12" height="18" rx="1"/><path d="M9 8l3-3 3 3M9 16l3 3 3-3"/>'),
+ ("24/7 toegang & beveiliging", '<path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/>'),
+]
 def render_listing_detail(d):
     offer, typ = d["offer"], d["type"]
     pl, pe, pes = d["ptype"]; a_nl, a_en, a_es = d["area_label"]; s_nl, s_en, s_es = d["spec3"]
@@ -1515,8 +1577,26 @@ def render_listing_detail(d):
         for x in similar)
     subj = d["title"].replace(" ", "%20")
     price_plain = re.sub(r'<[^>]+>', '', d["price"])
+    # Beschikbare ruimtes per verdieping (kantoor/bedrijf) + voorzieningen
+    floors_html = amen_html = ""
+    if typ in ("kantoor", "bedrijf"):
+        frows = "".join(
+            f'<div class="floor"><span class="fl-name">{nm}</span><span class="fl-size">{_nlnum(m2)} m&sup2;</span>'
+            f'<span class="fl-tag {"ok" if av else "no"}"' + (trh("Available", "Disponible") if av else trh("Let", "Alquilado")) + f'>{"Beschikbaar" if av else "Verhuurd"}</span></div>'
+            for nm, m2, av in _floors(d["slug"]))
+        floors_html = ('<section class="section--soft" id="beschikbaar"><div class="container">'
+          '<div class="sec-head"><div class="t"><span class="eyebrow"' + trh("Availability", "Disponibilidad") + '>Beschikbaarheid</span>'
+          '<h2 class="disp"' + trh("Available space <em>per floor</em>", "Espacio disponible <em>por planta</em>") + '>Beschikbare ruimtes <em>per verdieping</em></h2></div></div>'
+          '<div class="floors">' + frows + '</div></div></section>')
+        amen = "".join(f'<div class="amen"><span class="amen-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">{ic_svg}</svg></span>{nm}</div>' for nm, ic_svg in AMENITIES)
+        amen_html = ('<div class="d-section"><h2' + trh("Amenities", "Servicios") + '>Voorzieningen</h2><div class="amen-grid">' + amen + '</div></div>')
+    import json as _json
+    ld = _json.dumps({"@context": "https://schema.org", "@type": "Residence" if typ == "belegging" else "Place",
+        "name": d["title"], "address": {"@type": "PostalAddress", "streetAddress": d["title"], "addressLocality": d["addr"].split("·")[-1].strip(), "addressCountry": "ES" if d["loc"] in ("valencia", "estepona") else "NL"},
+        "url": "aanbod-" + d["slug"] + ".html"}, ensure_ascii=False)
     html = HEAD.format(title=f'{he(d["title"])} — {pl} {tagtxt[0].lower()} — Spring Real Estate',
                        desc=f'{pl} {tagtxt[0].lower()} in {he(d["addr"])}. {a_nl}, {price_plain}. Bekijk dit object bij Spring Real Estate.')
+    html += f'<script type="application/ld+json">{ld}</script>'
     html += TOPBAR + HEADER
     html += f'''
 <div class="detail-top"><div class="container">
@@ -1542,6 +1622,7 @@ def render_listing_detail(d):
       <a href="mailto:info@springrealestate.com?subject=Brochure%20{subj}" class="btn btn--ghost btn--lg">Download brochure</a>
     </div>
     <div class="d-section"><h2>Over dit object</h2><p class="muted">{DESC.get(typ, DESC["kantoor"])}</p></div>
+    {amen_html}
     <div class="d-section"><h2>Specificaties</h2><div class="spec-grid"><div>{rows}</div><div class="spec-extra"><div id="detail-map" data-loc="{d["loc"]}" data-title="{esc(d["title"])}" data-price="{esc(d["price"])}" data-offer="{offer}"></div></div></div></div>
   </div>
   <aside class="detail-side">
@@ -1566,11 +1647,16 @@ def render_listing_detail(d):
     </div>
   </aside>
 </div></div>
-
+{floors_html}
 <section class="section--tight"><div class="container">
   <div class="sec-head"><div class="t"><span class="eyebrow">Vergelijkbaar aanbod</span><h2 class="disp">Ook <em>interessant</em></h2></div><a href="listings.html" class="btn btn--ghost">Heel het aanbod</a></div>
   <div class="cards-grid">{simcards}</div>
 </div></section>
+
+<div class="sticky-cta">
+  <div class="sc-info"><b>{d["price"]}</b><span>{he(d["title"])}</span></div>
+  <a href="#aanvraag" class="btn btn--primary">Plan bezichtiging</a>
+</div>
 '''
     html += FOOTER
     return html
