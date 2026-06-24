@@ -1030,6 +1030,21 @@ a.name{ color:inherit; text-decoration:none; display:block; }
 .fl-specs{ display:flex; flex-wrap:wrap; gap:8px 14px; margin-top:12px; padding-top:12px; border-top:1px solid var(--line); }
 .fl-spec{ display:inline-flex; align-items:center; gap:6px; font-size:.82rem; color:var(--ink-soft); }
 .fl-spec svg{ color:var(--green); flex:0 0 auto; }
+/* leadbot lifts above the cookie banner so it never covers the Accept button */
+body.has-cookie .lead-launch{ bottom:172px; }
+@media (min-width:760px){ body.has-cookie .lead-launch{ bottom:24px; } }
+/* ============ INTERACTIVE LISTINGS MAP (Leaflet) ============ */
+#listings-map{ height:440px; width:100%; border-radius:var(--r-lg,18px); overflow:hidden; border:1px solid var(--line); margin-bottom:22px; z-index:1; }
+.map-pin{ background:var(--green); color:#fff; font-weight:800; font-size:.82rem; padding:5px 11px; border-radius:999px; white-space:nowrap; box-shadow:0 6px 14px -4px rgba(0,0,0,.5); border:2px solid #fff; transform:translate(-50%,-50%); }
+.map-pin.koop{ background:var(--ink,#2B2B29); }
+.map-pop{ font-family:inherit; }
+.map-pop h4{ margin:0 0 2px; font-size:.98rem; }
+.map-pop .mp-addr{ color:var(--ink-soft); font-size:.82rem; }
+.map-pop .mp-price{ color:var(--green); font-weight:800; margin-top:4px; }
+.map-pop a{ color:var(--green); font-weight:700; font-size:.84rem; }
+.leaflet-popup-content{ margin:12px 14px; }
+.marker-cluster, .marker-cluster-small, .marker-cluster-medium, .marker-cluster-large{ background:rgba(124,167,63,.30) !important; }
+.marker-cluster div{ background:var(--green) !important; color:#fff !important; font-weight:800; }
 
 /* =====================================================================
    KATANA-STYLE COMPONENTS (homepage)

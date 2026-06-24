@@ -305,7 +305,8 @@ if (lang) {
   c.className = 'cookie';
   c.innerHTML = '<p>' + txt + ' <a href="#">Privacy</a></p><button class="btn btn--primary">' + ok + '</button>';
   document.body.appendChild(c);
-  c.querySelector('button').addEventListener('click', () => { try { localStorage.setItem('spring-cookie', '1'); } catch (_) {} c.remove(); });
+  document.body.classList.add('has-cookie'); // lifts the leadbot above the banner
+  c.querySelector('button').addEventListener('click', () => { try { localStorage.setItem('spring-cookie', '1'); } catch (_) {} c.remove(); document.body.classList.remove('has-cookie'); });
 })();
 
 // 6. Favorites (hearts persist in localStorage)
@@ -519,5 +520,48 @@ if (lang) {
       if (!cmp) return;
       [...grid.children].sort(cmp).forEach(c => grid.appendChild(c));
     });
+  }
+})();
+
+// 17. Interactive listings map (Leaflet + OpenStreetMap/Carto) with price pins
+(function () {
+  const mapEl = document.getElementById('listings-map'); if (!mapEl) return;
+  const COORD = { amsterdam: [52.339, 4.872], utrecht: [52.0894, 5.110], valencia: [39.4667, -0.3667], estepona: [36.4275, -5.1459] };
+  const cards = [...document.querySelectorAll('.results-grid .prop-card')];
+  if (!cards.length) return;
+  function addCSS(href) { const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = href; document.head.appendChild(l); }
+  function addJS(src) { return new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.body.appendChild(s); }); }
+  addCSS('https://unpkg.com/leaflet@1.9.4/dist/leaflet.css');
+  addCSS('https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css');
+  addCSS('https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css');
+  addJS('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js')
+    .then(() => addJS('https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js'))
+    .then(init).catch(() => { mapEl.style.display = 'none'; });
+
+  function init() {
+    const L = window.L; if (!L) return;
+    const map = L.map(mapEl, { scrollWheelZoom: false }).setView([50, 3], 5);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 19
+    }).addTo(map);
+    const cluster = (L.markerClusterGroup ? L.markerClusterGroup({ showCoverageOnHover: false, maxClusterRadius: 46, spiderfyDistanceMultiplier: 1.6 }) : L.featureGroup());
+    const bounds = [];
+    cards.forEach((card, i) => {
+      const loc = card.dataset.loc; const base = COORD[loc]; if (!base) return;
+      const ring = (i % 6); const ang = ring * 1.05;
+      const lat = base[0] + Math.sin(ang) * 0.012 * (1 + (i % 3)) , lng = base[1] + Math.cos(ang) * 0.018 * (1 + (i % 3));
+      const offer = card.dataset.offer;
+      const priceNode = card.querySelector('.fl-price'); const price = priceNode ? (priceNode.firstChild.textContent || '').trim() : '';
+      const title = (card.querySelector('h3') || {}).textContent || '';
+      const addr = (card.querySelector('.addr') || {}).textContent || '';
+      const href = card.getAttribute('href') || 'listing-detail.html';
+      const icon = L.divIcon({ className: '', html: '<div class="map-pin ' + offer + '">' + price + '</div>', iconSize: [1, 1] });
+      const m = L.marker([lat, lng], { icon: icon });
+      m.bindPopup('<div class="map-pop"><h4>' + title + '</h4><div class="mp-addr">' + addr + '</div><div class="mp-price">' + price + '</div><a href="' + href + '">Bekijk object &rarr;</a></div>');
+      cluster.addLayer(m); bounds.push([lat, lng]);
+    });
+    map.addLayer(cluster);
+    if (bounds.length) map.fitBounds(bounds, { padding: [40, 40] });
+    setTimeout(() => map.invalidateSize(), 250);
   }
 })();
