@@ -71,66 +71,40 @@
   </div>
 </section>
 
-<!-- ============ VASTGOEDZOEKER (inklapbaar) ============ -->
-<div class="container" style="margin-top:20px;margin-bottom:0">
-  <details class="vz-strip" id="vzStrip">
-    <summary>
-      <span class="vz-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></span>
-      <span class="vz-text">
-        <strong>Niet gevonden wat u zoekt?</strong>
-        <span>Gebruik onze vastgoedzoeker — kantoor, bedrijfsruimte, belegging of woning in NL &amp; ES.</span>
-      </span>
-      <span class="vz-toggle">Zoeker openen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg></span>
-    </summary>
-    <div class="vz-body">
-      <div class="vz-steps" id="vzFinder">
-        <div class="vz-step active" data-vstep="0">
-          <p class="vz-q">Wat zoekt u?</p>
-          <div class="vz-opts">
-            <button class="vz-opt" data-val="kantoor"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg> Kantoorruimte</button>
-            <button class="vz-opt" data-val="serviced"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg> Serviced office</button>
-            <button class="vz-opt" data-val="bedrijf"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V8l5-3v15M14 20V4l6 4v12"/></svg> Bedrijfsruimte</button>
-            <button class="vz-opt" data-val="winkel"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Winkelruimte</button>
-            <button class="vz-opt" data-val="belegging"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8M21 7v6M21 7h-6"/></svg> Beleggingsobject</button>
-            <button class="vz-opt" data-val="woning"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg> Woning (ES)</button>
-          </div>
-        </div>
-        <div class="vz-step" data-vstep="1" hidden>
-          <p class="vz-q">Welke locatie?</p>
-          <div class="vz-opts">
-            <button class="vz-opt" data-val="amsterdam"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z"/></svg> Amsterdam</button>
-            <button class="vz-opt" data-val="utrecht"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z"/></svg> Utrecht</button>
-            <button class="vz-opt" data-val="valencia"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z"/></svg> Valencia ES</button>
-            <button class="vz-opt" data-val="estepona"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z"/></svg> Estepona ES</button>
-            <button class="vz-opt" data-val="">Heel NL &amp; ES</button>
-          </div>
-        </div>
-        <div class="vz-step" data-vstep="2" hidden>
-          <p class="vz-q">Omvang?</p>
-          <div class="vz-opts">
-            <button class="vz-opt" data-val="0">&lt; 250 m²</button>
-            <button class="vz-opt" data-val="250">250–750 m²</button>
-            <button class="vz-opt" data-val="750">750–2.500 m²</button>
-            <button class="vz-opt" data-val="2500">2.500+ m²</button>
-          </div>
-          <div class="vz-result">
-            <a href="listings.html" class="btn btn--primary" id="vzGo">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
-              Toon passend aanbod
-            </a>
-            <span class="vz-or">of bekijk op</span>
-            <a href="https://www.fundainbusiness.nl" target="_blank" rel="noopener" class="vz-ext">Funda in Business</a>
-            <a href="https://www.realnext.nl" target="_blank" rel="noopener" class="vz-ext">Realnext</a>
-          </div>
-        </div>
-        <div class="vz-progress">
-          <span class="vz-dot active"></span><span class="vz-dot"></span><span class="vz-dot"></span>
-        </div>
-      </div>
-    </div>
-  </details>
+<!-- ============ LOCATIEKAART ============ -->
+<div class="container" style="margin-top:32px;margin-bottom:0">
+  <div class="loc-mockup-card">
+  <svg class="lmc-svg" viewBox="0 0 860 360" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <line x1="0" y1="90" x2="860" y2="90" stroke="rgba(124,167,63,.1)" stroke-width="1"/>
+    <line x1="0" y1="180" x2="860" y2="180" stroke="rgba(124,167,63,.1)" stroke-width="1"/>
+    <line x1="0" y1="270" x2="860" y2="270" stroke="rgba(124,167,63,.1)" stroke-width="1"/>
+    <line x1="215" y1="0" x2="215" y2="360" stroke="rgba(124,167,63,.1)" stroke-width="1"/>
+    <line x1="430" y1="0" x2="430" y2="360" stroke="rgba(124,167,63,.1)" stroke-width="1"/>
+    <line x1="645" y1="0" x2="645" y2="360" stroke="rgba(124,167,63,.1)" stroke-width="1"/>
+    <ellipse cx="620" cy="105" rx="55" ry="42" fill="rgba(124,167,63,.07)" stroke="rgba(124,167,63,.22)" stroke-width="1.2"/>
+    <ellipse cx="390" cy="268" rx="110" ry="62" fill="rgba(124,167,63,.07)" stroke="rgba(124,167,63,.22)" stroke-width="1.2"/>
+    <path d="M 600 140 C 560 180 480 210 420 240" stroke="rgba(124,167,63,.35)" stroke-width="1.5" stroke-dasharray="5,8"/>
+    <circle cx="628" cy="88" r="22" fill="rgba(124,167,63,.12)" stroke="rgba(124,167,63,.3)" stroke-width="1"/>
+    <circle cx="605" cy="118" r="18" fill="rgba(124,167,63,.12)" stroke="rgba(124,167,63,.25)" stroke-width="1"/>
+    <circle cx="420" cy="252" r="20" fill="rgba(124,167,63,.12)" stroke="rgba(124,167,63,.3)" stroke-width="1"/>
+    <circle cx="365" cy="288" r="16" fill="rgba(124,167,63,.12)" stroke="rgba(124,167,63,.25)" stroke-width="1"/>
+    <circle cx="628" cy="88" r="7" fill="#7CA73F"/>
+    <circle cx="605" cy="118" r="7" fill="#7CA73F"/>
+    <circle cx="420" cy="252" r="7" fill="#89B647"/>
+    <circle cx="365" cy="288" r="7" fill="#89B647"/>
+  </svg>
+  <div class="lmc-pin" style="top:18%;left:70%"><span class="lmp-dot"></span><span class="lmp-label">Amsterdam</span></div>
+  <div class="lmc-pin" style="top:30%;left:66%"><span class="lmp-dot"></span><span class="lmp-label">Utrecht</span></div>
+  <div class="lmc-pin" style="top:63%;left:44%"><span class="lmp-dot"></span><span class="lmp-label">Valencia</span></div>
+  <div class="lmc-pin" style="top:75%;left:38%"><span class="lmp-dot"></span><span class="lmp-label">Estepona</span></div>
+  <div class="lmc-locs">
+    <a href="locatie-amsterdam.html" class="lmc-loc"><span class="lmc-dot nl"></span><span class="lmc-city">Amsterdam</span><span class="lmc-count">7 objecten</span></a>
+    <a href="locatie-utrecht.html" class="lmc-loc"><span class="lmc-dot nl"></span><span class="lmc-city">Utrecht</span><span class="lmc-count">5 objecten</span></a>
+    <a href="locatie-valencia.html" class="lmc-loc"><span class="lmc-dot es"></span><span class="lmc-city">Valencia (ES)</span><span class="lmc-count">3 objecten</span></a>
+    <a href="locatie-estepona.html" class="lmc-loc"><span class="lmc-dot es"></span><span class="lmc-city">Estepona (ES)</span><span class="lmc-count">1 object</span></a>
+  </div>
+  </div>
 </div>
-
 <!-- ============ LISTINGS LAYOUT ============ -->
 <div class="container" style="padding-top:0;padding-bottom:0">
   <div class="scarcity-notice">
