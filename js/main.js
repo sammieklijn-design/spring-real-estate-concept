@@ -63,7 +63,7 @@ if (tabs) {
 // Working filters + search (team page, resources) on .filterable sections
 (function () {
   document.querySelectorAll('.filterable').forEach(scope => {
-    const grid = scope.querySelector('.people-grid, .blog-grid');
+    const grid = scope.querySelector('.people-grid, .blog-grid, .glossary');
     if (!grid) return;
     const items = [...grid.children];
     const chips = [...scope.querySelectorAll('.team-filter a')];

@@ -483,9 +483,9 @@ HEAD = """<!DOCTYPE html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,500&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=9">
-<link rel="icon" type="image/png" href="images/favicon.png?v=9">
-<link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=9">
+<link rel="stylesheet" href="css/styles.css?v=10">
+<link rel="icon" type="image/png" href="images/favicon.png?v=10">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=10">
 <meta name="theme-color" content="#7CA73F">
 </head>
 <body>
@@ -570,6 +570,7 @@ FOOTER = TALK_BLOCK + """<footer class="footer"><div class="container">
       <li><a href="sectoren.html">Sectoren</a></li>
       <li><a href="cases.html">Klantverhalen</a></li>
       <li><a href="resources.html" data-i18n="nav.resources">Resources &amp; Blog</a></li>
+      <li><a href="begrippen.html">Begrippen</a></li>
       <li><a href="vacatures.html" data-i18n="nav.vacatures">Vacatures</a></li>
       <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
     </ul></div>
@@ -600,8 +601,8 @@ FOOTER = TALK_BLOCK + """<footer class="footer"><div class="container">
   <div class="mm-cta"><a href="contact.html" class="btn btn--primary" data-i18n="nav.contact">Contact</a><div class="lang mm-lang" style="justify-content:center"><button class="active" data-lang="nl">NL</button><button data-lang="en">EN</button><button data-lang="es">ES</button></div></div>
 </div>
 
-<script src="js/main.js?v=9"></script>
-<script src="js/i18n.js?v=9"></script>
+<script src="js/main.js?v=10"></script>
+<script src="js/i18n.js?v=10"></script>
 </body>
 </html>
 """
@@ -1654,6 +1655,50 @@ def render_cases():
     return html
 
 # ----------------------------------------------------------------------
+# BEGRIPPEN / KENNISBANK (eigen begrippenpagina — doorzoekbaar)
+# ----------------------------------------------------------------------
+GLOSSARY = [
+ ("k.k. — kosten koper","De koper betaalt de kosten voor de overdracht, zoals overdrachtsbelasting en notariskosten."),
+ ("v.o.n. — vrij op naam","De verkoper betaalt de overdrachtskosten; de prijs is inclusief deze kosten."),
+ ("BVO / VVO","Bruto vloeroppervlak versus verhuurbaar vloeroppervlak — bepalend voor huurprijs en vergelijkbaarheid van objecten."),
+ ("Bruto aanvangsrendement (BAR)","De verhouding tussen de bruto jaarhuur en de totale aankoopprijs van een beleggingsobject, uitgedrukt in procenten."),
+ ("Netto aanvangsrendement (NAR)","Het rendement na aftrek van de exploitatiekosten — een zuiverder beeld van het werkelijke rendement."),
+ ("Triple net (NNN)","Huurvorm waarbij de huurder naast de huur ook de belastingen, verzekering en het onderhoud betaalt."),
+ ("BREEAM","Internationaal keurmerk dat de duurzaamheidsprestatie van een gebouw beoordeelt — van Pass tot Outstanding."),
+ ("Energielabel","Wettelijke score (A t/m G) voor de energiezuinigheid van een gebouw; kantoren vereisen minimaal label C."),
+ ("Due diligence","Het grondige onderzoek naar een object vóór aankoop: juridisch, technisch, fiscaal en commercieel."),
+ ("Leegstandsrisico","Het risico dat (een deel van) een object niet verhuurd is en dus geen huurinkomsten oplevert."),
+ ("WALT","Weighted Average Lease Term — de gewogen gemiddelde resterende looptijd van de huurcontracten in een object."),
+ ("Servicekosten","Vergoeding voor gemeenschappelijke voorzieningen en diensten, naast de kale huur."),
+ ("Incentives","Tijdelijke voordelen om een huurder te bewegen, zoals huurvrije periodes of een inrichtingsbijdrage."),
+ ("Erfpacht","Het recht om grond van een ander (vaak de gemeente) langdurig te gebruiken tegen een jaarlijkse canon."),
+]
+def render_begrippen():
+    cards = "".join(f'<div class="gloss"><b>{he(t)}</b><p>{he(u)}</p></div>' for t, u in GLOSSARY)
+    html = HEAD.format(title="Begrippenlijst — Spring Real Estate", desc="Begrippenlijst commercieel vastgoed: k.k., v.o.n., BAR, NAR, BREEAM, WALT, erfpacht en meer — helder uitgelegd door Spring Real Estate.")
+    html += TOPBAR + HEADER
+    html += f'''
+<section class="page-hero"><div class="container">
+  <div class="crumbs"><a href="index.html">Home</a> / Begrippen</div>
+  <span class="eyebrow"{trh("Glossary","Glosario")}>Begrippenlijst</span>
+  <h1{trh("Vastgoedjargon, <em style=\"color:var(--green);font-style:italic;font-weight:500\">helder uitgelegd</em>", "Jerga inmobiliaria, <em style=\"color:var(--green);font-style:italic;font-weight:500\">explicada con claridad</em>")}>Vastgoedjargon, <em style="color:var(--green);font-style:italic;font-weight:500">helder uitgelegd</em></h1>
+  <p class="lead"{trh("The most important terms in commercial real estate, in plain language — searchable.", "Los términos más importantes del sector inmobiliario comercial, en lenguaje claro — con búsqueda.")}>De belangrijkste begrippen in commercieel vastgoed, in begrijpelijke taal — doorzoekbaar.</p>
+</div></section>
+<section class="section filterable"><div class="container">
+  <div class="list-search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input type="text" placeholder="Zoek een begrip…" data-i18n-ph="search.term" aria-label="Zoek een begrip"></div>
+  <div class="glossary">{cards}</div>
+  <p class="filter-empty" style="display:none;color:var(--ink-soft);padding:20px 0">Geen begrip gevonden.</p>
+</div></section>
+<section class="section--tight"><div class="container"><div class="cta">
+  <h2{trh("A term you don't see?","¿Falta algún término?")}>Een begrip dat u mist?</h2>
+  <p{trh("Ask our specialists — we're happy to explain.","Pregunta a nuestros especialistas — te lo explicamos con gusto.")}>Vraag het onze specialisten — we leggen het graag uit.</p>
+  <div class="btns"><a href="contact.html" class="btn btn--light btn--lg">Neem contact op</a></div>
+</div></div></section>
+'''
+    html += FOOTER
+    return html
+
+# ----------------------------------------------------------------------
 # AGENTS / TEAM PAGE (echte mensen + foto's uit de pitch)
 # ----------------------------------------------------------------------
 def agent_cat(role):
@@ -1729,6 +1774,7 @@ def main():
         written.append(write(f"locatie-{key}.html", render_locatie(key)))
     written.append(write("sectoren.html", render_sectoren()))
     written.append(write("cases.html", render_cases()))
+    written.append(write("begrippen.html", render_begrippen()))
     print(f"Generated {len(written)} pages:")
     for w in written: print("  "+w)
 
