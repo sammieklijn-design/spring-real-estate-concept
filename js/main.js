@@ -214,6 +214,7 @@ if (tabs) {
     });
     if (rcCount) rcCount.textContent = shown;
     if (empty) empty.style.display = shown ? 'none' : '';
+    document.dispatchEvent(new CustomEvent('listings:filtered'));
     if (chipbar) {
       chipbar.innerHTML = '';
       checks.filter(c => c.checked).forEach(c => {
@@ -523,45 +524,69 @@ if (lang) {
   }
 })();
 
-// 17. Interactive listings map (Leaflet + OpenStreetMap/Carto) with price pins
+// 17. Interactive maps (Leaflet) — listings overview (clustered price pins, follow filters) + detail mini-map
 (function () {
-  const mapEl = document.getElementById('listings-map'); if (!mapEl) return;
+  const listEl = document.getElementById('listings-map');
+  const detEl = document.getElementById('detail-map');
+  if (!listEl && !detEl) return;
   const COORD = { amsterdam: [52.339, 4.872], utrecht: [52.0894, 5.110], valencia: [39.4667, -0.3667], estepona: [36.4275, -5.1459] };
-  const cards = [...document.querySelectorAll('.results-grid .prop-card')];
-  if (!cards.length) return;
   function addCSS(href) { const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = href; document.head.appendChild(l); }
   function addJS(src) { return new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.body.appendChild(s); }); }
   addCSS('https://unpkg.com/leaflet@1.9.4/dist/leaflet.css');
-  addCSS('https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css');
-  addCSS('https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css');
-  addJS('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js')
-    .then(() => addJS('https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js'))
-    .then(init).catch(() => { mapEl.style.display = 'none'; });
+  let chain = addJS('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js');
+  if (listEl) { addCSS('https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css'); addCSS('https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css'); chain = chain.then(() => addJS('https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js')); }
+  chain.then(init).catch(() => { if (listEl) listEl.style.display = 'none'; if (detEl) detEl.style.display = 'none'; });
+
+  function tile(map) {
+    window.L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 19 }).addTo(map);
+  }
+  function pinIcon(L, offer, price) { return L.divIcon({ className: '', html: '<div class="map-pin ' + offer + '">' + price + '</div>', iconSize: [1, 1] }); }
 
   function init() {
     const L = window.L; if (!L) return;
-    const map = L.map(mapEl, { scrollWheelZoom: false }).setView([50, 3], 5);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 19
-    }).addTo(map);
+    if (listEl) initOverview(L);
+    if (detEl) initDetail(L);
+  }
+
+  function initOverview(L) {
+    const cards = [...document.querySelectorAll('.results-grid .prop-card')]; if (!cards.length) { listEl.style.display = 'none'; return; }
+    const map = L.map(listEl, { scrollWheelZoom: false }).setView([50, 3], 5);
+    tile(map);
     const cluster = (L.markerClusterGroup ? L.markerClusterGroup({ showCoverageOnHover: false, maxClusterRadius: 46, spiderfyDistanceMultiplier: 1.6 }) : L.featureGroup());
-    const bounds = [];
+    const pairs = [];
     cards.forEach((card, i) => {
-      const loc = card.dataset.loc; const base = COORD[loc]; if (!base) return;
-      const ring = (i % 6); const ang = ring * 1.05;
-      const lat = base[0] + Math.sin(ang) * 0.012 * (1 + (i % 3)) , lng = base[1] + Math.cos(ang) * 0.018 * (1 + (i % 3));
+      const base = COORD[card.dataset.loc]; if (!base) return;
+      const ang = (i % 6) * 1.05;
+      const lat = base[0] + Math.sin(ang) * 0.012 * (1 + (i % 3)), lng = base[1] + Math.cos(ang) * 0.018 * (1 + (i % 3));
       const offer = card.dataset.offer;
-      const priceNode = card.querySelector('.fl-price'); const price = priceNode ? (priceNode.firstChild.textContent || '').trim() : '';
+      const pn = card.querySelector('.fl-price'); const price = pn ? (pn.firstChild.textContent || '').trim() : '';
       const title = (card.querySelector('h3') || {}).textContent || '';
       const addr = (card.querySelector('.addr') || {}).textContent || '';
-      const href = card.getAttribute('href') || 'listing-detail.html';
-      const icon = L.divIcon({ className: '', html: '<div class="map-pin ' + offer + '">' + price + '</div>', iconSize: [1, 1] });
-      const m = L.marker([lat, lng], { icon: icon });
+      const href = card.getAttribute('href') || '#';
+      const m = L.marker([lat, lng], { icon: pinIcon(L, offer, price) });
       m.bindPopup('<div class="map-pop"><h4>' + title + '</h4><div class="mp-addr">' + addr + '</div><div class="mp-price">' + price + '</div><a href="' + href + '">Bekijk object &rarr;</a></div>');
-      cluster.addLayer(m); bounds.push([lat, lng]);
+      pairs.push({ card: card, marker: m, ll: [lat, lng] });
     });
     map.addLayer(cluster);
-    if (bounds.length) map.fitBounds(bounds, { padding: [40, 40] });
+    function refresh() {
+      cluster.clearLayers();
+      const vis = pairs.filter(p => p.card.style.display !== 'none');
+      vis.forEach(p => cluster.addLayer(p.marker));
+      if (vis.length) map.fitBounds(vis.map(p => p.ll), { padding: [40, 40], maxZoom: 13 });
+    }
+    refresh();
+    document.addEventListener('listings:filtered', refresh);
+    setTimeout(() => map.invalidateSize(), 250);
+  }
+
+  function initDetail(L) {
+    const base = COORD[detEl.dataset.loc] || [52.1, 5.1];
+    const map = L.map(detEl, { scrollWheelZoom: false, zoomControl: true }).setView(base, 14);
+    tile(map);
+    const offer = detEl.dataset.offer || 'huur';
+    const price = detEl.dataset.price ? detEl.dataset.price.replace(/<[^>]+>/g, '').trim() : '';
+    L.marker(base, { icon: pinIcon(L, offer, price) }).addTo(map)
+      .bindPopup('<div class="map-pop"><h4>' + (detEl.dataset.title || '') + '</h4><div class="mp-price">' + price + '</div></div>');
     setTimeout(() => map.invalidateSize(), 250);
   }
 })();

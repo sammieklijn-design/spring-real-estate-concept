@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 """Funda-/sollf-stijl aanbod: rijke kaarten, verhuur + verkoop/belegging, kenmerken."""
-import re, os
+import re, os, sys
 from collections import Counter
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from listings_data import LISTINGS
 
-# (title, addr, locKey, typeKey, ptype(nl,en,es), offer, price_html, price_num,
-#  area_m2, area_label(nl,en,es), spec3(nl,en,es), photos, img, avail)
-P = [
+# legacy tuple list kept for reference (no longer used for rendering)
+_LEGACY = [
  # ---------- VERHUUR (sollf-stijl: kantoren, serviced, bedrijfs-/winkelruimte) ----------
  ("Gustav Mahlerlaan 2999","1082 MK Amsterdam · Zuidas","amsterdam","kantoor",("Kantoorruimte","Office space","Oficina"),"huur","€720 <small>/m²/jaar</small>",720,1250,("vanaf 1.250 m²","from 1,250 m²","desde 1.250 m²"),("Direct beschikbaar","Available now","Disponible ya"),18,"photo-1.jpg","direct"),
  ("Claude Debussylaan 24","1082 MD Amsterdam · Zuidas","amsterdam","kantoor",("Kantoorruimte","Office space","Oficina"),"huur","€395 <small>/m²/jaar</small>",395,480,("vanaf 480 m²","from 480 m²","desde 480 m²"),("Direct beschikbaar","Available now","Disponible ya"),12,"photo-2.jpg","direct"),
@@ -36,10 +37,11 @@ def tag(offer):
     return ('<span class="tag tag--huur" data-tr="1" data-en="For rent" data-es="En alquiler">Te huur</span>' if offer=='huur'
             else '<span class="tag tag--koop" data-tr="1" data-en="For sale" data-es="En venta">Te koop</span>')
 cards=[]
-for (t,addr,lk,tk,(pl,pe,pes),offer,price,pnum,area,(a_nl,a_en,a_es),(s_nl,s_en,s_es),photos,img,besch) in P:
+for d in LISTINGS:
+    offer=d["offer"]; pl,pe,pes=d["ptype"]; a_nl,a_en,a_es=d["area_label"]; s_nl,s_en,s_es=d["spec3"]
     s3ic = IC_YIELD if offer=='koop' else IC_INFO
     cards.append(
-      '<a class="prop-card flisting" href="listing-detail.html" data-offer="%s" data-type="%s" data-loc="%s" data-area="%d" data-price="%d" data-avail="%s">'
+      '<a class="prop-card flisting" href="aanbod-%s.html" data-offer="%s" data-type="%s" data-loc="%s" data-area="%d" data-price="%d" data-avail="%s">'
       '<div class="ph">%s<span class="fav" aria-label="Bewaar">%s</span><span class="ph-count">%s %d</span><img src="images/%s" alt=""></div>'
       '<div class="body"><div class="fl-price">%s</div>'
       '<h3>%s</h3><span class="addr">%s</span>'
@@ -48,10 +50,10 @@ for (t,addr,lk,tk,(pl,pe,pes),offer,price,pnum,area,(a_nl,a_en,a_es),(s_nl,s_en,
       '<span class="fl-spec">%s <span data-tr="1" data-en="%s" data-es="%s">%s</span></span>'
       '<span class="fl-spec">%s <span data-tr="1" data-en="%s" data-es="%s">%s</span></span>'
       '</div></div></a>'
-      % (offer,tk,lk,area,pnum,besch, tag(offer),HEART,IC_CAM,photos,img, price, t,addr,
+      % (d["slug"],offer,d["type"],d["loc"],d["area"],d["price_num"],d["avail"], tag(offer),HEART,IC_CAM,d["photos"],d["img"], d["price"], d["title"],d["addr"],
          IC_AREA,a_en,a_es,a_nl, IC_TYPE,pe,pes,pl, s3ic,s_en,s_es,s_nl))
 grid='\n        '.join(cards)
-co=Counter(p[5] for p in P); ct=Counter(p[3] for p in P); cl=Counter(p[2] for p in P)
+co=Counter(d["offer"] for d in LISTINGS); ct=Counter(d["type"] for d in LISTINGS); cl=Counter(d["loc"] for d in LISTINGS)
 def opt(group,val,label_nl,en,es,count):
     return ('<label class="fopt"><input type="checkbox" data-fgroup="%s" data-val="%s"> '
             '<span data-tr="1" data-en="%s" data-es="%s">%s</span> <span class="cnt">%d</span></label>'
@@ -101,7 +103,7 @@ s=re.sub(r'(<div class="results-grid">).*?(</div>\s*\n\s*(?:<p class="filter-emp
 # insert segment toggle once, before the results-head
 if 'id="segToggle"' not in s:
     s=s.replace('<div class="results-head">', seg+'<div class="results-head">', 1)
-n=len(P); nh=co['huur']; nk=co['koop']
+n=len(LISTINGS); nh=co['huur']; nk=co['koop']
 s=re.sub(r'Aanbod op de kaart · \d+ objecten','Aanbod op de kaart · %d objecten'%n,s)
 s=re.sub(r'data-en="Listings on the map · \d+ properties"','data-en="Listings on the map · %d properties"'%n,s)
 s=re.sub(r'data-es="Inmuebles en el mapa · \d+ propiedades"','data-es="Inmuebles en el mapa · %d propiedades"'%n,s)

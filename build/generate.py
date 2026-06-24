@@ -6,8 +6,10 @@ Run:  python build/generate.py
 Shared chrome (header/footer/mobile menu) is defined once here so every
 page stays consistent and multilingual (NL/EN/ES via js/i18n.js).
 """
-import os, json, re
+import os, json, re, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from listings_data import LISTINGS
 
 def he(s):  # escape text for HTML
     return (s or "").replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
@@ -481,7 +483,10 @@ HEAD = """<!DOCTYPE html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,500&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=8">
+<link rel="stylesheet" href="css/styles.css?v=9">
+<link rel="icon" type="image/png" href="images/favicon.png?v=9">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=9">
+<meta name="theme-color" content="#7CA73F">
 </head>
 <body>
 """
@@ -595,8 +600,8 @@ FOOTER = TALK_BLOCK + """<footer class="footer"><div class="container">
   <div class="mm-cta"><a href="contact.html" class="btn btn--primary" data-i18n="nav.contact">Contact</a><div class="lang mm-lang" style="justify-content:center"><button class="active" data-lang="nl">NL</button><button data-lang="en">EN</button><button data-lang="es">ES</button></div></div>
 </div>
 
-<script src="js/main.js?v=8"></script>
-<script src="js/i18n.js?v=8"></script>
+<script src="js/main.js?v=9"></script>
+<script src="js/i18n.js?v=9"></script>
 </body>
 </html>
 """
@@ -1419,6 +1424,97 @@ def render_person_profile(p):
     return html
 
 # ----------------------------------------------------------------------
+# OBJECT-DETAILPAGINA (eigen pagina per object, Funda-stijl)
+# ----------------------------------------------------------------------
+LOC_LATLNG = {"amsterdam":"52.339,4.872","utrecht":"52.0894,5.110","valencia":"39.4667,-0.3667","estepona":"36.4275,-5.1459"}
+DESC = {
+ "kantoor":"Representatieve kantoorruimte op een uitstekend bereikbare locatie. De ruimte is efficiënt indeelbaar, beschikt over veel lichtinval en hoogwaardige voorzieningen, en is geschikt voor uiteenlopende kantoorconcepten.",
+ "bedrijf":"Functionele bedrijfs- en logistieke ruimte met goede bereikbaarheid en moderne specificaties. Geschikt voor opslag, productie en last-mile distributie, met ruime vrije hoogte en laad-/losmogelijkheden.",
+ "winkel":"Winkelruimte op een sterke, goed bezochte locatie met hoge passantenstromen. Representatieve pui en een indeling die zich leent voor diverse retail- en horecaformules.",
+ "belegging":"Beleggingsobject met een stabiele kasstroom en een aantrekkelijk bruto aanvangsrendement. Een solide toevoeging aan een vastgoedportefeuille, op een courante locatie met goede verhuurbaarheid.",
+}
+def render_listing_detail(d):
+    offer, typ = d["offer"], d["type"]
+    pl, pe, pes = d["ptype"]; a_nl, a_en, a_es = d["area_label"]; s_nl, s_en, s_es = d["spec3"]
+    pool = ["photo-1.jpg", "photo-2.jpg", "hero.jpg"]
+    thumbs = [p for p in pool if p != d["img"]][:2] + [d["img"]]
+    tagtxt = ("Te huur", "For rent", "En alquiler") if offer == "huur" else ("Te koop", "For sale", "En venta")
+    eyebrow = f'{pl} {tagtxt[0].lower()}'
+    spec_rows = [("Prijs", d["price"]), ("Type", pl), (a_nl.split()[0] if a_nl[0].isdigit() else "Oppervlakte", a_nl), ("Beschikbaarheid", s_nl if offer=="huur" else "In overleg")]
+    if offer == "koop":
+        spec_rows = [("Vraagprijs", d["price"]), ("Type", pl), ("Oppervlakte", a_nl), ("Bruto aanvangsrendement", s_nl), ("Beschikbaarheid", "In overleg")]
+    else:
+        spec_rows = [("Huurprijs", d["price"]), ("Type", pl), ("Oppervlakte", a_nl), ("Beschikbaarheid", s_nl), ("Opleveringsniveau", "Turn-key / in overleg")]
+    rows = "".join(f'<div class="spec-row"><span class="k">{k}</span><span class="v">{v}</span></div>' for k, v in spec_rows)
+    adv = PEOPLE[0]
+    similar = [x for x in LISTINGS if x["offer"] == offer and x["slug"] != d["slug"]][:3]
+    simcards = "".join(
+        f'<a class="prop-card" href="aanbod-{x["slug"]}.html"><div class="ph"><span class="tag tag--{x["offer"]}">{("Te huur" if x["offer"]=="huur" else "Te koop")}</span><img src="images/{x["img"]}" alt=""></div>'
+        f'<div class="body"><span class="ptype">{x["ptype"][0]}</span><h3>{x["title"]}</h3><span class="addr">{x["addr"]}</span><div class="meta"><span class="price">{x["price"]}</span></div></div></a>'
+        for x in similar)
+    subj = d["title"].replace(" ", "%20")
+    price_plain = re.sub(r'<[^>]+>', '', d["price"])
+    html = HEAD.format(title=f'{he(d["title"])} — {pl} {tagtxt[0].lower()} — Spring Real Estate',
+                       desc=f'{pl} {tagtxt[0].lower()} in {he(d["addr"])}. {a_nl}, {price_plain}. Bekijk dit object bij Spring Real Estate.')
+    html += TOPBAR + HEADER
+    html += f'''
+<div class="detail-top"><div class="container">
+  <a href="listings.html" class="back"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> <span data-tr="1" data-en="Back to listings" data-es="Volver a inmuebles">Terug naar aanbod</span></a>
+</div></div>
+<div class="container"><div class="detail-wrap">
+  <div class="detail-main">
+    <div class="gallery">
+      <div class="g-main"><span class="g-badge tag--{offer}" data-tr="1" data-en="{tagtxt[1]}" data-es="{tagtxt[2]}">{tagtxt[0]}</span><img src="images/{thumbs[2]}" alt="{esc(d["title"])}"><span class="g-allfotos"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> {d["photos"]} foto's</span></div>
+      <div class="g-side"><div class="g-thumb"><img src="images/{thumbs[0]}" alt=""></div><div class="g-thumb"><img src="images/{thumbs[1]}" alt=""></div><div class="g-thumb"><img src="images/{thumbs[2]}" alt=""></div></div>
+    </div>
+    <div class="d-titlebar">
+      <div>
+        <span class="d-eyebrow">{eyebrow}</span>
+        <h1>{he(d["title"])}</h1>
+        <div class="d-addr">{he(d["addr"])}</div>
+        <div class="d-meta"><span>{ic(I_CHECK,"2")} {pl}</span><span>{ic(I_CHECK,"2")} {a_nl}</span><span>{ic(I_CHECK,"2")} {s_nl}</span></div>
+      </div>
+      <div class="d-price"><div class="pp">{d["price"]}</div><div class="sub">{"Excl. BTW en servicekosten" if offer=="huur" else "Kosten koper"}</div><div class="area">{a_nl}</div></div>
+    </div>
+    <div class="d-actions">
+      <a href="contact.html" class="btn btn--primary btn--lg">Plan bezichtiging</a>
+      <a href="mailto:info@springrealestate.com?subject=Brochure%20{subj}" class="btn btn--ghost btn--lg">Download brochure</a>
+    </div>
+    <div class="d-section"><h2>Over dit object</h2><p class="muted">{DESC.get(typ, DESC["kantoor"])}</p></div>
+    <div class="d-section"><h2>Specificaties</h2><div class="spec-grid"><div>{rows}</div><div class="spec-extra"><div id="detail-map" data-loc="{d["loc"]}" data-title="{esc(d["title"])}" data-price="{esc(d["price"])}" data-offer="{offer}"></div></div></div></div>
+  </div>
+  <aside class="detail-side">
+    <div class="side-card" id="aanvraag">
+      <h3>Interesse in dit object?</h3>
+      <p class="sc-sub">Laat je gegevens achter — onze adviseur neemt snel contact met je op.</p>
+      <form onsubmit="return false">
+        <div class="form-field"><input type="text" placeholder="Naam *" data-i18n-ph="form.firstname"></div>
+        <div class="form-field"><input type="email" placeholder="E-mailadres *" data-i18n-ph="form.email"></div>
+        <div class="form-field"><input type="tel" placeholder="Telefoon" data-i18n-ph="form.phone"></div>
+        <button class="btn btn--primary" style="width:100%">Verstuur aanvraag</button>
+      </form>
+    </div>
+    <div class="side-card">
+      <h3 style="margin-bottom:14px">Uw adviseur</h3>
+      <div class="advisor">{phinner(adv["name"], adv.get("photo"))}<div><b>{he(adv["name"])}</b><span>{he(adv["role"])}</span></div></div>
+      <div class="advisor-contact">
+        <a href="tel:+31302001020"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> +31 30 200 10 20</a>
+        <a href="mailto:{adv["email"] or "info@springrealestate.com"}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> {adv["email"] or "info@springrealestate.com"}</a>
+      </div>
+      <a href="profile-{adv["slug"]}.html" class="btn btn--ghost" style="width:100%;margin-top:6px">Bekijk profiel</a>
+    </div>
+  </aside>
+</div></div>
+
+<section class="section--tight"><div class="container">
+  <div class="sec-head"><div class="t"><span class="eyebrow">Vergelijkbaar aanbod</span><h2 class="disp">Ook <em>interessant</em></h2></div><a href="listings.html" class="btn btn--ghost">Heel het aanbod</a></div>
+  <div class="cards-grid">{simcards}</div>
+</div></section>
+'''
+    html += FOOTER
+    return html
+
+# ----------------------------------------------------------------------
 # LOCATION PAGES (eigen pagina per kantoor)
 # ----------------------------------------------------------------------
 LOCATIES = {
@@ -1627,6 +1723,8 @@ def main():
         written.append(write(f"profile-{p['slug']}.html", render_person_profile(p)))
     for v in VACS:
         written.append(write(f"vacature-{vac_slug(v[0])}.html", render_vacature_detail(v)))
+    for d in LISTINGS:
+        written.append(write(f"aanbod-{d['slug']}.html", render_listing_detail(d)))
     for key in LOCATIES:
         written.append(write(f"locatie-{key}.html", render_locatie(key)))
     written.append(write("sectoren.html", render_sectoren()))
