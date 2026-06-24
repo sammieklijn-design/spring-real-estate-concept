@@ -500,9 +500,9 @@ HEAD = """<!DOCTYPE html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,500&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=14">
-<link rel="icon" type="image/png" href="images/favicon.png?v=14">
-<link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=14">
+<link rel="stylesheet" href="css/styles.css?v=15">
+<link rel="icon" type="image/png" href="images/favicon.png?v=15">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=15">
 <meta name="theme-color" content="#7CA73F">
 </head>
 <body>
@@ -557,6 +557,7 @@ TALK_BLOCK = """
       <p class="lead" data-i18n="talk.p">Liever direct sparren? Onze specialisten helpen u graag verder &mdash; vrijblijvend en in uw taal.</p>
       <div class="talk-actions">
         <a href="tel:+31302001020" class="btn btn--primary"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> +31 30 200 10 20</a>
+        <a href="https://wa.me/31302001020?text=Hoi%20Spring,%20ik%20heb%20een%20vraag" target="_blank" rel="noopener" class="btn btn--wa"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M.06 24l1.7-6.2A11.9 11.9 0 1 1 12 24a11.9 11.9 0 0 1-5.7-1.45L.06 24zM6.6 20.1l.37.22a9.9 9.9 0 0 0 5.05 1.38h.004a9.9 9.9 0 1 0-8.4-4.6l.24.38-1 3.67 3.74-.98zM17.5 14.3c-.15-.25-.55-.4-1.15-.7s-1.77-.87-2.04-.97-.47-.15-.67.15-.77.97-.94 1.17-.35.22-.65.07a8.13 8.13 0 0 1-2.4-1.48 9 9 0 0 1-1.66-2.06c-.17-.3 0-.46.13-.6s.3-.35.45-.52a2 2 0 0 0 .3-.5.55.55 0 0 0 0-.52c-.07-.15-.67-1.62-.92-2.22s-.5-.5-.67-.5h-.57a1.1 1.1 0 0 0-.8.37 3.35 3.35 0 0 0-1.04 2.5 5.8 5.8 0 0 0 1.22 3.08 13.3 13.3 0 0 0 5.1 4.5c.7.3 1.27.49 1.7.63a4.1 4.1 0 0 0 1.88.12c.57-.09 1.77-.72 2.02-1.42s.25-1.3.17-1.42z"/></svg> WhatsApp</a>
         <a href="contact.html" class="btn btn--ghost" data-i18n="talk.plan">Plan een gesprek</a>
       </div>
     </div>
@@ -599,7 +600,7 @@ FOOTER = TALK_BLOCK + """<footer class="footer"><div class="container">
     </ul></div>
     <div class="news"><h4 data-i18n="foot.nieuwsbrief">Nieuwsbrief</h4><p style="font-size:.9rem" data-i18n="foot.nieuwsbrief.p">Marktinzichten &amp; nieuw aanbod in uw inbox.</p><form onsubmit="return false"><input type="email" placeholder="Uw e-mailadres" data-i18n-ph="foot.email"><button class="btn btn--primary" style="width:100%" data-i18n="foot.inschrijven">Inschrijven</button></form></div>
   </div>
-  <div class="bottom"><span data-i18n="foot.rights">&copy; 2026 Spring Real Estate. Alle rechten voorbehouden.</span><div class="links"><a href="#">Privacyverklaring</a><a href="#">Cookies</a><a href="#">Algemene voorwaarden</a><span style="color:#6f7166">Concept o.b.v. Katana-template</span></div></div>
+  <div class="bottom"><span data-i18n="foot.rights">&copy; 2026 Spring Real Estate. Alle rechten voorbehouden.</span><div class="links"><a href="privacy.html">Privacyverklaring</a><a href="cookies.html">Cookies</a><a href="voorwaarden.html">Algemene voorwaarden</a><a href="https://www.linkedin.com/company/spring-real-estate-nl" target="_blank" rel="noopener">LinkedIn</a><span style="color:#6f7166">Concept o.b.v. Katana-template</span></div></div>
 </div></footer>
 
 <div class="mobile-menu" id="mobileMenu">
@@ -618,10 +619,10 @@ FOOTER = TALK_BLOCK + """<footer class="footer"><div class="container">
   <div class="mm-cta"><a href="contact.html" class="btn btn--primary" data-i18n="nav.contact">Contact</a><div class="lang mm-lang" style="justify-content:center"><button class="active" data-lang="nl">NL</button><button data-lang="en">EN</button><button data-lang="es">ES</button></div></div>
 </div>
 
-<script src="js/search-index.js?v=14"></script>
-<script src="js/main.js?v=14"></script>
-<script src="js/ai-search.js?v=14"></script>
-<script src="js/i18n.js?v=14"></script>
+<script src="js/search-index.js?v=15"></script>
+<script src="js/main.js?v=15"></script>
+<script src="js/ai-search.js?v=15"></script>
+<script src="js/i18n.js?v=15"></script>
 </body>
 </html>
 """
@@ -888,12 +889,12 @@ def render_unit(idx, u):
         for i,pp in enumerate(ppl[:4]):
             nm, role, mail, photo = parse_person(pp)
             mlink = f"mailto:{mail}" if mail else "#"
-            tc.append(f'<div class="agent"><div class="ph">{phinner(nm,photo)}</div><div class="body"><div class="name">{he(nm)}</div><div class="role">{he(role)}</div><div class="socials"><a href="#" aria-label="LinkedIn">in</a><a href="{mlink}" aria-label="E-mail">@</a></div></div></div>')
+            tc.append(f'<div class="agent"><div class="ph">{phinner(nm,photo)}</div><div class="body"><div class="name">{he(nm)}</div><div class="role">{he(role)}</div><div class="socials"><a href="https://www.linkedin.com/company/spring-real-estate-nl" target="_blank" rel="noopener" aria-label="LinkedIn">in</a><a href="{mlink}" aria-label="E-mail">@</a></div></div></div>')
         team_html = "".join(tc)
     else:
-        team_html = (f'<div class="agent"><div class="ph"><img src="{ph}" alt=""></div><div class="body"><div class="name">Daan van der Meer</div><div class="role">Senior Adviseur</div><div class="socials"><a href="#">in</a><a href="#">@</a></div></div></div>'
-                     f'<div class="agent"><div class="ph"><img src="{ph2}" alt=""></div><div class="body"><div class="name">Sofia Mart&iacute;n</div><div class="role">Adviseur</div><div class="socials"><a href="#">in</a><a href="#">@</a></div></div></div>'
-                     f'<div class="agent"><div class="ph"><img src="{PHOTOS[(idx+2)%3]}" alt=""></div><div class="body"><div class="name">Lars Bakker</div><div class="role">Specialist</div><div class="socials"><a href="#">in</a><a href="#">@</a></div></div></div>')
+        team_html = (f'<div class="agent"><div class="ph"><img src="{ph}" alt=""></div><div class="body"><div class="name">Daan van der Meer</div><div class="role">Senior Adviseur</div><div class="socials"><a href="https://www.linkedin.com/company/spring-real-estate-nl" target="_blank" rel="noopener" aria-label="LinkedIn">in</a><a href="mailto:info@springrealestate.com" aria-label="E-mail">@</a></div></div></div>'
+                     f'<div class="agent"><div class="ph"><img src="{ph2}" alt=""></div><div class="body"><div class="name">Sofia Mart&iacute;n</div><div class="role">Adviseur</div><div class="socials"><a href="https://www.linkedin.com/company/spring-real-estate-nl" target="_blank" rel="noopener" aria-label="LinkedIn">in</a><a href="mailto:info@springrealestate.com" aria-label="E-mail">@</a></div></div></div>'
+                     f'<div class="agent"><div class="ph"><img src="{PHOTOS[(idx+2)%3]}" alt=""></div><div class="body"><div class="name">Lars Bakker</div><div class="role">Specialist</div><div class="socials"><a href="https://www.linkedin.com/company/spring-real-estate-nl" target="_blank" rel="noopener" aria-label="LinkedIn">in</a><a href="mailto:info@springrealestate.com" aria-label="E-mail">@</a></div></div></div>')
     # gerelateerde diensten (cross-sell binnen dezelfde doelgroep)
     sibs = [x for x in UNITS if pdg in x[2].split() and x[0] != slug]
     if len(sibs) < 3:
@@ -908,7 +909,7 @@ def render_unit(idx, u):
     def _agent(nm, role, photo=None):
         return (f'<div class="agent"><div class="ph">{phinner(nm, photo)}</div><div class="body">'
                 f'<div class="name">{nm}</div><div class="role">{role}</div>'
-                f'<div class="socials"><a href="#">in</a><a href="#">@</a></div></div></div>')
+                f'<div class="socials"><a href="https://www.linkedin.com/company/spring-real-estate-nl" target="_blank" rel="noopener" aria-label="LinkedIn">in</a><a href="mailto:info@springrealestate.com" aria-label="E-mail">@</a></div></div></div>')
     # beschikbare ruimtes/opties bij kantoor- en serviced-office-units
     office_html = ""
     if slug == "serviced-offices":
@@ -1022,9 +1023,9 @@ def render_unit(idx, u):
 <section class="section--tight" id="cases"><div class="container">
   <div class="sec-head"><div class="t"><span class="eyebrow">Business cases</span><h2>Recente <em>resultaten</em></h2></div><a href="resources.html" class="btn btn--ghost">Alle cases</a></div>
   <div class="case-grid">
-    <a class="case" href="#"><div class="ph"><img src="{ph}" alt=""></div><div class="body"><div class="res">+18% rendement</div><h3>Herpositionering kantoorobject</h3><p class="muted" style="font-size:.9rem">Amsterdam Zuidas</p></div></a>
-    <a class="case" href="#"><div class="ph"><img src="{ph2}" alt=""></div><div class="body"><div class="res">3 weken</div><h3>Snelle invulling leegstand</h3><p class="muted" style="font-size:.9rem">Utrecht</p></div></a>
-    <a class="case" href="#"><div class="ph"><img src="{PHOTOS[(idx+2)%3]}" alt=""></div><div class="body"><div class="res">€4,9 mln</div><h3>Aankoop beleggingsobject</h3><p class="muted" style="font-size:.9rem">Valencia</p></div></a>
+    <a class="case" href="cases.html"><div class="ph"><img src="{ph}" alt=""></div><div class="body"><div class="res">+18% rendement</div><h3>Herpositionering kantoorobject</h3><p class="muted" style="font-size:.9rem">Amsterdam Zuidas</p></div></a>
+    <a class="case" href="cases.html"><div class="ph"><img src="{ph2}" alt=""></div><div class="body"><div class="res">3 weken</div><h3>Snelle invulling leegstand</h3><p class="muted" style="font-size:.9rem">Utrecht</p></div></a>
+    <a class="case" href="cases.html"><div class="ph"><img src="{PHOTOS[(idx+2)%3]}" alt=""></div><div class="body"><div class="res">€4,9 mln</div><h3>Aankoop beleggingsobject</h3><p class="muted" style="font-size:.9rem">Valencia</p></div></a>
   </div>
 </div></section>
 
@@ -1382,7 +1383,7 @@ def render_profile(p):
     <div class="ph-cta">
       <a href="mailto:{mail}" class="btn btn--primary">E-mail {name.split(' ')[0]}</a>
       <a href="tel:+31302001020" class="btn btn--ghost">+31 30 200 10 20</a>
-      <a href="#" class="btn btn--ghost">LinkedIn</a>
+      <a href="https://www.linkedin.com/company/spring-real-estate-nl" target="_blank" rel="noopener" class="btn btn--ghost">LinkedIn</a>
     </div>
   </div>
 </section>
@@ -1466,7 +1467,7 @@ def render_person_profile(p):
   <div class="ph-cta">
     <a href="mailto:{mail}" class="btn btn--primary">E-mail {he(first)}</a>
     <a href="tel:+31302001020" class="btn btn--ghost">+31 30 200 10 20</a>
-    <a href="#" class="btn btn--ghost">LinkedIn</a>
+    <a href="https://www.linkedin.com/company/spring-real-estate-nl" target="_blank" rel="noopener" class="btn btn--ghost">LinkedIn</a>
   </div>
 </div></section>
 
@@ -1780,7 +1781,7 @@ CASES = [
  ("€720/m²","Verhuur turn-key kantoor","Verhuur","Amsterdam","hero.jpg"),
 ]
 def render_cases():
-    cards = "".join(f'''<a class="case" href="#"><div class="ph"><img src="images/{img}" alt=""></div><div class="body"><div class="res">{res}</div><h3>{title}</h3><p class="muted" style="font-size:.9rem">{sector} · {loc}</p></div></a>''' for res,title,sector,loc,img in CASES)
+    cards = "".join(f'''<a class="case" href="cases.html" data-cat="{sector.lower()}"><div class="ph"><img src="images/{img}" alt=""></div><div class="body"><div class="res">{res}</div><h3>{title}</h3><p class="muted" style="font-size:.9rem">{sector} · {loc}</p></div></a>''' for res,title,sector,loc,img in CASES)
     html = HEAD.format(title="Klantverhalen &amp; cases — Spring Real Estate", desc="Klantverhalen en business cases van Spring Real Estate — bewezen resultaat in commercieel en residentieel vastgoed.")
     html += TOPBAR + HEADER
     html += f'''
@@ -1790,9 +1791,9 @@ def render_cases():
   <h1>Bewezen <em style="color:var(--green);font-style:italic;font-weight:500">resultaat</em></h1>
   <p class="lead">Echte projecten, echte resultaten. Filter op sector of doelgroep en ontdek hoe we waarde cre&euml;ren.</p>
 </div></section>
-<section class="section"><div class="container">
+<section class="section filterable"><div class="container">
   <div class="team-filter">
-    <a href="#" class="active">Alle</a><a href="#">Verhuur</a><a href="#">Investments</a><a href="#">Asset management</a><a href="#">Design &amp; Build</a>
+    <a href="#" class="active" data-key="alle">Alle</a><a href="#" data-key="verhuur">Verhuur</a><a href="#" data-key="investments">Investments</a><a href="#" data-key="asset management">Asset management</a><a href="#" data-key="design &amp; build">Design &amp; Build</a>
   </div>
   <div class="case-grid">{cards}</div>
 </div></section>
@@ -1864,7 +1865,7 @@ def render_agents():
         cards += (f'<div class="person" data-cat="{agent_cat(p["role"])}" data-profile="profile-{p["slug"]}.html"><div class="ph">{phinner(p["name"], p["photo"])}</div>'
                   f'<div class="body"><a class="name" href="profile-{p["slug"]}.html">{he(p["name"])}</a><div class="role">{he(p["role"])}</div>'
                   f'<p class="bio" data-tr="1" data-en="{he(first)} is a specialist at Spring Real Estate. Feel free to get in touch for an introduction and personal advice." data-es="{he(first)} es especialista en Spring Real Estate. No dudes en ponerte en contacto para una presentaci&oacute;n y asesoramiento personal.">{he(first)} is specialist bij Spring Real Estate. Neem gerust contact op voor een kennismaking en persoonlijk advies.</p>'
-                  f'<div class="socials"><a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.8-2 3.7-2 4 0 4.75 2.6 4.75 6V21H21v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H13z"/></svg></a>'
+                  f'<div class="socials"><a href="https://www.linkedin.com/company/spring-real-estate-nl" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.8-2 3.7-2 4 0 4.75 2.6 4.75 6V21H21v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H13z"/></svg></a>'
                   f'<a href="{mlink}" aria-label="E-mail"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a></div></div></div>')
     html = HEAD.format(title="Ons team — Spring Real Estate", desc="Maak kennis met het team van Spring Real Estate in Amsterdam, Utrecht, Valencia en Estepona.")
     html += TOPBAR + HEADER
@@ -1897,6 +1898,230 @@ def render_agents():
 # ----------------------------------------------------------------------
 # WRITE
 # ----------------------------------------------------------------------
+# ----------------------------------------------------------------------
+# KENNISARTIKELEN (echte pagina's achter de Resources-kaarten)
+# ----------------------------------------------------------------------
+# (slug, cat_key, cat_nl, cat_en, cat_es, date_nl, date_en, date_es, read,
+#  title_nl, title_en, title_es, lead_nl, lead_en, lead_es, img, [ (h2_nl,h2_en,h2_es, [para,...]) ... ], [takeaway,...] )
+ARTICLES = [
+ ("kantorenmarkt-2026","marktinzicht","Marktinzicht","Market insight","Análisis de mercado",
+  "12 juni 2026","12 June 2026","12 de junio de 2026","5 min",
+  "Kantorenmarkt 2026: waar liggen de kansen?","Office market 2026: where are the opportunities?","Mercado de oficinas 2026: ¿dónde están las oportunidades?",
+  "De vraag naar duurzame, goed bereikbare kantoorruimte stijgt. We analyseren de belangrijkste trends voor gebruikers en beleggers in Nederland en Spanje.",
+  "Demand for sustainable, well-connected office space is rising. We analyse the key trends for users and investors in the Netherlands and Spain.",
+  "La demanda de oficinas sostenibles y bien conectadas crece. Analizamos las principales tendencias para usuarios e inversores en los Países Bajos y España.",
+  "hero.jpg",
+  [("Flight to quality zet door","Flight to quality continues","La huida hacia la calidad continúa",
+    ["Huurders kiezen steeds vaker voor kwaliteit boven kwantiteit: minder vierkante meters, maar van hogere klasse en op toplocaties. Goed bereikbare, energiezuinige gebouwen met sterke voorzieningen behouden hun waarde, terwijl verouderd aanbod achterblijft.",
+     "Voor eigenaren betekent dit dat verduurzaming en herpositionering geen luxe meer zijn, maar een voorwaarde om verhuurbaar te blijven. De spreiding tussen prime en secundair vastgoed groeit verder."]),
+   ("Duurzaamheid bepaalt de huurprijs","Sustainability drives the rent","La sostenibilidad determina el alquiler",
+    ["Energielabels en BREEAM-certificering zijn doorslaggevend geworden in de huuronderhandeling. Gebouwen met een groen profiel realiseren aantoonbaar hogere huren en kortere leegstand.",
+     "Wie nu investeert in verduurzaming, plukt daar de komende jaren de vruchten van — zowel in rendement als in financierbaarheid."]),
+   ("Wat betekent dit voor u?","What does this mean for you?","¿Qué significa esto para usted?",
+    ["Bent u gebruiker, dan is dit het moment om scherp te onderhandelen op kwaliteit en flexibiliteit. Bent u eigenaar of belegger, dan loont een heldere strategie per object. Onze adviseurs denken graag met u mee — vrijblijvend en op basis van actuele marktdata."])],
+  ["Flight to quality: kwaliteit boven kwantiteit","Duurzaamheid bepaalt steeds vaker de huurprijs","Spreiding tussen prime en secundair groeit","Een strategie per object loont"]),
+ ("beleggen-commercieel-vastgoed","investeren","Investeren","Investing","Inversión",
+  "3 juni 2026","3 June 2026","3 de junio de 2026","7 min",
+  "Beleggen in commercieel vastgoed: 5 lessen","Investing in commercial real estate: 5 lessons","Invertir en inmuebles comerciales: 5 lecciones",
+  "Commercieel vastgoed blijft een aantrekkelijke beleggingscategorie — mits u de juiste afwegingen maakt. Vijf lessen uit de praktijk.",
+  "Commercial real estate remains an attractive asset class — provided you make the right trade-offs. Five lessons from practice.",
+  "Los inmuebles comerciales siguen siendo una clase de activo atractiva, siempre que se tomen las decisiones correctas. Cinco lecciones de la práctica.",
+  "photo-1.jpg",
+  [("1. Locatie blijft koning","1. Location remains king","1. La ubicación sigue siendo el rey",
+    ["Een goede locatie vergeeft veel. Bereikbaarheid, voorzieningen en de kwaliteit van de omgeving bepalen de verhuurbaarheid op lange termijn — en daarmee uw rendement."]),
+   ("2. Reken op de werkelijke kasstroom","2. Count on the real cash flow","2. Cuente con el flujo de caja real",
+    ["Bruto aanvangsrendement zegt weinig zonder zicht op onderhoud, leegstand en incentives. Een realistische cashflow-onderbouwing voorkomt teleurstellingen."]),
+   ("3. Spreid uw risico","3. Spread your risk","3. Diversifique su riesgo",
+    ["Spreiding over sectoren, locaties en huurders maakt uw portefeuille schokbestendiger. Eén grote huurder die vertrekt mag niet uw hele rendement bepalen."]),
+   ("4. Duurzaamheid is rendement","4. Sustainability is return","4. La sostenibilidad es rentabilidad",
+    ["Verduurzaming verlaagt exploitatiekosten, verhoogt de huurwaarde en houdt het object financierbaar. Het is een investering, geen kostenpost."]),
+   ("5. Kies de juiste partner","5. Choose the right partner","5. Elija el socio adecuado",
+    ["Acquisitie, beheer en exit vragen elk hun eigen expertise. Een partner die de hele keten overziet, haalt meer uit uw vastgoed."])],
+  ["Locatie bepaalt de verhuurbaarheid","Onderbouw de werkelijke kasstroom","Spreid over sectoren en huurders","Verduurzaming verhoogt het rendement"]),
+ ("valencia-nl-investeerders","internationaal","Internationaal","International","Internacional",
+  "28 mei 2026","28 May 2026","28 de mayo de 2026","4 min",
+  "Waarom Valencia in trek is bij NL-investeerders","Why Valencia appeals to Dutch investors","Por qué Valencia atrae a los inversores neerlandeses",
+  "Steeds meer Nederlandse investeerders en gebruikers kijken naar Valencia. Wat maakt de stad zo aantrekkelijk — en waar moet u op letten?",
+  "More and more Dutch investors and users are looking at Valencia. What makes the city so attractive — and what should you watch out for?",
+  "Cada vez más inversores y usuarios neerlandeses miran hacia Valencia. ¿Qué hace que la ciudad sea tan atractiva y a qué hay que prestar atención?",
+  "photo-2.jpg",
+  [("Groei met behoud van leefkwaliteit","Growth with quality of life","Crecimiento con calidad de vida",
+    ["Valencia combineert een groeiende economie met een uitstekend leefklimaat. Dat trekt internationale bedrijven, talent en daarmee vraag naar kwalitatief vastgoed aan."]),
+   ("Een Nederlands aanspreekpunt","A Dutch point of contact","Un punto de contacto neerlandés",
+    ["Investeren in het buitenland vraagt om lokale kennis én een vertrouwd aanspreekpunt. Vanuit ons kantoor in Valencia begeleiden we Nederlandse opdrachtgevers in hun eigen taal, met grip op de lokale markt en regelgeving."]),
+   ("Waar u op moet letten","What to watch out for","A qué prestar atención",
+    ["Juridische due diligence, fiscale structuur en lokaal beheer verdienen aandacht vanaf dag één. Met de juiste begeleiding is de drempel kleiner dan veel mensen denken."])],
+  ["Sterke economie én leefkwaliteit","Nederlands aanspreekpunt ter plaatse","Due diligence en fiscaliteit vooraf regelen","Lokaal beheer is cruciaal"]),
+ ("serviced-offices-vs-eigen-kantoor","huisvesting","Huisvesting","Housing","Alojamiento",
+  "21 mei 2026","21 May 2026","21 de mayo de 2026","6 min",
+  "Serviced offices vs. eigen kantoor: wat past bij u?","Serviced offices vs. your own office: what suits you?","Oficinas serviced vs. oficina propia: ¿qué te conviene?",
+  "Flexibel en direct klaar, of volledig naar eigen hand gezet? We zetten serviced offices en een eigen kantoor naast elkaar.",
+  "Flexible and ready to go, or fully tailored to you? We compare serviced offices and your own office space.",
+  "Flexible y listo para usar, o totalmente a tu medida. Comparamos las oficinas serviced y la oficina propia.",
+  "photo-2.jpg",
+  [("Serviced offices: snelheid en flexibiliteit","Serviced offices: speed and flexibility","Oficinas serviced: rapidez y flexibilidad",
+    ["Een serviced office is binnen enkele dagen instapklaar, inclusief inrichting, internet en services. Ideaal voor groei, tijdelijke huisvesting of een zachte landing op een nieuwe markt."]),
+   ("Eigen kantoor: identiteit en grip","Your own office: identity and control","Oficina propia: identidad y control",
+    ["Een eigen kantoor geeft maximale vrijheid in inrichting, uitstraling en kosten op lange termijn. Het past bij organisaties met een stabiele bezetting en een duidelijke huisvestingsstrategie."]),
+   ("Hoe kiest u?","How do you choose?","¿Cómo elegir?",
+    ["De keuze hangt af van uw groeiverwachting, gewenste flexibiliteit en budget. We brengen graag de opties in kaart op basis van uw concrete situatie."])],
+  ["Serviced: snel, flexibel, all-in","Eigen kantoor: identiteit en grip op lange termijn","Groeiverwachting bepaalt de keuze","Laat de opties naast elkaar zetten"]),
+ ("herbouwwaarde-taxatie","taxaties","Taxaties","Valuations","Tasaciones",
+  "14 mei 2026","14 May 2026","14 de mayo de 2026","4 min",
+  "Herbouwwaarde: waarom een actuele taxatie loont","Reinstatement value: why an up-to-date valuation pays off","Valor de reconstrucción: por qué una tasación actualizada compensa",
+  "Gestegen bouwkosten maken onderverzekering een reëel risico. Een actuele herbouwwaardebepaling voorkomt nare verrassingen.",
+  "Rising construction costs make underinsurance a real risk. An up-to-date reinstatement valuation prevents nasty surprises.",
+  "El aumento de los costes de construcción convierte el infraseguro en un riesgo real. Una tasación actualizada del valor de reconstrucción evita sorpresas desagradables.",
+  "photo-1.jpg",
+  [("Het risico van onderverzekering","The risk of underinsurance","El riesgo del infraseguro",
+    ["Wie de verzekerde waarde jaren niet aanpast, loopt het risico dat de uitkering bij schade onvoldoende is om te herbouwen. Met de sterk gestegen bouwkosten is dat gat snel groot."]),
+   ("Een onderbouwde herbouwwaarde","A substantiated reinstatement value","Un valor de reconstrucción fundamentado",
+    ["Een professionele herbouwwaardebepaling rekent met actuele bouwkosten, gebouwkenmerken en regio. Zo sluit uw polis weer aan op de werkelijkheid."]),
+   ("Doe de check","Do the check","Haga la comprobación",
+    ["Met onze herbouwwaarde-check krijgt u snel een indicatie van uw risico. Voor een gevalideerde waarde stellen onze taxateurs een volwaardig rapport op."])],
+  ["Bouwkosten zijn fors gestegen","Onderverzekering is een reëel risico","Reken met actuele kosten en kenmerken","Doe de herbouwwaarde-check"]),
+ ("duurzaamheid-breeam","marktinzicht","Marktinzicht","Market insight","Análisis de mercado",
+  "7 mei 2026","7 May 2026","7 de mayo de 2026","5 min",
+  "Duurzaamheid &amp; BREEAM: impact op huurprijzen","Sustainability &amp; BREEAM: impact on rents","Sostenibilidad &amp; BREEAM: impacto en los alquileres",
+  "Groene gebouwen presteren beter — op huur, leegstand én waarde. Wat betekent BREEAM concreet voor uw vastgoed?",
+  "Green buildings perform better — on rent, vacancy and value. What does BREEAM concretely mean for your real estate?",
+  "Los edificios verdes rinden mejor: en alquiler, ocupación y valor. ¿Qué significa BREEAM concretamente para su inmueble?",
+  "hero.jpg",
+  [("Een groen label betaalt zich terug","A green label pays off","Una etiqueta verde se amortiza",
+    ["Gecertificeerde gebouwen realiseren aantoonbaar hogere huren en lagere leegstand. Huurders met eigen duurzaamheidsdoelen kiezen er bewust voor."]),
+   ("Financierbaarheid en waarde","Financeability and value","Financiación y valor",
+    ["Financiers stellen steeds strengere eisen aan de duurzaamheid van onderpand. Een groen profiel verbetert de financierbaarheid en beschermt de waarde tegen veroudering."]),
+   ("Van label naar plan","From label to plan","De la etiqueta al plan",
+    ["Verduurzaming begint met inzicht: waar staat uw gebouw en wat zijn de meest rendabele stappen? Wij vertalen dat naar een concreet plan."])],
+  ["Groene labels verhogen de huur","Lagere leegstand bij gecertificeerd vastgoed","Duurzaamheid verbetert de financierbaarheid","Begin met inzicht, dan een plan"]),
+ ("asset-management-rendement","investeren","Investeren","Investing","Inversión",
+  "30 april 2026","30 April 2026","30 de abril de 2026","6 min",
+  "Asset management: rendement uit bestaand vastgoed","Asset management: returns from existing real estate","Asset management: rentabilidad de inmuebles existentes",
+  "Het meeste rendement zit vaak in wat u al bezit. Met actief asset management haalt u meer uit uw portefeuille.",
+  "The most return is often in what you already own. With active asset management you get more out of your portfolio.",
+  "La mayor rentabilidad suele estar en lo que ya posee. Con una gestión de activos activa obtiene más de su cartera.",
+  "photo-2.jpg",
+  [("Actief sturen op waarde","Actively steering on value","Gestión activa del valor",
+    ["Asset management gaat verder dan beheer: het is sturen op waarde. Door huurders, contracten en investeringen slim te combineren, verhoogt u het rendement van bestaand vastgoed."]),
+   ("Data als kompas","Data as a compass","Los datos como brújula",
+    ["Beslissingen onderbouwd met markt- en objectdata leiden tot betere keuzes — over verhuur, verduurzaming en het juiste moment van verkoop."]),
+   ("Samen het maximale eruit halen","Getting the maximum out together","Sacar juntos el máximo partido",
+    ["Onze asset managers stellen per object een plan op met heldere doelen. Zo werkt u toe naar aantoonbaar meer rendement."])],
+  ["Rendement zit vaak in bestaand bezit","Stuur actief op waarde, niet alleen beheer","Onderbouw keuzes met data","Werk met een plan per object"]),
+]
+
+def ic_phone():
+    return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>'
+
+def ic_wa():
+    return '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.06 24l1.7-6.2A11.9 11.9 0 1 1 12 24a11.9 11.9 0 0 1-5.7-1.45L.06 24zM6.6 20.1l.37.22a9.9 9.9 0 0 0 5.05 1.38h.004a9.9 9.9 0 1 0-8.4-4.6l.24.38-1 3.67 3.74-.98zM17.5 14.3c-.15-.25-.55-.4-1.15-.7s-1.77-.87-2.04-.97-.47-.15-.67.15-.77.97-.94 1.17-.35.22-.65.07a8.13 8.13 0 0 1-2.4-1.48 9 9 0 0 1-1.66-2.06c-.17-.3 0-.46.13-.6s.3-.35.45-.52a2 2 0 0 0 .3-.5.55.55 0 0 0 0-.52c-.07-.15-.67-1.62-.92-2.22s-.5-.5-.67-.5h-.57a1.1 1.1 0 0 0-.8.37 3.35 3.35 0 0 0-1.04 2.5 5.8 5.8 0 0 0 1.22 3.08 13.3 13.3 0 0 0 5.1 4.5c.7.3 1.27.49 1.7.63a4.1 4.1 0 0 0 1.88.12c.57-.09 1.77-.72 2.02-1.42s.25-1.3.17-1.42z"/></svg>'
+
+def render_article(a):
+    (slug, catk, cat_nl, cat_en, cat_es, dnl, den, des, read,
+     tnl, ten, tes, lnl, len_, les, img, sections, takeaways) = a
+    body = ""
+    for h_nl, h_en, h_es, paras in sections:
+        body += f'<h2{trh(h_en, h_es)}>{h_nl}</h2>'
+        for pp in paras:
+            body += f'<p>{pp}</p>'
+    tk = "".join(f"<li>{ic(I_CHECK,'2.4')} {t}</li>" for t in takeaways)
+    rel = [x for x in ARTICLES if x[0] != slug][:3]
+    rel_html = "".join(
+        f'<a class="post" href="artikel-{r[0]}.html"><div class="ph"><img src="images/{r[15]}" alt=""></div>'
+        f'<div class="body"><span class="cat"{trh(r[3], r[4])}>{r[2]}</span><h3{trh(r[10], r[11])}>{r[9]}</h3>'
+        f'<span class="date"{trh(r[6]+" · "+r[8], r[7]+" · "+r[8])}>{r[5]} · {r[8]}</span></div></a>'
+        for r in rel)
+    adv = PEOPLE[0]
+    import json as _json
+    ld = _json.dumps({"@context": "https://schema.org", "@type": "Article", "headline": re.sub(r'&[a-z]+;', '', tnl),
+        "datePublished": "2026", "author": {"@type": "Organization", "name": "Spring Real Estate"},
+        "publisher": {"@type": "Organization", "name": "Spring Real Estate"}, "url": f"artikel-{slug}.html"}, ensure_ascii=False)
+    desc = re.sub(r'<[^>]+>|&[a-z]+;', '', lnl)[:155]
+    html = HEAD.format(title=f"{re.sub(r'&[a-z]+;','',tnl)} — Resources — Spring Real Estate", desc=desc)
+    html += f'<script type="application/ld+json">{ld}</script>'
+    html += TOPBAR + HEADER
+    html += f'''
+<section class="page-hero"><div class="container">
+  <div class="crumbs"><a href="index.html">Home</a> / <a href="resources.html" data-i18n="nav.resources">Resources</a> / {cat_nl}</div>
+  <span class="eyebrow"{trh(cat_en, cat_es)}>{cat_nl}</span>
+  <h1{trh(ten, tes)}>{tnl}</h1>
+  <p class="lead"{trh(len_, les)}>{lnl}</p>
+  <span class="date muted"{trh(den+" · "+read+" read", des+" · "+read)}>{dnl} · {read} leestijd</span>
+</div></section>
+
+<section class="section"><div class="container"><div class="split">
+  <article class="prose article-body">
+    <img src="images/{img}" alt="{esc(re.sub(r'&[a-z]+;','',tnl))}" class="article-hero">
+    {body}
+    <div class="takeaways"><h3{trh("Key takeaways", "Conclusiones clave")}>In het kort</h3><ul class="checks">{tk}</ul></div>
+  </article>
+  <aside class="aside-card aside-dark article-aside">
+    <h3{trh("Question about this topic?", "¿Una pregunta sobre este tema?")}>Vraag over dit onderwerp?</h3>
+    <p style="color:#bcbeb2;font-size:.94rem"{trh("Our specialists are happy to help — call, WhatsApp or email and we respond fast.", "Nuestros especialistas estarán encantados de ayudarle — llame, escriba por WhatsApp o envíe un correo y respondemos rápido.")}>Onze specialisten helpen u graag — bel, WhatsApp of mail en we reageren snel.</p>
+    <a href="tel:+31302001020" class="btn btn--primary" style="width:100%;margin-top:8px">{ic_phone()} +31 30 200 10 20</a>
+    <a href="https://wa.me/31302001020?text=Hoi%20Spring,%20ik%20heb%20een%20vraag%20n.a.v.%20een%20artikel" target="_blank" rel="noopener" class="btn btn--wa" style="width:100%;margin-top:10px">{ic_wa()} WhatsApp</a>
+    <a href="mailto:info@springrealestate.com" class="btn btn--ghost" style="width:100%;margin-top:10px;color:#fff;border-color:rgba(255,255,255,.3)"{trh("Email us", "Envíenos un correo")}>Mail ons</a>
+    <div class="advisor" style="margin-top:18px">{phinner(adv["name"], adv.get("photo"))}<div><b style="color:#fff">{he(adv["name"])}</b><span style="color:#a9ab9f">{he(adv["role"])}</span></div></div>
+  </aside>
+</div></div></section>
+
+<section class="section--tight"><div class="container">
+  <div class="sec-head"><div class="t"><span class="eyebrow"{trh("Keep reading", "Seguir leyendo")}>Verder lezen</span><h2 class="disp"{trh("More <em>insights</em>", "Más <em>análisis</em>")}>Meer <em>inzichten</em></h2></div><a href="resources.html" class="btn btn--ghost" data-i18n="nav.resources">Alle artikelen</a></div>
+  <div class="blog-grid">{rel_html}</div>
+</div></section>
+'''
+    html += FOOTER
+    return html
+
+# ----------------------------------------------------------------------
+# JURIDISCHE PAGINA'S (privacy, cookies, voorwaarden)
+# ----------------------------------------------------------------------
+LEGAL = {
+ "privacy": ("Privacyverklaring", "Privacy statement", "Política de privacidad",
+   "Hoe Spring Real Estate omgaat met uw persoonsgegevens.",
+   "How Spring Real Estate handles your personal data.",
+   "Cómo Spring Real Estate trata sus datos personales.",
+   [("Welke gegevens we verwerken","We verwerken de gegevens die u zelf aan ons verstrekt — zoals naam, e-mailadres en telefoonnummer — wanneer u contact opneemt, een aanvraag doet of zich inschrijft voor onze nieuwsbrief. Daarnaast verzamelen we beperkte, geanonimiseerde gebruiksgegevens om onze website te verbeteren."),
+    ("Waarvoor we ze gebruiken","Uw gegevens gebruiken we uitsluitend om uw vraag te beantwoorden, onze dienstverlening uit te voeren en u — met uw toestemming — relevante updates te sturen. We verkopen uw gegevens nooit aan derden."),
+    ("Uw rechten","U heeft het recht uw gegevens in te zien, te corrigeren of te laten verwijderen. Een verzoek daartoe kunt u sturen naar privacy@springrealestate.com; we reageren binnen de wettelijke termijn."),
+    ("Bewaartermijn & beveiliging","We bewaren uw gegevens niet langer dan nodig en treffen passende technische en organisatorische maatregelen om ze te beschermen.")]),
+ "cookies": ("Cookieverklaring", "Cookie statement", "Política de cookies",
+   "Welke cookies we gebruiken en waarom.",
+   "Which cookies we use and why.",
+   "Qué cookies utilizamos y por qué.",
+   [("Functionele cookies","Deze cookies zijn nodig om de website goed te laten werken, bijvoorbeeld voor uw taalkeuze en opgeslagen voorkeuren. Ze worden altijd geplaatst."),
+    ("Analytische cookies","Met geanonimiseerde analytische cookies meten we hoe de website wordt gebruikt, zodat we hem kunnen verbeteren. Deze plaatsen we alleen met uw toestemming."),
+    ("Uw keuze","Via de cookiemelding bepaalt u zelf welke cookies u toestaat. U kunt uw keuze op elk moment aanpassen door uw browsergegevens te wissen.")]),
+ "voorwaarden": ("Algemene voorwaarden", "Terms & conditions", "Términos y condiciones",
+   "De voorwaarden die op onze dienstverlening van toepassing zijn.",
+   "The terms that apply to our services.",
+   "Las condiciones aplicables a nuestros servicios.",
+   [("Toepasselijkheid","Deze algemene voorwaarden zijn van toepassing op alle diensten en overeenkomsten van Spring Real Estate, tenzij schriftelijk anders overeengekomen."),
+    ("Onze dienstverlening","Wij voeren onze opdrachten naar beste inzicht en vermogen uit. Informatie op deze website is met zorg samengesteld, maar betreft een concept en kan geen rechten doen ontstaan."),
+    ("Aansprakelijkheid","Spring Real Estate is niet aansprakelijk voor schade die voortvloeit uit het gebruik van deze website of uit onvolledige of onjuiste informatie, behoudens opzet of grove schuld."),
+    ("Toepasselijk recht","Op onze dienstverlening is Nederlands recht van toepassing. Geschillen leggen we voor aan de bevoegde rechter in het arrondissement Midden-Nederland.")]),
+}
+
+def render_legal(key):
+    title_nl, title_en, title_es, lead_nl, lead_en, lead_es, sections = LEGAL[key]
+    body = "".join(f'<h2>{h}</h2><p>{p}</p>' for h, p in sections)
+    html = HEAD.format(title=f"{title_nl} — Spring Real Estate", desc=lead_nl)
+    html += TOPBAR + HEADER
+    html += f'''
+<section class="page-hero"><div class="container">
+  <div class="crumbs"><a href="index.html">Home</a> / {title_nl}</div>
+  <h1{trh(title_en, title_es)}>{title_nl}</h1>
+  <p class="lead"{trh(lead_en, lead_es)}>{lead_nl}</p>
+</div></section>
+<section class="section"><div class="container" style="max-width:760px">
+  <div class="prose">{body}
+    <p style="margin-top:24px" data-tr="1" data-en="Questions? Email <a href=&quot;mailto:privacy@springrealestate.com&quot;>privacy@springrealestate.com</a> or call +31 30 200 10 20." data-es="¿Preguntas? Escriba a <a href=&quot;mailto:privacy@springrealestate.com&quot;>privacy@springrealestate.com</a> o llame al +31 30 200 10 20.">Vragen? Mail <a href="mailto:privacy@springrealestate.com">privacy@springrealestate.com</a> of bel +31 30 200 10 20.</p>
+  </div>
+</div></section>
+'''
+    html += FOOTER
+    return html
+
 def write(name, html):
     with open(os.path.join(ROOT, name), "w", encoding="utf-8") as f:
         f.write(localize(html))
@@ -1912,7 +2137,8 @@ def write_search_index():
         units.append({"n": name, "u": f"unit-{slug}.html", "kw": kw, "dg": dg.split()[0]})
     people = [{"n": re.sub(r'&[a-z]+;', '', p["name"]), "r": p["role"], "u": f"profile-{p['slug']}.html"} for p in PEOPLE]
     listings = [{"n": d["title"], "u": f"aanbod-{d['slug']}.html", "loc": d["loc"], "offer": d["offer"], "t": d["type"], "city": d["addr"].split("·")[-1].strip()} for d in LISTINGS]
-    data = "window.SPRING_INDEX=" + js({"units": units, "people": people, "listings": listings}) + ";\n"
+    articles = [{"n": re.sub(r'&[a-z]+;', '', a[9]), "u": f"artikel-{a[0]}.html", "cat": a[2]} for a in ARTICLES]
+    data = "window.SPRING_INDEX=" + js({"units": units, "people": people, "listings": listings, "articles": articles}) + ";\n"
     with open(os.path.join(ROOT, "js", "search-index.js"), "w", encoding="utf-8") as f:
         f.write(data)
     return "js/search-index.js"
@@ -1936,6 +2162,10 @@ def main():
     written.append(write("sectoren.html", render_sectoren()))
     written.append(write("cases.html", render_cases()))
     written.append(write("begrippen.html", render_begrippen()))
+    for a in ARTICLES:
+        written.append(write(f"artikel-{a[0]}.html", render_article(a)))
+    for key in LEGAL:
+        written.append(write(f"{key}.html", render_legal(key)))
     written.append(write_search_index())
     print(f"Generated {len(written)} pages:")
     for w in written: print("  "+w)

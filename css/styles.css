@@ -1142,6 +1142,28 @@ body.has-cookie .lead-launch{ bottom:172px; }
 .perk p{ margin:0; color:var(--muted,#6b6b69); font-size:.93rem; line-height:1.55; }
 @media (max-width:820px){ .vsteps, .perk-grid{ grid-template-columns:repeat(2,1fr); } }
 @media (max-width:520px){ .vsteps, .perk-grid{ grid-template-columns:1fr; } }
+/* WhatsApp button */
+.btn--wa{ background:#25D366; color:#fff; border-color:#25D366; }
+.btn--wa:hover{ background:#1ebe5a; border-color:#1ebe5a; color:#fff; }
+.btn--wa svg{ vertical-align:-3px; }
+/* quick-contact dock (overal, snel persoonlijk contact) */
+.qcontact{ position:fixed; right:0; top:50%; transform:translateY(-50%); z-index:850; display:flex; flex-direction:column; gap:8px; }
+.qcontact a{ display:flex; align-items:center; background:var(--green); color:#fff; height:48px; width:48px; border-radius:12px 0 0 12px; overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.18); transition:width .22s ease, background .15s; text-decoration:none; white-space:nowrap; }
+.qcontact a svg{ flex:0 0 48px; width:20px; height:20px; margin:0 14px; }
+.qcontact a span{ opacity:0; padding-right:18px; font-weight:600; font-size:.92rem; transition:opacity .15s; }
+.qcontact a:hover{ width:180px; }
+.qcontact a:hover span{ opacity:1; }
+.qcontact a.qc-wa{ background:#25D366; }
+.qcontact a.qc-mail{ background:var(--grey-dark,#3C3C3B); }
+@media (max-width:760px){ .qcontact{ display:none; } }
+@media print{ .qcontact{ display:none; } }
+/* article (kennisartikel) layout */
+.article-hero{ width:100%; border-radius:16px; margin-bottom:26px; aspect-ratio:16/8; object-fit:cover; }
+.article-body h2{ margin:30px 0 10px; }
+.article-body p{ line-height:1.7; }
+.article-body .takeaways{ margin-top:30px; background:var(--green-soft,#CDEA86); border-radius:14px; padding:22px 26px; }
+.article-body .takeaways h3{ margin:0 0 12px; }
+.article-aside{ align-self:start; position:sticky; top:96px; }
 
 /* =====================================================================
    KATANA-STYLE COMPONENTS (homepage)
