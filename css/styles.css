@@ -553,7 +553,7 @@ p{ margin:0 0 1rem; }
 .page-hero .lead{ margin-top:14px; }
 .page-hero .ph-cta{ display:flex; gap:14px; margin-top:24px; flex-wrap:wrap; }
 /* recurring search on sub-pages — dark-on-light variant */
-.search--light{ box-shadow:var(--shadow-soft); border:1px solid var(--line); margin-top:26px; }
+.search--light{ background:#fff; box-shadow:var(--shadow-soft); border:1px solid var(--line); margin-top:26px; }
 
 /* sticky category anchor nav */
 .pillnav{ position:sticky; top:76px; z-index:40; background:rgba(255,255,255,.94); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
@@ -1989,3 +1989,11 @@ a.person:hover{ border-color:var(--green); box-shadow:var(--shadow-soft); }
 .nav .has-drop:first-child:focus-within .drop,
 .nav .has-drop:first-child.click-open .drop{ transform: translateY(0); opacity:1; visibility:visible; }
 
+
+
+/* resources pages — blog-card hover */
+.blog-card{ transition:transform .18s,box-shadow .18s; }
+.blog-card:hover{ transform:translateY(-4px); box-shadow:0 8px 28px rgba(0,0,0,.10); }
+.blog-card .ph{ overflow:hidden; border-radius:var(--r-lg) var(--r-lg) 0 0; }
+.blog-card .ph img{ transition:transform .35s; }
+.blog-card:hover .ph img{ transform:scale(1.04); }
