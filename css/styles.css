@@ -553,7 +553,7 @@ p{ margin:0 0 1rem; }
 .page-hero .lead{ margin-top:14px; }
 .page-hero .ph-cta{ display:flex; gap:14px; margin-top:24px; flex-wrap:wrap; }
 /* recurring search on sub-pages — dark-on-light variant */
-.search--light{ box-shadow:var(--shadow-soft); border:1px solid var(--line); margin-top:26px; }
+.search--light{ background:#EBF4D6; border:1px solid #C5DFA0; margin-top:20px; }
 
 /* sticky category anchor nav */
 .pillnav{ position:sticky; top:76px; z-index:40; background:rgba(255,255,255,.94); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
