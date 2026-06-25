@@ -1626,9 +1626,9 @@ a.person:hover{ border-color:var(--green); box-shadow:var(--shadow-soft); }
   position:relative; border-radius:var(--r-lg); overflow:hidden;
   background:linear-gradient(160deg,#1a2e14 0%,#0d1f0a 100%);
   border:1px solid rgba(124,167,63,.2);
-  min-height:320px;
+  min-height:200px;
 }
-.lmc-svg{ width:100%; height:auto; display:block; min-height:220px; }
+.lmc-svg{ width:100%; height:auto; display:block; min-height:140px; max-height:180px; }
 .lmc-pin{
   position:absolute; display:flex; align-items:center; gap:8px;
   transform:translate(-50%,-50%); pointer-events:none;
@@ -1882,3 +1882,77 @@ a.person:hover{ border-color:var(--green); box-shadow:var(--shadow-soft); }
   .hero-search{ max-width:100%; }
   .hs-btn{ padding:10px 14px; }
 }
+
+/* =====================================================================
+   KANTOORZOEKER BAR — collapsible stepper onder listings page-hero
+   ===================================================================== */
+.kz-bar{
+  background:var(--green); position:relative; z-index:50;
+  border-bottom:1px solid rgba(0,0,0,.08);
+}
+.kz-toggle{
+  display:flex; align-items:center; gap:10px;
+  width:100%; background:none; border:none; cursor:pointer;
+  color:#fff; font-family:inherit; font-size:.95rem; font-weight:700;
+  padding:14px 0; text-align:left; letter-spacing:.01em;
+}
+.kz-toggle svg{ flex-shrink:0; opacity:.85; }
+.kz-toggle span{ flex:1; }
+.kz-chevron{ transition:transform .25s ease; opacity:.75; }
+.kz--open .kz-chevron{ transform:rotate(180deg); }
+.kz-panel{
+  border-top:1px solid rgba(255,255,255,.2);
+  padding:18px 0 16px;
+}
+.kz-panel[hidden]{ display:none; }
+.kz-steps{ display:flex; flex-direction:column; gap:0; }
+.kz-step{
+  display:none; align-items:flex-start; gap:14px; padding:10px 0;
+}
+.kz-step--active{ display:flex; }
+.kz-num{
+  width:26px; height:26px; border-radius:50%;
+  background:rgba(255,255,255,.2); color:#fff;
+  font-size:.8rem; font-weight:800;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; margin-top:2px;
+}
+.kz-body{ flex:1; }
+.kz-q{ color:#fff; font-weight:700; font-size:.88rem; margin:0 0 10px; opacity:.9; }
+.kz-chips{ display:flex; gap:6px; flex-wrap:wrap; }
+.kz-chip{
+  background:rgba(255,255,255,.15); color:#fff;
+  border:1px solid rgba(255,255,255,.35); border-radius:var(--r-pill);
+  padding:7px 16px; font-size:.84rem; font-weight:600;
+  cursor:pointer; font-family:inherit; transition:all .15s;
+}
+.kz-chip:hover{ background:rgba(255,255,255,.28); }
+.kz-chip.active{ background:#fff; color:var(--green); border-color:#fff; }
+.kz-input{
+  background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.35);
+  border-radius:var(--r-sm); padding:8px 14px; color:#fff;
+  font-family:inherit; font-size:.9rem; outline:none;
+  min-width:180px; transition:border-color .15s; margin-top:8px; display:block;
+}
+.kz-input::placeholder{ color:rgba(255,255,255,.55); }
+.kz-input:focus{ border-color:#fff; background:rgba(255,255,255,.22); }
+.kz-input--sm{ min-width:80px; margin-top:0; display:inline-block; }
+.kz-actions{ margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.kz-next,.kz-submit{
+  display:inline-flex; align-items:center; gap:7px;
+  padding:9px 22px; border-radius:var(--r-pill); font-family:inherit;
+  font-size:.88rem; font-weight:700; cursor:pointer; border:none; transition:opacity .15s;
+}
+.kz-next{ background:rgba(255,255,255,.18); color:#fff; border:1px solid rgba(255,255,255,.4); }
+.kz-next:hover{ background:rgba(255,255,255,.28); }
+.kz-submit{ background:#fff; color:var(--green); }
+.kz-submit:hover{ opacity:.9; }
+@media(max-width:640px){
+  .kz-input{ min-width:0; width:100%; }
+  .kz-actions{ width:100%; }
+  .kz-next,.kz-submit{ flex:1; justify-content:center; }
+}
+
+/* listings first section tighter */
+.listings-layout{ padding-top:24px; padding-bottom:48px; }
+.scarcity-notice{ margin-bottom:12px; }

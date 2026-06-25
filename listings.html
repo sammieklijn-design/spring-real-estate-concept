@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,500&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=26">
+<link rel="stylesheet" href="css/styles.css?v=27">
 <link rel="icon" type="image/png" href="images/favicon.png?v=26">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=26">
 <meta name="theme-color" content="#7CA73F">
@@ -170,6 +170,81 @@
   </div>
   </div>
 </div>
+<!-- ============ KANTOORZOEKER ============ -->
+<div class="kz-bar" id="kzBar">
+  <div class="container">
+    <button class="kz-toggle" id="kzToggle" aria-expanded="false">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+      <span>Kantoorzoeker — vertel ons wat u zoekt</span>
+      <svg class="kz-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="kz-panel" id="kzPanel" hidden>
+      <div class="kz-steps">
+        <div class="kz-step kz-step--active" data-step="1">
+          <span class="kz-num">1</span>
+          <div class="kz-body">
+            <p class="kz-q">Wat zoekt u?</p>
+            <div class="kz-chips" id="kzType">
+              <button class="kz-chip" data-val="kantoor">Kantoorruimte</button>
+              <button class="kz-chip" data-val="bedrijf">Bedrijfsruimte</button>
+              <button class="kz-chip" data-val="belegging">Belegging</button>
+              <button class="kz-chip" data-val="woning">Woning</button>
+            </div>
+          </div>
+        </div>
+        <div class="kz-step" data-step="2">
+          <span class="kz-num">2</span>
+          <div class="kz-body">
+            <p class="kz-q">Welke locatie?</p>
+            <div class="kz-chips" id="kzLoc">
+              <button class="kz-chip" data-val="amsterdam">Amsterdam</button>
+              <button class="kz-chip" data-val="utrecht">Utrecht</button>
+              <button class="kz-chip" data-val="valencia">Valencia</button>
+              <button class="kz-chip" data-val="estepona">Estepona</button>
+            </div>
+            <input type="text" class="kz-input" placeholder="Of typ een locatie&hellip;">
+          </div>
+        </div>
+        <div class="kz-step kz-step--opp" data-step="3">
+          <span class="kz-num">3</span>
+          <div class="kz-body">
+            <p class="kz-q">Oppervlakte (m&sup2;)?</p>
+            <div style="display:flex;align-items:center;gap:8px">
+              <input type="number" class="kz-input kz-input--sm" placeholder="Min" min="0">
+              <span style="color:rgba(255,255,255,.6);font-weight:600">&ndash;</span>
+              <input type="number" class="kz-input kz-input--sm" placeholder="Max" min="0">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="kz-actions">
+        <button class="kz-next" id="kzNext">Volgende <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        <button class="kz-submit" id="kzSubmit" style="display:none">Zoek objecten <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('kzBar');if(!bar)return;
+  var tog=document.getElementById('kzToggle'),panel=document.getElementById('kzPanel');
+  var nxt=document.getElementById('kzNext'),sub=document.getElementById('kzSubmit');
+  var steps=Array.prototype.slice.call(bar.querySelectorAll('.kz-step'));
+  var cur=0;
+  tog.addEventListener('click',function(){
+    var open=panel.hidden;panel.hidden=!open;
+    tog.setAttribute('aria-expanded',String(open));
+    bar.classList.toggle('kz--open',open);
+    if(open)show(0);
+  });
+  function opp(){var tc=document.getElementById('kzType');var a=tc?tc.querySelector('.kz-chip.active'):null;var v=a?a.dataset.val:'';return v==='kantoor'||v==='bedrijf';}
+  function show(i){steps.forEach(function(s,idx){s.classList.toggle('kz-step--active',idx===i);});cur=i;var last=(i===steps.length-1)||(i===steps.length-2&&!opp());nxt.style.display=last?'none':'inline-flex';sub.style.display=last?'inline-flex':'none';}
+  bar.querySelectorAll('.kz-chips').forEach(function(g){g.querySelectorAll('.kz-chip').forEach(function(b){b.addEventListener('click',function(){g.querySelectorAll('.kz-chip').forEach(function(x){x.classList.remove('active');});b.classList.add('active');});});});
+  nxt.addEventListener('click',function(){var n=cur+1;if(n===steps.length-1&&!opp()){sub.click();return;}if(n<steps.length)show(n);});
+  sub.addEventListener('click',function(){});
+})();
+</script>
+
 <!-- ============ LISTINGS LAYOUT ============ -->
 <div class="container" style="padding-top:0;padding-bottom:0">
   <div class="scarcity-notice">
