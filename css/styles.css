@@ -1997,3 +1997,29 @@ a.person:hover{ border-color:var(--green); box-shadow:var(--shadow-soft); }
 .blog-card .ph{ overflow:hidden; border-radius:var(--r-lg) var(--r-lg) 0 0; }
 .blog-card .ph img{ transition:transform .35s; }
 .blog-card:hover .ph img{ transform:scale(1.04); }
+
+
+/* ── download-card als full-bleed lead magnet ─────────────────────────── */
+.lead-magnet{
+  background:linear-gradient(135deg,var(--green) 0%,#5a8a2e 100%);
+  color:#fff; padding:56px 0;
+}
+.lead-magnet .lm-inner{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:2rem; flex-wrap:wrap;
+}
+.lead-magnet .lm-text .eyebrow{ color:rgba(255,255,255,.65); }
+.lead-magnet .lm-text h2{ color:#fff; margin:.3rem 0 .5rem; font-size:clamp(1.3rem,2.5vw,1.9rem); }
+.lead-magnet .lm-text p{ color:rgba(255,255,255,.8); max-width:48ch; font-size:.95rem; }
+.lead-magnet .lm-form{ display:flex; gap:10px; flex-wrap:wrap; }
+.lead-magnet .lm-form input[type=email]{
+  flex:1; min-width:220px; border:0; border-radius:var(--r-pill);
+  padding:12px 20px; font-family:inherit; font-size:.95rem; color:var(--ink);
+}
+.lead-magnet .lm-form .btn{ white-space:nowrap; background:#fff; color:var(--green); font-weight:700; }
+.lead-magnet .lm-form .btn:hover{ background:var(--green-tint); }
+@media(max-width:720px){
+  .lead-magnet .lm-inner{ flex-direction:column; }
+  .lead-magnet .lm-form{ width:100%; }
+  .lead-magnet .lm-form input[type=email]{ width:100%; }
+}
