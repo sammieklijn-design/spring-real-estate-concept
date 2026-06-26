@@ -210,18 +210,33 @@ if (tabs) {
   const rcCount = document.getElementById('rcCount');
   const chipbar = document.getElementById('chipbar');
   const empty = document.getElementById('listEmpty');
-  const LABELS = { huur: 'Te huur', koop: 'Te koop', kantoor: 'Kantoorruimte', bedrijf: 'Bedrijfsruimte', winkel: 'Winkelruimte', belegging: 'Beleggingsobject', amsterdam: 'Amsterdam', utrecht: 'Utrecht', valencia: 'Valencia', estepona: 'Estepona' };
+  const wpmin = document.getElementById('fWpMin');
+  const wpmax = document.getElementById('fWpMax');
+  const LABELS = { huur: 'Te huur', koop: 'Te koop', kantoor: 'Kantoorruimte', bedrijf: 'Bedrijfsruimte', winkel: 'Winkelruimte', belegging: 'Beleggingsobject', amsterdam: 'Amsterdam', utrecht: 'Utrecht', valencia: 'Valencia', estepona: 'Estepona', parkeren: 'Parkeren', vergaderen: 'Vergaderruimte', receptie: 'Receptieservice', ov: 'Dichtbij OV', breeam: 'BREEAM / Duurzaam', lift: 'Lift aanwezig' };
   function apply() {
     const groups = {};
     checks.filter(c => c.checked).forEach(c => { (groups[c.dataset.fgroup] = groups[c.dataset.fgroup] || new Set()).add(c.dataset.val); });
     const mn = parseFloat(amin && amin.value) || 0;
     const mx = parseFloat(amax && amax.value) || Infinity;
+    const wpMn = parseFloat(wpmin && wpmin.value) || 0;
+    const wpMx = parseFloat(wpmax && wpmax.value) || Infinity;
     const q = (search ? search.value : '').toLowerCase().trim();
     let shown = 0;
     cards.forEach(card => {
       let ok = true;
-      for (const g in groups) { if (!groups[g].has(card.dataset[g])) { ok = false; break; } }
+      for (const g in groups) {
+        if (g === 'wensen') continue;
+        if (!groups[g].has(card.dataset[g])) { ok = false; break; }
+      }
       if (ok) { const a = parseFloat(card.dataset.area) || 0; if (a < mn || a > mx) ok = false; }
+      if (ok && (wpMn > 0 || wpMx < Infinity)) {
+        const wp = parseFloat(card.dataset.wp);
+        if (!wp || wp < wpMn || wp > wpMx) ok = false;
+      }
+      if (ok && groups['wensen']) {
+        const cardW = (card.dataset.wensen || '').split(' ');
+        for (const w of groups['wensen']) { if (!cardW.includes(w)) { ok = false; break; } }
+      }
       if (ok && q) ok = card.textContent.toLowerCase().indexOf(q) >= 0;
       card.style.display = ok ? '' : 'none';
       if (ok) shown++;
@@ -240,9 +255,9 @@ if (tabs) {
     }
   }
   checks.forEach(c => c.addEventListener('change', apply));
-  [amin, amax].forEach(el => el && el.addEventListener('input', apply));
+  [amin, amax, wpmin, wpmax].forEach(el => el && el.addEventListener('input', apply));
   if (search) search.addEventListener('input', apply);
-  function clearAll(e) { if (e) e.preventDefault(); checks.forEach(c => c.checked = false); if (amin) amin.value = ''; if (amax) amax.value = ''; if (search) search.value = ''; apply(); }
+  function clearAll(e) { if (e) e.preventDefault(); checks.forEach(c => c.checked = false); if (amin) amin.value = ''; if (amax) amax.value = ''; if (wpmin) wpmin.value = ''; if (wpmax) wpmax.value = ''; if (search) search.value = ''; apply(); }
   const fc = document.getElementById('fClear'); if (fc) fc.addEventListener('click', clearAll);
   const fc2 = document.getElementById('listClear2'); if (fc2) fc2.addEventListener('click', clearAll);
   const ft = document.getElementById('filterToggle'); if (ft) ft.addEventListener('click', () => filters.classList.toggle('open'));
